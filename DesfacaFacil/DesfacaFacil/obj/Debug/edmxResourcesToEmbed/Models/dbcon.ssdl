@@ -16,11 +16,11 @@
   </EntityType>
   <EntityType Name="CANDIDATOS">
     <Key>
-      <PropertyRef Name="USID" />
-      <PropertyRef Name="AID" />
+      <PropertyRef Name="CANID" />
     </Key>
-    <Property Name="USID" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="AID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CANID" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="USID" Type="number" Precision="38" Scale="0" />
+    <Property Name="AID" Type="number" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="CATEGORIAS">
     <Key>
@@ -63,7 +63,6 @@
     <Property Name="EMAIL" Type="varchar2" MaxLength="40" Nullable="false" />
     <Property Name="TELEFONE" Type="varchar2" MaxLength="15" />
     <Property Name="DATACADASTRO" Type="date" />
-    <Property Name="SENHA" Type="varchar2" MaxLength="30" Nullable="false" />
   </EntityType>
   <Association Name="RELACAOANUNCIOMENSAGENS">
     <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
@@ -90,7 +89,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RELACAOCANDIDATOANUNCIO">
-    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="1" />
+    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
     <End Role="CANDIDATOS" Type="Self.CANDIDATOS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ANUNCIO">
@@ -102,7 +101,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RELACAOCANDIDATOUSUARIO">
-    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
     <End Role="CANDIDATOS" Type="Self.CANDIDATOS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USUARIOS">

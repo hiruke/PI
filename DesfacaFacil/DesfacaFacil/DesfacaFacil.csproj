@@ -115,7 +115,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <EntityDeploy Include="Models\dbcon.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbcon.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\dbcon.edmx.diagram">
+      <DependentUpon>dbcon.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Models\dbcon.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbcon.edmx</DependentUpon>
+      <LastGenOutput>dbcon.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\dbcon.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbcon.edmx</DependentUpon>
+      <LastGenOutput>dbcon.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -130,8 +147,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ANUNCIOsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ANUNCIO.cs">
+      <DependentUpon>dbcon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CANDIDATO.cs">
+      <DependentUpon>dbcon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CATEGORIA.cs">
+      <DependentUpon>dbcon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbcon.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbcon.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbcon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbcon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbcon.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbcon.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ENDERECO.cs">
+      <DependentUpon>dbcon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MENSAGEN.cs">
+      <DependentUpon>dbcon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USUARIO.cs">
+      <DependentUpon>dbcon.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -141,6 +192,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\ANUNCIOs\Create.cshtml" />
+    <Content Include="Views\ANUNCIOs\Delete.cshtml" />
+    <Content Include="Views\ANUNCIOs\Details.cshtml" />
+    <Content Include="Views\ANUNCIOs\Edit.cshtml" />
+    <Content Include="Views\ANUNCIOs\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -150,8 +206,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

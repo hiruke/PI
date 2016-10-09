@@ -16,6 +16,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CANDIDATOS">
+      <EntityTypeMapping TypeName="Modelo.CANDIDATO">
+        <MappingFragment StoreEntitySet="CANDIDATOS">
+          <ScalarProperty Name="CANID" ColumnName="CANID" />
+          <ScalarProperty Name="USID" ColumnName="USID" />
+          <ScalarProperty Name="AID" ColumnName="AID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CATEGORIAS">
       <EntityTypeMapping TypeName="Modelo.CATEGORIA">
         <MappingFragment StoreEntitySet="CATEGORIAS">
@@ -59,17 +68,8 @@
           <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
           <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
           <ScalarProperty Name="DATACADASTRO" ColumnName="DATACADASTRO" />
-          <ScalarProperty Name="SENHA" ColumnName="SENHA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="CANDIDATOS" TypeName="Modelo.CANDIDATOS" StoreEntitySet="CANDIDATOS">
-      <EndProperty Name="ANUNCIO">
-        <ScalarProperty Name="AID" ColumnName="AID" />
-      </EndProperty>
-      <EndProperty Name="USUARIOS">
-        <ScalarProperty Name="USID" ColumnName="USID" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>
