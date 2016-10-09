@@ -1,0 +1,88 @@
+﻿@model DesfacaFacil.Models.ANUNCIO
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ANUNCIO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATACRIACAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATACRIACAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATAEXPIRACAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATAEXPIRACAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRICAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRICAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TITULO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TITULO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATEGORIA.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORIA.NOME)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
