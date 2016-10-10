@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DesfacaFacil.Models.USUARIO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TELEFONE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATACADASTRO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.STATUS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TELEFONE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATACADASTRO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.USID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.USID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.USID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+@model IEnumerable<DesfacaFacil.Models.ANUNCIO>
+@foreach (var r in Model)
+{
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="fullcarousel-example" data-interval="false" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png">
+                                <div class="carousel-caption">
+                                    <h2></h2>
+                                    <p>Imagens</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#fullcarousel-example" data-slide="prev"><i class="icon-prev fa fa-angle-left"></i></a>
+                        <a class="right carousel-control" href="#fullcarousel-example" data-slide="next"><i class="icon-next fa fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h1>@r.TITULO</h1>
+                    <u>@r.USID</u>
+                    <i>@r.CATEGORIA</i>
+                    <p>
+                        @r.DESCRICAO
+                    </p>
+                    <a class="btn btn-primary">Candidatar-se</a>
+                    <a class="btn btn-primary">Conversar com anunciante</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+}

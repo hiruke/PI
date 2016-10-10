@@ -132,5 +132,12 @@ namespace DesfacaFacil.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpGet]
+        public ActionResult Visualizar(int id)
+        {
+            IEnumerable<ANUNCIO> a = db.ANUNCIOs.Where(x => x.AID == id);
+            return View(a);
+        }
     }
 }

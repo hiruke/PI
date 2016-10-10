@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Index", "Login", FormMethod.Post))
+{
+    <fieldset>
+        @Html.Label("Login: ")
+        @Html.TextBox("Login")
+        <br>
+        @Html.Label("Senha: ")
+
+        @Html.Password("Senha")
+        <br>
+        <br><input type="submit" value="Entrar">
+    </fieldset>
+}
+
+<script type="text/javascript">
+        $('document').ready(function(){
+            $('li').removeClass("active");
+            $("#Login").addClass("active");
+        });
+</script>
+

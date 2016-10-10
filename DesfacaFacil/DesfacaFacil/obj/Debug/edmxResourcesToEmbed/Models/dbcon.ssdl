@@ -63,6 +63,7 @@
     <Property Name="EMAIL" Type="varchar2" MaxLength="40" Nullable="false" />
     <Property Name="TELEFONE" Type="varchar2" MaxLength="15" />
     <Property Name="DATACADASTRO" Type="date" />
+    <Property Name="SENHA" Type="varchar2" MaxLength="15" Nullable="false" />
   </EntityType>
   <Association Name="RELACAOANUNCIOMENSAGENS">
     <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />

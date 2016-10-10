@@ -74,3 +74,5 @@ C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\
 C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.csprojResolveAssemblyReference.cache
 C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.dll
 C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.pdb
+C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\Oracle.ManagedDataAccess.dll
+C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\Oracle.ManagedDataAccess.EntityFramework.dll

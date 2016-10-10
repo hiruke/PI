@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Modelo.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Modelo.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ANUNCIO">
           <Key>
             <PropertyRef Name="AID" />
@@ -68,6 +68,7 @@
           <Property Name="EMAIL" Type="varchar2" MaxLength="40" Nullable="false" />
           <Property Name="TELEFONE" Type="varchar2" MaxLength="15" />
           <Property Name="DATACADASTRO" Type="date" />
+          <Property Name="SENHA" Type="varchar2" MaxLength="15" Nullable="false" />
         </EntityType>
         <Association Name="RELACAOANUNCIOMENSAGENS">
           <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
@@ -173,8 +174,7 @@
             <End Role="ENDERECO" EntitySet="ENDERECO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Modelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -253,6 +253,7 @@
           <NavigationProperty Name="ANUNCIOs" Relationship="Self.RELACAOANUNCIOUSUARIO" FromRole="USUARIOS" ToRole="ANUNCIO" />
           <NavigationProperty Name="CANDIDATOS" Relationship="Self.RELACAOCANDIDATOUSUARIO" FromRole="USUARIOS" ToRole="CANDIDATOS" />
           <NavigationProperty Name="ENDERECOes" Relationship="Self.RELACAOUSUARIOENDERECO" FromRole="USUARIOS" ToRole="ENDERECO" />
+          <Property Name="SENHA" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="RELACAOANUNCIOMENSAGENS">
           <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
@@ -425,6 +426,7 @@
           <EntitySetMapping Name="USUARIOS">
             <EntityTypeMapping TypeName="Modelo.USUARIO">
               <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="SENHA" ColumnName="SENHA" />
                 <ScalarProperty Name="USID" ColumnName="USID" />
                 <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 <ScalarProperty Name="NOME" ColumnName="NOME" />

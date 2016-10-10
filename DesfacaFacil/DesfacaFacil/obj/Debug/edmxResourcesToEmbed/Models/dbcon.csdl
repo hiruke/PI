@@ -75,6 +75,7 @@
     <NavigationProperty Name="ANUNCIOs" Relationship="Self.RELACAOANUNCIOUSUARIO" FromRole="USUARIOS" ToRole="ANUNCIO" />
     <NavigationProperty Name="CANDIDATOS" Relationship="Self.RELACAOCANDIDATOUSUARIO" FromRole="USUARIOS" ToRole="CANDIDATOS" />
     <NavigationProperty Name="ENDERECOes" Relationship="Self.RELACAOUSUARIOENDERECO" FromRole="USUARIOS" ToRole="ENDERECO" />
+    <Property Name="SENHA" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="RELACAOANUNCIOMENSAGENS">
     <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />

@@ -1,0 +1,50 @@
+﻿@model DesfacaFacil.Models.MENSAGEN
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MENSAGEN</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.USIDREMETENTE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USIDREMETENTE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USIDDESTINATARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USIDDESTINATARIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTEUDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTEUDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ANUNCIO.DESCRICAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANUNCIO.DESCRICAO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

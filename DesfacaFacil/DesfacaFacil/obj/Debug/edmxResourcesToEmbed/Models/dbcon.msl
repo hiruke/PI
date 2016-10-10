@@ -62,6 +62,7 @@
     <EntitySetMapping Name="USUARIOS">
       <EntityTypeMapping TypeName="Modelo.USUARIO">
         <MappingFragment StoreEntitySet="USUARIOS">
+          <ScalarProperty Name="SENHA" ColumnName="SENHA" />
           <ScalarProperty Name="USID" ColumnName="USID" />
           <ScalarProperty Name="STATUS" ColumnName="STATUS" />
           <ScalarProperty Name="NOME" ColumnName="NOME" />
