@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "PainelUsuario";
+    
 }
 @model IEnumerable<DesfacaFacil.Models.USUARIO>
 
@@ -28,48 +29,24 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <h1>Meus anuncios</h1>
+                <h1>@ViewBag.Pronome anuncios</h1>
+                
                 <div class="row">
+                    @foreach (var a in ViewBag.Anuncios)
+                    {
                     <div class="col-md-3">
                         <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
                              class="img-responsive">
-                        <h1>Heading</h1>
+                        
+                        <h1>@{ 
+                                string s = a.TITULO;
+                                Html.ActionLink(s, "Visualizar", "ANUNCIOsController");
+                            }</h1>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                            <br>Ut enim ad minim veniam, quis nostrud
+                            @a.DESCRICAO
                         </p>
                     </div>
-                    <div class="col-md-3">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                             class="img-responsive">
-                        <h1>Heading</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                            <br>Ut enim ad minim veniam, quis nostrud
-                        </p>
-                    </div>
-                    <div class="col-md-3">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                             class="img-responsive">
-                        <h1>Heading</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                            <br>Ut enim ad minim veniam, quis nostrud
-                        </p>
-                    </div>
-                    <div class="col-md-3">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                             class="img-responsive">
-                        <h1>Heading</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                            <br>Ut enim ad minim veniam, quis nostrud
-                        </p>
-                    </div>
+                    }
                 </div>
                 <a href="#">Ver mais</a>
             </div>

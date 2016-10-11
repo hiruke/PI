@@ -24,7 +24,7 @@ namespace DesfacaFacil.Controllers
                 //var usr = ctx.USUARIOS.Single(x => x.EMAIL == Login && x.SENHA == Senha);
                 if (usr != null)
                 {
-                    Session["IdUsuario"] = usr.USID;
+                    Session["IdUsuario"] = Int32.Parse(usr.USID.ToString());
                     Session["Email"] = usr.EMAIL;
                     return RedirectToAction("PainelUsuario", new { id = usr.USID });
                 }
@@ -38,7 +38,19 @@ namespace DesfacaFacil.Controllers
 
         public ActionResult PainelUsuario(int id)
         {
+            ViewBag.Pronome = "";
+            if (Session["IdUsuario"].ToString()== id.ToString())
+            {
+                ViewBag.Pronome = "Meus";
+            }
             Models.Entidades c = new Models.Entidades();
+            if (c.ANUNCIOs.Where(x => x.USID == id).Count() > 4)
+            {
+                ViewBag.Anuncios = c.ANUNCIOs.Where(x => x.USID == id).Take(4);
+            }
+            else {
+                ViewBag.Anuncios = c.ANUNCIOs.Where(x => x.USID == id);
+            }
             IEnumerable<Models.USUARIO> user = c.USUARIOS.Where(x => x.USID == id);
             return View(user);
         }
