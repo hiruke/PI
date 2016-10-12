@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Modelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ANUNCIO">
+    <Key>
+      <PropertyRef Name="AID" />
+    </Key>
+    <Property Name="AID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="USID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="STATUS" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DATACRIACAO" Type="DateTime" Nullable="false" />
+    <Property Name="DATAEXPIRACAO" Type="DateTime" Nullable="false" />
+    <Property Name="DESCRICAO" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TITULO" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="MENSAGENS" Relationship="Self.RELACAOANUNCIOMENSAGENS" FromRole="ANUNCIO" ToRole="MENSAGENS" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.RELACAOANUNCIOUSUARIO" FromRole="ANUNCIO" ToRole="USUARIOS" />
+    <NavigationProperty Name="CANDIDATOS" Relationship="Self.RELACAOCANDIDATOANUNCIO" FromRole="ANUNCIO" ToRole="CANDIDATOS" />
+    <NavigationProperty Name="CATEGORIA" Relationship="Self.RELACAOCATEGORIAANUNCIO" FromRole="ANUNCIO" ToRole="CATEGORIAS" />
+  </EntityType>
+  <EntityType Name="CANDIDATO">
+    <Key>
+      <PropertyRef Name="CANID" />
+    </Key>
+    <Property Name="CANID" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="USID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="AID" Type="Decimal" Precision="38" Scale="0" />
+    <NavigationProperty Name="ANUNCIO" Relationship="Self.RELACAOCANDIDATOANUNCIO" FromRole="CANDIDATOS" ToRole="ANUNCIO" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.RELACAOCANDIDATOUSUARIO" FromRole="CANDIDATOS" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="CID" />
+    </Key>
+    <Property Name="CID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOME" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ANUNCIOs" Relationship="Self.RELACAOCATEGORIAANUNCIO" FromRole="CATEGORIAS" ToRole="ANUNCIO" />
+  </EntityType>
+  <EntityType Name="ENDERECO">
+    <Key>
+      <PropertyRef Name="EID" />
+    </Key>
+    <Property Name="EID" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="USID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PAIS" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CIDADE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BAIRRO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RUA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="NUMERO" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CEP" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.RELACAOUSUARIOENDERECO" FromRole="ENDERECO" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="MENSAGEN">
+    <Key>
+      <PropertyRef Name="MID" />
+    </Key>
+    <Property Name="MID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="USIDREMETENTE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="USIDDESTINATARIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CONTEUDO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AID" Type="Decimal" Precision="38" Scale="0" />
+    <NavigationProperty Name="ANUNCIO" Relationship="Self.RELACAOANUNCIOMENSAGENS" FromRole="MENSAGENS" ToRole="ANUNCIO" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="USID" />
+    </Key>
+    <Property Name="USID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="STATUS" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOME" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TELEFONE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="DATACADASTRO" Type="DateTime" />
+    <NavigationProperty Name="ANUNCIOs" Relationship="Self.RELACAOANUNCIOUSUARIO" FromRole="USUARIOS" ToRole="ANUNCIO" />
+    <NavigationProperty Name="CANDIDATOS" Relationship="Self.RELACAOCANDIDATOUSUARIO" FromRole="USUARIOS" ToRole="CANDIDATOS" />
+    <NavigationProperty Name="ENDERECOes" Relationship="Self.RELACAOUSUARIOENDERECO" FromRole="USUARIOS" ToRole="ENDERECO" />
+    <Property Name="SENHA" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="RELACAOANUNCIOMENSAGENS">
+    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
+    <End Role="MENSAGENS" Type="Self.MENSAGEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ANUNCIO">
+        <PropertyRef Name="AID" />
+      </Principal>
+      <Dependent Role="MENSAGENS">
+        <PropertyRef Name="AID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RELACAOANUNCIOUSUARIO">
+    <End Role="USUARIOS" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USID" />
+      </Principal>
+      <Dependent Role="ANUNCIO">
+        <PropertyRef Name="USID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RELACAOCANDIDATOANUNCIO">
+    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
+    <End Role="CANDIDATOS" Type="Self.CANDIDATO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ANUNCIO">
+        <PropertyRef Name="AID" />
+      </Principal>
+      <Dependent Role="CANDIDATOS">
+        <PropertyRef Name="AID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RELACAOCATEGORIAANUNCIO">
+    <End Role="CATEGORIAS" Type="Self.CATEGORIA" Multiplicity="1" />
+    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIAS">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="ANUNCIO">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RELACAOCANDIDATOUSUARIO">
+    <End Role="USUARIOS" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="CANDIDATOS" Type="Self.CANDIDATO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USID" />
+      </Principal>
+      <Dependent Role="CANDIDATOS">
+        <PropertyRef Name="USID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RELACAOUSUARIOENDERECO">
+    <End Role="USUARIOS" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="ENDERECO" Type="Self.ENDERECO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USID" />
+      </Principal>
+      <Dependent Role="ENDERECO">
+        <PropertyRef Name="USID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entidades" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ANUNCIOs" EntityType="Self.ANUNCIO" />
+    <EntitySet Name="CANDIDATOS" EntityType="Self.CANDIDATO" />
+    <EntitySet Name="CATEGORIAS" EntityType="Self.CATEGORIA" />
+    <EntitySet Name="ENDERECOes" EntityType="Self.ENDERECO" />
+    <EntitySet Name="MENSAGENS" EntityType="Self.MENSAGEN" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIO" />
+    <AssociationSet Name="RELACAOANUNCIOMENSAGENS" Association="Self.RELACAOANUNCIOMENSAGENS">
+      <End Role="ANUNCIO" EntitySet="ANUNCIOs" />
+      <End Role="MENSAGENS" EntitySet="MENSAGENS" />
+    </AssociationSet>
+    <AssociationSet Name="RELACAOANUNCIOUSUARIO" Association="Self.RELACAOANUNCIOUSUARIO">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="ANUNCIO" EntitySet="ANUNCIOs" />
+    </AssociationSet>
+    <AssociationSet Name="RELACAOCANDIDATOANUNCIO" Association="Self.RELACAOCANDIDATOANUNCIO">
+      <End Role="ANUNCIO" EntitySet="ANUNCIOs" />
+      <End Role="CANDIDATOS" EntitySet="CANDIDATOS" />
+    </AssociationSet>
+    <AssociationSet Name="RELACAOCATEGORIAANUNCIO" Association="Self.RELACAOCATEGORIAANUNCIO">
+      <End Role="CATEGORIAS" EntitySet="CATEGORIAS" />
+      <End Role="ANUNCIO" EntitySet="ANUNCIOs" />
+    </AssociationSet>
+    <AssociationSet Name="RELACAOCANDIDATOUSUARIO" Association="Self.RELACAOCANDIDATOUSUARIO">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="CANDIDATOS" EntitySet="CANDIDATOS" />
+    </AssociationSet>
+    <AssociationSet Name="RELACAOUSUARIOENDERECO" Association="Self.RELACAOUSUARIOENDERECO">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="ENDERECO" EntitySet="ENDERECOes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

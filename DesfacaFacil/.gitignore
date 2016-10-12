@@ -1,4 +1,4 @@
-**/bin/
-**/obj/Debug
-**/obj/Release
-.vc/
+**\bin\
+**\obj\Debug
+**\obj\Release
+.vc\

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModeloStoreContainer" CdmEntityContainer="Entidades">
+    <EntitySetMapping Name="ANUNCIOs">
+      <EntityTypeMapping TypeName="Modelo.ANUNCIO">
+        <MappingFragment StoreEntitySet="ANUNCIO">
+          <ScalarProperty Name="AID" ColumnName="AID" />
+          <ScalarProperty Name="USID" ColumnName="USID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="DATACRIACAO" ColumnName="DATACRIACAO" />
+          <ScalarProperty Name="DATAEXPIRACAO" ColumnName="DATAEXPIRACAO" />
+          <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CANDIDATOS">
+      <EntityTypeMapping TypeName="Modelo.CANDIDATO">
+        <MappingFragment StoreEntitySet="CANDIDATOS">
+          <ScalarProperty Name="CANID" ColumnName="CANID" />
+          <ScalarProperty Name="USID" ColumnName="USID" />
+          <ScalarProperty Name="AID" ColumnName="AID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CATEGORIAS">
+      <EntityTypeMapping TypeName="Modelo.CATEGORIA">
+        <MappingFragment StoreEntitySet="CATEGORIAS">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ENDERECOes">
+      <EntityTypeMapping TypeName="Modelo.ENDERECO">
+        <MappingFragment StoreEntitySet="ENDERECO">
+          <ScalarProperty Name="EID" ColumnName="EID" />
+          <ScalarProperty Name="USID" ColumnName="USID" />
+          <ScalarProperty Name="PAIS" ColumnName="PAIS" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+          <ScalarProperty Name="BAIRRO" ColumnName="BAIRRO" />
+          <ScalarProperty Name="RUA" ColumnName="RUA" />
+          <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MENSAGENS">
+      <EntityTypeMapping TypeName="Modelo.MENSAGEN">
+        <MappingFragment StoreEntitySet="MENSAGENS">
+          <ScalarProperty Name="MID" ColumnName="MID" />
+          <ScalarProperty Name="USIDREMETENTE" ColumnName="USIDREMETENTE" />
+          <ScalarProperty Name="USIDDESTINATARIO" ColumnName="USIDDESTINATARIO" />
+          <ScalarProperty Name="CONTEUDO" ColumnName="CONTEUDO" />
+          <ScalarProperty Name="AID" ColumnName="AID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOS">
+      <EntityTypeMapping TypeName="Modelo.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIOS">
+          <ScalarProperty Name="SENHA" ColumnName="SENHA" />
+          <ScalarProperty Name="USID" ColumnName="USID" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+          <ScalarProperty Name="DATACADASTRO" ColumnName="DATACADASTRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
