@@ -11,16 +11,16 @@
 *.userprefs
 
 # Build results
-DesfacaFacil/[Dd]ebug/
-DesfacaFacil/[Dd]ebugPublic/
-DesfacaFacil/[Rr]elease/
-DesfacaFacil/[Rr]eleases/
+DesfacaFacil/debug/
+DesfacaFacil/debugPublic/
+DesfacaFacil/release/
+DesfacaFacil/releases/
 DesfacaFacil/x64/
 DesfacaFacil/x86/
 DesfacaFacil/bld/
-DesfacaFacil/[Bb]in/
-DesfacaFacil/[Oo]bj/
-DesfacaFacil/[Ll]og/
+DesfacaFacil/bin/
+DesfacaFacil/obj/
+DesfacaFacil/log/
 
 # Visual Studio 2015 cache/options directory
 .vs/
