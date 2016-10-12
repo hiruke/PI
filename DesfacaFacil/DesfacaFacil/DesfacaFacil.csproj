@@ -186,6 +186,9 @@
     <Compile Include="Models\ENDERECO.cs">
       <DependentUpon>dbcon.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IMAGEN.cs">
+      <DependentUpon>dbcon.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MENSAGEN.cs">
       <DependentUpon>dbcon.tt</DependentUpon>
     </Compile>

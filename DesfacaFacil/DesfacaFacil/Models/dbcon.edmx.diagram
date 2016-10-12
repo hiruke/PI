@@ -17,6 +17,8 @@
         <AssociationConnector Association="Modelo.RELACAOCATEGORIAANUNCIO" ManuallyRouted="false" />
         <AssociationConnector Association="Modelo.RELACAOCANDIDATOUSUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="Modelo.RELACAOUSUARIOENDERECO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Modelo.IMAGEN" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="Modelo.RELACAOANUNCIOIMAGENS" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

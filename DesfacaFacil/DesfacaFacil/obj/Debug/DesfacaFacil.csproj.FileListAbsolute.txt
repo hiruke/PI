@@ -35,45 +35,6 @@ C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Mvc.xml
 C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.csprojResolveAssemblyReference.cache
 C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.dll
 C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.pdb
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\csc.exe
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\vbc.exe
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\VBCSCompiler.exe
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\DesfacaFacil.dll.config
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\DesfacaFacil.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\DesfacaFacil.pdb
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\EntityFramework.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\EntityFramework.SqlServer.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Oracle.ManagedDataAccess.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Oracle.ManagedDataAccess.EntityFramework.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Helpers.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Mvc.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Razor.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.Deployment.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.Razor.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\EntityFramework.xml
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\EntityFramework.SqlServer.xml
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Razor.xml
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.xml
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.Deployment.xml
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.Razor.xml
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Helpers.xml
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Mvc.xml
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.csprojResolveAssemblyReference.cache
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.dll
-C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.pdb
 C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\Oracle.ManagedDataAccess.dll
 C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\Oracle.ManagedDataAccess.EntityFramework.dll
 C:\Users\ucl\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\csc.exe
@@ -115,3 +76,42 @@ C:\Users\ucl\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Mvc.xml
 C:\Users\ucl\Source\Repos\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.csprojResolveAssemblyReference.cache
 C:\Users\ucl\Source\Repos\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.dll
 C:\Users\ucl\Source\Repos\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.pdb
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\csc.exe
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\vbc.exe
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\VBCSCompiler.exe
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\DesfacaFacil.dll.config
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\DesfacaFacil.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\DesfacaFacil.pdb
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\EntityFramework.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\EntityFramework.SqlServer.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Oracle.ManagedDataAccess.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Helpers.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Mvc.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Razor.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.Deployment.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.Razor.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\EntityFramework.xml
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\EntityFramework.SqlServer.xml
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Razor.xml
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.xml
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.Deployment.xml
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Webpages.Razor.xml
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Helpers.xml
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\System.Web.Mvc.xml
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.csprojResolveAssemblyReference.cache
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.dll
+C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.pdb

@@ -48,6 +48,15 @@
           <Property Name="NUMERO" Type="number" Precision="38" Scale="0" />
           <Property Name="CEP" Type="varchar2" MaxLength="9" Nullable="false" />
         </EntityType>
+        <EntityType Name="IMAGENS">
+          <Key>
+            <PropertyRef Name="IID" />
+          </Key>
+          <Property Name="IID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AID" Type="number" Precision="38" Scale="0" />
+          <Property Name="NOME" Type="varchar2" MaxLength="30" />
+          <Property Name="CAMINHO" Type="varchar2" MaxLength="150" />
+        </EntityType>
         <EntityType Name="MENSAGENS">
           <Key>
             <PropertyRef Name="MID" />
@@ -56,7 +65,7 @@
           <Property Name="USIDREMETENTE" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="USIDDESTINATARIO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="CONTEUDO" Type="varchar2" MaxLength="500" Nullable="false" />
-          <Property Name="AID" Type="number" Precision="38" Scale="0" />
+          <Property Name="AID" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -70,8 +79,24 @@
           <Property Name="DATACADASTRO" Type="date" />
           <Property Name="SENHA" Type="varchar2" MaxLength="15" Nullable="false" />
         </EntityType>
+        <Association Name="RELACAOANUNCIOIMAGENS">
+          <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IMAGENS" Type="Self.IMAGENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ANUNCIO">
+              <PropertyRef Name="AID" />
+            </Principal>
+            <Dependent Role="IMAGENS">
+              <PropertyRef Name="AID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RELACAOANUNCIOMENSAGENS">
-          <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
+          <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="MENSAGENS" Type="Self.MENSAGENS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ANUNCIO">
@@ -83,7 +108,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RELACAOANUNCIOUSUARIO">
-          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIOS">
@@ -95,7 +122,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RELACAOCANDIDATOANUNCIO">
-          <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
+          <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CANDIDATOS" Type="Self.CANDIDATOS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ANUNCIO">
@@ -107,7 +136,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RELACAOCANDIDATOUSUARIO">
-          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CANDIDATOS" Type="Self.CANDIDATOS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIOS">
@@ -119,7 +150,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RELACAOCATEGORIAANUNCIO">
-          <End Role="CATEGORIAS" Type="Self.CATEGORIAS" Multiplicity="1" />
+          <End Role="CATEGORIAS" Type="Self.CATEGORIAS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CATEGORIAS">
@@ -131,7 +164,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RELACAOUSUARIOENDERECO">
-          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ENDERECO" Type="Self.ENDERECO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIOS">
@@ -147,8 +182,13 @@
           <EntitySet Name="CANDIDATOS" EntityType="Self.CANDIDATOS" Schema="DESFACAFACIL" store:Type="Tables" />
           <EntitySet Name="CATEGORIAS" EntityType="Self.CATEGORIAS" Schema="DESFACAFACIL" store:Type="Tables" />
           <EntitySet Name="ENDERECO" EntityType="Self.ENDERECO" Schema="DESFACAFACIL" store:Type="Tables" />
+          <EntitySet Name="IMAGENS" EntityType="Self.IMAGENS" Schema="DESFACAFACIL" store:Type="Tables" />
           <EntitySet Name="MENSAGENS" EntityType="Self.MENSAGENS" Schema="DESFACAFACIL" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="DESFACAFACIL" store:Type="Tables" />
+          <AssociationSet Name="RELACAOANUNCIOIMAGENS" Association="Self.RELACAOANUNCIOIMAGENS">
+            <End Role="ANUNCIO" EntitySet="ANUNCIO" />
+            <End Role="IMAGENS" EntitySet="IMAGENS" />
+          </AssociationSet>
           <AssociationSet Name="RELACAOANUNCIOMENSAGENS" Association="Self.RELACAOANUNCIOMENSAGENS">
             <End Role="ANUNCIO" EntitySet="ANUNCIO" />
             <End Role="MENSAGENS" EntitySet="MENSAGENS" />
@@ -195,6 +235,7 @@
           <NavigationProperty Name="USUARIO" Relationship="Self.RELACAOANUNCIOUSUARIO" FromRole="ANUNCIO" ToRole="USUARIOS" />
           <NavigationProperty Name="CANDIDATOS" Relationship="Self.RELACAOCANDIDATOANUNCIO" FromRole="ANUNCIO" ToRole="CANDIDATOS" />
           <NavigationProperty Name="CATEGORIA" Relationship="Self.RELACAOCATEGORIAANUNCIO" FromRole="ANUNCIO" ToRole="CATEGORIAS" />
+          <NavigationProperty Name="IMAGENS" Relationship="Modelo.RELACAOANUNCIOIMAGENS" FromRole="ANUNCIO" ToRole="IMAGEN" />
         </EntityType>
         <EntityType Name="CANDIDATO">
           <Key>
@@ -358,7 +399,36 @@
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="ENDERECO" EntitySet="ENDERECOes" />
           </AssociationSet>
+          <EntitySet Name="IMAGENS" EntityType="Modelo.IMAGEN" />
+          <AssociationSet Name="RELACAOANUNCIOIMAGENS" Association="Modelo.RELACAOANUNCIOIMAGENS">
+            <End Role="ANUNCIO" EntitySet="ANUNCIOs" />
+            <End Role="IMAGEN" EntitySet="IMAGENS" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="IMAGEN">
+          <Key>
+            <PropertyRef Name="IID" />
+          </Key>
+          <Property Name="IID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="AID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="NOME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CAMINHO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ANUNCIO" Relationship="Modelo.RELACAOANUNCIOIMAGENS" FromRole="IMAGEN" ToRole="ANUNCIO" />
+        </EntityType>
+        <Association Name="RELACAOANUNCIOIMAGENS">
+          <End Type="Modelo.ANUNCIO" Role="ANUNCIO" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Modelo.IMAGEN" Role="IMAGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ANUNCIO">
+              <PropertyRef Name="AID" />
+            </Principal>
+            <Dependent Role="IMAGEN">
+              <PropertyRef Name="AID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -433,6 +503,16 @@
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
                 <ScalarProperty Name="DATACADASTRO" ColumnName="DATACADASTRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMAGENS">
+            <EntityTypeMapping TypeName="Modelo.IMAGEN">
+              <MappingFragment StoreEntitySet="IMAGENS">
+                <ScalarProperty Name="CAMINHO" ColumnName="CAMINHO" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="AID" ColumnName="AID" />
+                <ScalarProperty Name="IID" ColumnName="IID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
