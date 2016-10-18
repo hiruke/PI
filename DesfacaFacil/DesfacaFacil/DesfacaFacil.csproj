@@ -238,6 +238,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\PainelUsuario.cshtml" />
     <Content Include="Views\ANUNCIOs\Visualizar.cshtml" />
+    <Content Include="Views\MENSAGENs\Mensagens.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

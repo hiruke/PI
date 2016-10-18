@@ -15,6 +15,21 @@ namespace DesfacaFacil.Controllers
         private Entidades db = new Entidades();
 
         // GET: MENSAGENs
+
+        public ActionResult Mensagens(int prodid) {
+            if (Int32.Parse(Session["IdUsuario"].ToString()) != -1)
+            {
+                ViewBag.OutrosAnuncios = db.ANUNCIOs.Where(x => x.USID == db.ANUNCIOs.FirstOrDefault(y => y.AID == prodid).USID).Take(4);
+                ViewBag.Usuarios = db.USUARIOS;
+                return View(ViewBag.Candidatos = db.CANDIDATOS.Where(x => x.AID == prodid));
+                //return View(db.ANUNCIOs.Single(x => x.AID == prodid));
+            }
+            else {
+                return RedirectToAction("Index","Login");
+            }
+        }
+
+
         public ActionResult Index()
         {
             var mENSAGENS = db.MENSAGENS.Include(m => m.ANUNCIO);

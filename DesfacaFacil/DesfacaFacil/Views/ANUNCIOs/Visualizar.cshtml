@@ -31,8 +31,8 @@
                     <p>
                         @r.DESCRICAO
                     </p>
-                    <a class="btn btn-primary">Candidatar-se</a>
-                    <a class="btn btn-primary">Conversar com anunciante</a>
+                    <a class="btn btn-primary" onclick="if (confirm('Deseja se candidatar ao anuncio?')) { window.location.href(../candidatos/SalvarCandidato)}">Candidatar-se</a>
+                    <a href="~/MENSAGENs/Mensagens/?prodid=@r.AID" class="btn btn-primary">Conversar com anunciante</a>
                 </div>
             </div>
             <hr>

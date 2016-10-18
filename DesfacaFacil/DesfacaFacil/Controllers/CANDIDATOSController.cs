@@ -21,6 +21,13 @@ namespace DesfacaFacil.Controllers
             return View(cANDIDATOS.ToList());
         }
 
+        public ActionResult SalvarCandidato(int idusuario, int idanuncio) {
+            DesfacaFacil.Models.CANDIDATO c = new CANDIDATO(idusuario, idanuncio);
+            db.CANDIDATOS.Add(c);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         // GET: CANDIDATOS/Details/5
         public ActionResult Details(string id)
         {

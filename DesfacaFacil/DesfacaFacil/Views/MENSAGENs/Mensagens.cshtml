@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Mensagens";
+}
+
+@model IEnumerable<DesfacaFacil.Models.CANDIDATO>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+        @foreach (DesfacaFacil.Models.ANUNCIO anuncio in ViewBag.OutrosAnuncios)
+        {
+            <div class="col-md-3">
+                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                     class="img-responsive">
+                <h1>@anuncio.TITULO</h1>
+            </div>
+        }
+            
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h1>Canditatos</h1>
+                <ul class="list-group">
+                @foreach (var candidato in Model)
+                {
+                    foreach (DesfacaFacil.Models.USUARIO usuario in ViewBag.Usuarios)
+                    {
+                        if (usuario.USID == candidato.USID)
+                        {
+                            <li class="list-group-item">@usuario.NOME</li>
+                        }
+                    }
+                }
+                </ul>
+            </div>
+            <div id="chatbox" class="col-md-9"></div>
+
+
+            <div id="frm-mensagem">
+
+            </div>
+
+        </div>
+    </div>
+</div>
