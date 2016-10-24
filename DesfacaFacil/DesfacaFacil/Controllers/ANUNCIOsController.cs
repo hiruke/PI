@@ -136,7 +136,12 @@ namespace DesfacaFacil.Controllers
         [HttpGet]
         public ActionResult Visualizar(int id)
         {
-            IEnumerable<ANUNCIO> a = db.ANUNCIOs.Where(x => x.AID == id);
+            ANUNCIO a = db.ANUNCIOs.Where(x => x.AID == id).FirstOrDefault();
+            if (Int32.Parse(Session["IdUsuario"].ToString()) == a.USID) {
+                a.CANDIDATOS = db.CANDIDATOS.Where(x => x.AID == a.AID).AsEnumerable() ;
+                ViewBag.Dono = true;
+            }
+            ViewBag.Dono = false;
             return View(a);
         }
     }
