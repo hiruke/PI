@@ -1,9 +1,17 @@
-﻿
+﻿@using DAL;
 @{
     ViewBag.Title = "Pesquisa";
 }
-@model IEnumerable < DesfacaFacil.Models.ANUNCIO>
+@model IEnumerable<DesfacaFacil.Models.ANUNCIO>
 
+<div>
+    @{List<string> lista = DALCandidatos.GetCandidatosByAnuncio(2);
+    }
+    @foreach (string c in lista)
+    {
+        <div>Nome = @DALUsuarios.GetNomeByID(c);</div>
+    }
+</div>
 
 @if (!Model.Any())
 {
