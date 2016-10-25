@@ -3,9 +3,9 @@
     ViewBag.Title = "Visualizar";
 }
 
-@model IEnumerable<DesfacaFacil.Models.ANUNCIO>
-@foreach (var r in Model)
-{
+@model DesfacaFacil.Models.ANUNCIO
+
+
     <div class="section">
         <div class="container">
             <div class="row">
@@ -25,17 +25,38 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <h1>@r.TITULO</h1>
-                    <u>@r.USID</u>
-                    <i>@r.CATEGORIA</i>
+                    <h1>@Model.TITULO</h1>
+                    <u>@Model.USUARIO.NOME</u>
+                    <i>@Model.CATEGORIA</i>
                     <p>
-                        @r.DESCRICAO
+                        @Model.DESCRICAO
                     </p>
-                    <a class="btn btn-primary" onclick="if (confirm('Deseja se candidatar ao anuncio?')) { window.location.href(../candidatos/SalvarCandidato)}">Candidatar-se</a>
-                    <a href="~/MENSAGENs/Mensagens/?prodid=@r.AID" class="btn btn-primary">Conversar com anunciante</a>
+                    <a class="btn btn-primary" onclick="Candidatar()">Candidatar-se</a>
+                    <a href="~/MENSAGENs/Mensagens/?prodid=@Model.AID" class="btn btn-primary">Conversar com anunciante</a>
                 </div>
             </div>
             <hr>
+
+        
+
+            @if (ViewBag.Dono) {
+                <p>ljgjsdlghjslkdgjlçsdkfjgçlsdjglçsdfjglçj</p>
+                <ul>
+                @foreach (var s in Model.CANDIDATOS) {
+                    <li>@s.USID</li>
+                }
+                </ul>
+            }
         </div>
     </div>
+
+    <script type="text/javascript">
+        function Candidatar(){
+            if(confirm("Deseja candidatar-se ao anuncio?")){
+                
+                location.href="../../candidatos/Candidatar/?idanuncio=@Model.AID";
+                
+            }
+        }
+    </script>
 }

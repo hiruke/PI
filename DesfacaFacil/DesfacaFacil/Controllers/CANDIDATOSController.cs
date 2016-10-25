@@ -21,6 +21,20 @@ namespace DesfacaFacil.Controllers
             return View(cANDIDATOS.ToList());
         }
 
+        public ActionResult Candidatar(int idanuncio) {
+            if (Int32.Parse(Session["IdUsuario"].ToString()) != -1)
+            {
+                ANUNCIO a = new ANUNCIO();
+                a.USID = Int32.Parse(Session["IdUsuario"].ToString());
+                a.AID = idanuncio;
+                a.CID = db.ANUNCIOs.OrderByDescending(x => x.AID).FirstOrDefault().AID + 1;
+                return RedirectToAction("Index", "Home");
+            }
+            else {
+                return RedirectToAction("Index", "Login");
+            }
+        }
+
         public ActionResult SalvarCandidato(int idusuario, int idanuncio) {
             DesfacaFacil.Models.CANDIDATO c = new CANDIDATO(idusuario, idanuncio);
             db.CANDIDATOS.Add(c);

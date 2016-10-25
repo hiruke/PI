@@ -24,6 +24,8 @@ namespace DesfacaFacil.Models
             this.CANID = GeraID().ToString();
         }
 
+        public CANDIDATO() { }
+
         public int GeraID() {
             return 1;
         }

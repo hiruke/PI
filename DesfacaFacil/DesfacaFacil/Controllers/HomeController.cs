@@ -11,6 +11,7 @@ namespace DesfacaFacil.Controllers
         // GET: Home
         public ActionResult Index()
         {
+
             Session["IdUsuario"] = -1;
             return View();
         }
