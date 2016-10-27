@@ -62,6 +62,29 @@ namespace DAL
             }
             return new List<string>();
         }
-
+        public static string getNome(object _id)
+        {
+            return dbcon.getAtributo("nome", "usuarios", "usid", _id);
+        }
+        public static string getStatus(object _id)
+        {
+            return dbcon.getAtributo("status", "usuarios", "usid", _id);
+        }
+        public static string getDataEmail(object _id)
+        {
+            return dbcon.getAtributo("email", "usuarios", "usid", _id);
+        }
+        public static string getDataTelefone(object _id)
+        {
+            return dbcon.getAtributo("telefone", "usuarios", "usid", _id);
+        }
+        public static string getDatacadastro(object _id)
+        {
+            return dbcon.getAtributo("datacadastro", "usuarios", "usid", _id);
+        }
+        public static string getSenha(object _id)
+        {
+            return dbcon.getAtributo("senha", "usuarios", "usid", _id);
+        }
     }
 }

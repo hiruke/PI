@@ -6,7 +6,8 @@
 @{List<string> anuncios = DALAnuncios.getAnuncios();}
 
 
-@if (anuncios.Count==0)
+@DALAnuncios.getAnunciosByUsuario(1);
+@if (anuncios.Count == 0)
 {
     <h1>Nenhum anúncio encontrado</h1>
 }

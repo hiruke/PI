@@ -21,8 +21,6 @@ namespace DesfacaFacil.Models
             this.CANDIDATOS = new HashSet<CANDIDATO>();
             this.ENDERECOes = new HashSet<ENDERECO>();
         }
-
-        
     
         public decimal USID { get; set; }
         public decimal STATUS { get; set; }

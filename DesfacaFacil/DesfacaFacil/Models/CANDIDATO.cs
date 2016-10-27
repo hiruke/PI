@@ -17,19 +17,7 @@ namespace DesfacaFacil.Models
         public string CANID { get; set; }
         public Nullable<decimal> USID { get; set; }
         public Nullable<decimal> AID { get; set; }
-
-        public CANDIDATO(int idu, int idc) {
-            this.USID = idu;
-            this.AID = idc;
-            this.CANID = GeraID().ToString();
-        }
-
-        public CANDIDATO() { }
-
-        public int GeraID() {
-            return 1;
-        }
-
+    
         public virtual ANUNCIO ANUNCIO { get; set; }
         public virtual USUARIO USUARIO { get; set; }
     }
