@@ -2,24 +2,17 @@
 @{
     ViewBag.Title = "Pesquisa";
 }
-@model IEnumerable<DesfacaFacil.Models.ANUNCIO>
 
-<div>
-    @{List<string> lista = DALCandidatos.GetCandidatosByAnuncio(2);
-    }
-    @foreach (string c in lista)
-    {
-        <div>Nome = @DALUsuarios.GetNomeByID(c);</div>
-    }
-</div>
+@{List<string> anuncios = DALAnuncios.getAnuncios();}
 
-@if (!Model.Any())
+
+@if (anuncios.Count==0)
 {
-    <h1>Nao encontrado</h1>
+    <h1>Nenhum anúncio encontrado</h1>
 }
 else
 {
-    foreach (var r in Model)
+    foreach (var r in anuncios)
     {
 
         <div class="section">
@@ -39,15 +32,15 @@ else
                                 <div class="section">
                                     <div class="container">
                                         <div class="row">
-                                            <a href="../../Anuncios/Visualizar/?id=@r.AID">
+                                            <a href="../../Anuncios/Visualizar/?id=r">
                                                 <div class="col-md-12">
-                                                    <h1>@r.TITULO</h1>
+                                                    <h1>@DALAnuncios.getTitulo(r)</h1>
                                                     <br>
-                                                    <a href="../../Login/PainelUsuario/?id=@r.USID">
-                                                        <u>@r.USUARIO.NOME</u>
+                                                    <a href="../../Login/PainelUsuario/?id=@DALAnuncios.getUSID(r)">
+                                                        <u>@DALUsuarios.GetNomeByID(DALAnuncios.getUSID(r))</u>
                                                     </a>
                                                     <p>
-                                                        @r.DESCRICAO
+                                                        @DALAnuncios.getDescricao(r);
                                                     </p>
                                                 </div>
                                             </a>
@@ -68,3 +61,4 @@ else
     }
 }
 }
+

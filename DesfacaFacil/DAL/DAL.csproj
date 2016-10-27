@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DALAnuncios.cs" />
     <Compile Include="DALCandidatos.cs" />
     <Compile Include="DALMensagens.cs" />
     <Compile Include="DALUsuarios.cs" />

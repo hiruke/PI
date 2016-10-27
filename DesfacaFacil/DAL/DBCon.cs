@@ -12,6 +12,29 @@ namespace DAL
     {
         private OracleConnection conexao;
 
+
+        /// <summary>
+        /// Retorna 1 atributo a partir dos seguintes dados:
+        /// Tabela, Atributo, ChavePrimaria e Identificador
+        /// </summary>
+        /// <param name="_id"></param>
+        /// <param name="atributo"></param>
+        /// <returns></returns>
+
+        public string getAtributo(string atributo, string entidade, string chavePrimaria, object _id)
+        {
+            if (_id.GetType() == typeof(int) || _id.GetType() == typeof(string))
+            {
+                Debug.WriteLine("Executando query: " + "select " + atributo + " from " + entidade + " where + " + atributo + " = '" + _id + "'");
+                return queryLinha("select " + atributo + " from " + entidade + " where+ " + atributo + "='" + _id + "'")[0];
+            }
+            else
+            {
+                Debug.WriteLine("Tipo de dados invalido informado no metodo \"getAtributo\"");
+                return "";
+            }
+        }
+
         ///<summary>Cria a conexão com o banco de dados e mantem ela como aberta</summary>
         public DBCon()
         {
@@ -26,6 +49,7 @@ namespace DAL
         public List<string> queryLinha(string _query)
         {
             OracleCommand comandos = new OracleCommand(_query, conexao);
+            Debug.WriteLine("Executando query: " + _query);
             OracleDataReader leitor = comandos.ExecuteReader();
             Debug.WriteLine(DateTime.Now + " -- Query executada: \"" + _query + "\"");
             if (leitor.HasRows)
@@ -77,6 +101,7 @@ namespace DAL
         public List<string> queryColuna(string _query)
         {
             OracleCommand comandos = new OracleCommand(_query, conexao);
+            Debug.WriteLine("Executando query: " + _query);
             OracleDataReader leitor = comandos.ExecuteReader();
             Debug.WriteLine(DateTime.Now + " -- Query executada: \"" + _query + "\"");
 

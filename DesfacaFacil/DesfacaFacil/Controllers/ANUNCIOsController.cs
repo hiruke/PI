@@ -15,12 +15,12 @@ namespace DesfacaFacil.Controllers
         private Entidades db = new Entidades();
 
         // GET: ANUNCIOs
+
         public ActionResult Index()
         {
             var aNUNCIOs = db.ANUNCIOs.Include(a => a.USUARIO).Include(a => a.CATEGORIA);
             return View(aNUNCIOs.ToList());
         }
-
         // GET: ANUNCIOs/Details/5
         public ActionResult Details(decimal id)
         {
