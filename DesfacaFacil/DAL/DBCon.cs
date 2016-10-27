@@ -23,10 +23,11 @@ namespace DAL
 
         public string getAtributo(string atributo, string entidade, string chavePrimaria, object _id)
         {
+            
             if (_id.GetType() == typeof(int) || _id.GetType() == typeof(string))
             {
-                Debug.WriteLine("Executando query: " + "select " + atributo + " from " + entidade + " where + " + atributo + " = '" + _id + "'");
-                return queryLinha("select " + atributo + " from " + entidade + " where+ " + atributo + "='" + _id + "'")[0];
+                Debug.WriteLine("Executando query: " + "select " + atributo + " from " + entidade + " where " + chavePrimaria + "='" + _id + "'");
+                return queryLinha("select " + atributo + " from " + entidade + " where " + chavePrimaria + "='" + _id + "'")[0];
             }
             else
             {

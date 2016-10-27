@@ -72,5 +72,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="IMAGENS">
+      <EntityTypeMapping TypeName="Modelo.IMAGEN">
+        <MappingFragment StoreEntitySet="IMAGENS">
+          <ScalarProperty Name="CAMINHO" ColumnName="CAMINHO" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="AID" ColumnName="AID" />
+          <ScalarProperty Name="IID" ColumnName="IID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
