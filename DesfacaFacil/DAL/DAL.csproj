@@ -47,6 +47,8 @@
     <Compile Include="DBAnuncio.cs" />
     <Compile Include="DBCandidatos.cs" />
     <Compile Include="DBController.cs" />
+    <Compile Include="DBEndereco.cs" />
+    <Compile Include="DBImagens.cs" />
     <Compile Include="DBMensagens.cs" />
     <Compile Include="DBUsuarios.cs" />
     <Compile Include="DBCon.cs" />
