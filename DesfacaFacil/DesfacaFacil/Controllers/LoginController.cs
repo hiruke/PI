@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Diagnostics;
+using DAL;
 
 namespace DesfacaFacil.Controllers
 {
@@ -18,41 +20,51 @@ namespace DesfacaFacil.Controllers
         [HttpPost]
         public ActionResult Index(string Login, string Senha)
         {
-            using (Models.Entidades ctx = new Models.Entidades())
+            IDBController dbcontroller = new DBController();
+            List<DBUsuarios> lista = dbcontroller.getUsuarios("email='" + Login + "' and senha='" + Senha + "'");
+            if (lista.Count != 0)
             {
-                var usr = ctx.USUARIOS.Where(x => x.EMAIL == Login && x.SENHA == Senha).Single();
-                //var usr = ctx.USUARIOS.Single(x => x.EMAIL == Login && x.SENHA == Senha);
-                if (usr != null)
-                {
-                    Session["IdUsuario"] = Int32.Parse(usr.USID.ToString());
-                    Session["Email"] = usr.EMAIL;
-                    return RedirectToAction("PainelUsuario", new { id = usr.USID });
-                }
-                else
-                {
-                    ViewBag.Erro("Usuario ou senha invalidos");
-                    return View();
-                }
+                Session["IdUsuario"] = lista[0].usid;
+                Session["Email"] = lista[0].email;
+                return RedirectToAction("PainelUsuario", new { id = lista[0].usid });
             }
+            else
+            {
+                ViewBag.Erro("Usuario ou senha invalidos");
+                return View();
+            }
+
         }
 
         public ActionResult PainelUsuario(int id)
         {
-            ViewBag.Pronome = "";
-            if (Session["IdUsuario"].ToString()== id.ToString())
+            if (Session["IdUsuario"].ToString() == id.ToString())
             {
                 ViewBag.Pronome = "Meus";
             }
-            Models.Entidades c = new Models.Entidades();
-            if (c.ANUNCIOs.Where(x => x.USID == id).Count() > 4)
+
+            List<DBAnuncio> lista = new List<DBAnuncio>();
+            IDBController dbcontroller = new DBController();
+            lista = dbcontroller.getAnuncios();
+            if (lista.Count >= 4)
             {
-                ViewBag.Anuncios = c.ANUNCIOs.Where(x => x.USID == id).Take(4);
+                ViewBag.Anuncios = dbcontroller.getAnuncios("rownum <=4 and usid=" + id);
             }
-            else {
-                ViewBag.Anuncios = c.ANUNCIOs.Where(x => x.USID == id);
+            else
+            {
+                List<DBAnuncio> anuncios = new List<DBAnuncio>();
+                foreach (DBAnuncio a in lista)
+                {
+                    if (a.usid == id)
+                    {
+                        anuncios.Add(a);
+                    }
+                }
+                ViewBag.Anuncios = anuncios;
             }
-            IEnumerable<Models.USUARIO> user = c.USUARIOS.Where(x => x.USID == id);
+            List<DBUsuarios> user = dbcontroller.getUsuarios("usid=" + id);
             return View(user);
+
         }
     }
 

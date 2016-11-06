@@ -13,7 +13,29 @@ namespace DAL
         private OracleConnection conexao;
 
 
+        ///<summary>Cria a conexão aberta com o banco de dados ao instanciar o objeto</summary>
+        public DBCon()
+        {
+            conexao = new OracleConnection("Data Source=ovcentral.dyndns.org:443:xe;Persist Security Info=True;User ID=desfacafacil;Password=123*abc");
+            conexao.Open();
+        }
         /// <summary>
+        /// Retorna a conexão aberta com o banco
+        /// </summary>
+        /// <returns></returns>
+        public OracleConnection getCon()
+        {
+            return conexao;
+        }
+        /// <summary>
+        /// Finaliza a conexão com o banco
+        /// </summary>
+        public void closeCon()
+        {
+            conexao.Close();
+        }
+
+        /*/// <summary>
         /// Retorna 1 atributo a partir dos seguintes dados:
         /// Tabela, Atributo, ChavePrimaria e Identificador
         /// </summary>
@@ -23,7 +45,7 @@ namespace DAL
 
         public string getAtributo(string atributo, string entidade, string chavePrimaria, object _id)
         {
-            
+
             if (_id.GetType() == typeof(int) || _id.GetType() == typeof(string))
             {
                 Debug.WriteLine("Executando query: " + "select " + atributo + " from " + entidade + " where " + chavePrimaria + "='" + _id + "'");
@@ -36,12 +58,6 @@ namespace DAL
             }
         }
 
-        ///<summary>Cria a conexão com o banco de dados e mantem ela como aberta</summary>
-        public DBCon()
-        {
-            conexao = new OracleConnection("Data Source=ovcentral.dyndns.org:443:xe;Persist Security Info=True;User ID=desfacafacil;Password=123*abc");
-            conexao.Open();
-        }
 
 
         ///<summary>
@@ -141,6 +157,6 @@ namespace DAL
             }
 
         }
-
+        */
     }
 }

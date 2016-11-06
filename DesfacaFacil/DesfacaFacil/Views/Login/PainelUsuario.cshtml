@@ -1,9 +1,9 @@
-﻿
+﻿@using DAL
 @{
     ViewBag.Title = "PainelUsuario";
-    
+
 }
-@model IEnumerable<DesfacaFacil.Models.USUARIO>
+@model List<DBUsuarios>
 
 <div class="section">
     <div class="container">
@@ -18,8 +18,8 @@
                 <div class="col-md">
                     <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
                          class="center-block img-circle img-responsive">
-                    <h3 class="text-center">@Model.Single().NOME </h3>
-                    <p class="text-center">@Model.Single().EMAIL</p>
+                    <h3 class="text-center">@Model.Single().nome </h3>
+                    <p class="text-center">@Model.Single().email</p>
                     <ol>
                         <li>One</li>
                         <li>Two</li>
@@ -30,27 +30,31 @@
             </div>
             <div class="col-md-8">
                 <h1>@ViewBag.Pronome anuncios</h1>
-                
+
                 <div class="row">
-                    @foreach (var a in ViewBag.Anuncios)
+                    @{List<DBAnuncio> meusAnuncios = new List<DBAnuncio>();
+                        meusAnuncios = ViewBag.Anuncios;
+                    }
+                    @foreach (DBAnuncio a in meusAnuncios)
                     {
-                    <div class="col-md-3">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                             class="img-responsive">
-                        
-                        <h1>@{ 
-                                string s = a.TITULO;
-                                Html.ActionLink(s, "Visualizar", "ANUNCIOsController");
-                            }</h1>
-                        <p>
-                            @a.DESCRICAO
+                        <div class="col-md-3">
+                            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                                 class="img-responsive">
+
+                            <h1>
+                                @{
+                                    string s = a.titulo;
+                                    Html.ActionLink(s, "Visualizar", "ANUNCIOsController");
+                                }
+                            </h1>
+                            <p>
+                                @a.descricao
                         </p>
                     </div>
-                    }
+                                    }
                 </div>
                 <a href="#">Ver mais</a>
             </div>
         </div>
     </div>
 </div>
-
