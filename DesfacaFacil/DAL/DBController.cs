@@ -132,11 +132,20 @@ namespace DAL
         }
 
 
+        public void commit()
+        {
+            OracleCommand comandos = new OracleCommand("commit", dbcon.getCon());
+            comandos.ExecuteNonQuery();
+        }
+
+
         public void addCandidato(int _usid, int _aid)
         {
-            OracleCommand comandos = new OracleCommand("insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
-            Debug.WriteLine("Executado metodo addCandidato insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
-            OracleDataReader leitor = comandos.ExecuteReader();
+            OracleCommand comandos = new OracleCommand("insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")",dbcon.getCon());
+            comandos.ExecuteNonQuery();
+            commit();
+            Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
+
         }
     }//End Classe
 }//End Namespace

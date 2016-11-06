@@ -12,5 +12,7 @@ namespace DAL
     {
         List<DBUsuarios> getUsuarios([Optional] string _condicao);
         List<DBAnuncio> getAnuncios([Optional] string _condicao);
+        List<DBCandidatos> getCandidatos(string _condicao);
+        void addCandidato(int _usid, int _aid);
     }
 }

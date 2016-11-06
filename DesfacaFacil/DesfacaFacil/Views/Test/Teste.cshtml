@@ -3,6 +3,7 @@
     ViewBag.Title = "Teste";
     List<DBCandidatos> candidatos = new List<DBCandidatos>();
     DBController dbcontroller = new DBController();
+    dbcontroller.addCandidato(2, 6);
     candidatos = dbcontroller.getCandidatos("");
     foreach (DBCandidatos c in candidatos)
     {
@@ -10,7 +11,6 @@
             ID = @c.canid<br />
             Anuncio = @c.aid<br />
             Usuario = @c.usid<br />
-
         </div>
     }
 }
