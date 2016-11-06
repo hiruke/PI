@@ -117,3 +117,5 @@ C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\
 C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.pdb
 C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\DAL.dll
 C:\Users\ronne\Documents\Visual Studio 2015\Projects\PI\Oficial\PI\DesfacaFacil\DesfacaFacil\bin\DAL.pdb
+C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\DAL.dll
+C:\Users\Igor\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\DAL.pdb

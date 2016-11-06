@@ -133,6 +133,10 @@ namespace DesfacaFacil.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult Visualizar() {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult Visualizar(int id)
         {
