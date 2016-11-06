@@ -33,17 +33,31 @@
                 </form>
             </div>
             <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                
+                @if (Int32.Parse(Session["IdUsuario"].ToString()) == -1)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                            <li id="Home" class="active">
+                                @Html.ActionLink("Home", "Index", "Home")
+                            </li>
+                            <li id="Cadastro">
+                                @Html.ActionLink("Cadastro", "Create", "Usuarios")
+                            </li>
+                            <li id="Login">
+                                @Html.ActionLink("Login", "Index", "Login")
+                            </li>
+                        </ul>
+                        }
+                else
+                {
+                <b>Bem vindo(a), @Session["Nome"] (@Html.ActionLink("Sair","Sair","Login"))</b>
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="Home" class="active">
-                        @Html.ActionLink("Home", "Index", "Home")
-                    </li>
-                    <li id="Cadastro">
-                        @Html.ActionLink("Cadastro", "Create", "Usuarios")
-                    </li>
-                    <li id="Login">
-                        @Html.ActionLink("Login", "Index", "Login")
+                    <li id="Painel" class="active">
+                        @Html.ActionLink("Painel do Usuario", "PainelUsuario", "Login")
                     </li>
                 </ul>
+                }
+                
             </div>
         </div>
     </div>

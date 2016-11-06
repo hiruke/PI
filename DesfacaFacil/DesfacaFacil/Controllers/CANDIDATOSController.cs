@@ -21,30 +21,18 @@ namespace DesfacaFacil.Controllers
             return View(cANDIDATOS.ToList());
         }
 
-        public ActionResult Candidatar(int idanuncio)
-        {
+        public ActionResult SalvarCandidato(int idanuncio) {
             if (Int32.Parse(Session["IdUsuario"].ToString()) != -1)
             {
-                ANUNCIO a = new ANUNCIO();
-                a.USID = Int32.Parse(Session["IdUsuario"].ToString());
-                a.AID = idanuncio;
-                a.CID = db.ANUNCIOs.OrderByDescending(x => x.AID).FirstOrDefault().AID + 1;
-                return RedirectToAction("Index", "Home");
+                DesfacaFacil.Models.CANDIDATO c = new CANDIDATO();
+                c.AID = idanuncio;
+                c.USID = Int32.Parse(Session["IdUsuario"].ToString());
+                c.CANID = 3.ToString();
+                db.CANDIDATOS.Add(c);
+                db.SaveChanges();
+                return RedirectToAction("Index","Home");
             }
-            else
-            {
-                return RedirectToAction("Index", "Login");
-            }
-        }
-
-
-
-        public ActionResult SalvarCandidato(int idusuario, int idanuncio)
-        {
-            //DesfacaFacil.Models.CANDIDATO c = new CANDIDATO(idusuario, idanuncio);
-            //db.CANDIDATOS.Add(c);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Login");
         }
 
         // GET: CANDIDATOS/Details/5
@@ -157,6 +145,10 @@ namespace DesfacaFacil.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult verCandidatos(int idanuncio) {
+            return View(db.CANDIDATOS.Where(x => x.AID == idanuncio));
         }
     }
 }

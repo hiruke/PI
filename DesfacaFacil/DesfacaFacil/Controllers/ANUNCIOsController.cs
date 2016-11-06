@@ -15,12 +15,12 @@ namespace DesfacaFacil.Controllers
         private Entidades db = new Entidades();
 
         // GET: ANUNCIOs
-
         public ActionResult Index()
         {
             var aNUNCIOs = db.ANUNCIOs.Include(a => a.USUARIO).Include(a => a.CATEGORIA);
             return View(aNUNCIOs.ToList());
         }
+
         // GET: ANUNCIOs/Details/5
         public ActionResult Details(decimal id)
         {
@@ -136,13 +136,19 @@ namespace DesfacaFacil.Controllers
         [HttpGet]
         public ActionResult Visualizar(int id)
         {
-            ANUNCIO a = db.ANUNCIOs.Where(x => x.AID == id).FirstOrDefault();
-            if (Int32.Parse(Session["IdUsuario"].ToString()) == a.USID) {
-                //a.CANDIDATOS = db.CANDIDATOS.Where(x => x.AID == a.AID).AsEnumerable();
-                ViewBag.Dono = true;
+
+            ANUNCIO a = db.ANUNCIOs.FirstOrDefault(x => x.AID == id);
+            if (Int32.Parse(Session["IdUsuario"].ToString()) == id)
+            {
+                a.CANDIDATOS = db.CANDIDATOS.Where(y => y.AID == a.AID).ToList();
+                ViewBag.Candidatos = db.CANDIDATOS.Where(x => x.AID == id).AsEnumerable();
             }
-            ViewBag.Dono = false;
+            else
+            {
+                ViewBag.Candidatos = new List<ANUNCIO>();
+            }
             return View(a);
+
         }
     }
 }

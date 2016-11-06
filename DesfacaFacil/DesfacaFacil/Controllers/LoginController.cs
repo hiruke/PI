@@ -42,9 +42,8 @@ namespace DesfacaFacil.Controllers
             {
                 ViewBag.Pronome = "Meus";
             }
-
-            List<DBAnuncio> lista = new List<DBAnuncio>();
             IDBController dbcontroller = new DBController();
+            List<DBAnuncio> lista = new List<DBAnuncio>();
             lista = dbcontroller.getAnuncios();
             if (lista.Count >= 4)
             {

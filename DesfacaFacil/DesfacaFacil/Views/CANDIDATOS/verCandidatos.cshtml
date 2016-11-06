@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "verCandidatos";
+}
+@model IEnumerable<DesfacaFacil.Models.CANDIDATO>
+<h2>verCandidatos</h2>
+<ul>
+@foreach (var r in Model) {
+    <li>@r.USUARIO.NOME</li>
+}
+</ul>
