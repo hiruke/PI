@@ -19,6 +19,7 @@ namespace DAL
         public DateTime dataexpiracao { get; set; }
         public string descricao { get; set; }
         public string titulo { get; set; }
+        public List<DBCandidatos> candidatos = new List<DBCandidatos>();
 
         public DBAnuncio(int aid, int usid, int cid, int tipo, int status, DateTime datacriacao, DateTime dataexpiracao, string descricao, string titulo)
         {
@@ -32,6 +33,17 @@ namespace DAL
             this.descricao = descricao;
             this.titulo = titulo;
         }
+
+        public List<DBCandidatos> getCandidatos()
+        {
+            return candidatos;
+        }
+
+        /*public bool addCandidato(DBCandidatos candidato)
+        {
+            DBController dbcontroler = new DBController();
+            dbcontroller.addCandidato(candidato);
+        }*/
 
     }
 }

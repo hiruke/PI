@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 namespace DAL
 {
-    public class DBController:IDBController
+    public class DBController : IDBController
     {
 
         /// <summary>
@@ -66,6 +66,8 @@ namespace DAL
         /// Exemplo: getAnuncios("usid=1") para retornar anuncios cujo usid é igual a 1
         /// </summary>
         /// <returns></returns>
+
+
         public List<DBAnuncio> getAnuncios([Optional] string _condicao)
         {
             Debug.WriteLine("Executado metodo getAnuncios com o parâmetro: " + _condicao);
@@ -101,9 +103,39 @@ namespace DAL
 
         }
 
+        public List<DBCandidatos> getCandidatos(string _condicao)
+        {
+            Debug.WriteLine("Executado metodo getCandidatos com o parâmetro: " + _condicao);
 
+            string condicao = "";
 
-    }
+            if (_condicao != null)
+            {
+                condicao = "where " + _condicao;
+            }
+            OracleCommand comandos = new OracleCommand("select canid, usid, aid from candidatos " + condicao, dbcon.getCon());
+            OracleDataReader leitor = comandos.ExecuteReader();
 
-}
+            if (leitor.HasRows)
+            {
+                List<DBCandidatos> lista = new List<DBCandidatos>();
+                while (leitor.Read())
+                {
+                    lista.Add(new DBCandidatos(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2)));
+                }
+                comandos.Dispose();
+                leitor.Dispose();
+                return lista;
+            }
+            else
+            {
+                comandos.Dispose();
+                leitor.Dispose();
+                Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
+                return new List<DBCandidatos>();
+            }
+
+        }
+    }//End Classe
+}//End Namespace
 
