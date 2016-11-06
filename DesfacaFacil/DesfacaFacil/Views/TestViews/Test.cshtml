@@ -1,0 +1,19 @@
+﻿@using DAL;
+@{
+    ViewBag.Title = "Test";
+    List<DBCandidatos> candidatos = new List<DBCandidatos>();
+    DBController dbcontroller = new DBController();
+    candidatos = dbcontroller.getCandidatos("");
+    foreach (DBCandidatos c in candidatos)
+    {
+        <div>
+            ID = @c.canid<br />
+            Anuncio = @c.aid<br />
+            Usuario = @c.usid<br />
+
+        </div>
+    }
+}
+
+<h2>Test</h2>
+

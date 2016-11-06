@@ -103,17 +103,11 @@ namespace DAL
 
         }
 
+
         public List<DBCandidatos> getCandidatos(string _condicao)
         {
             Debug.WriteLine("Executado metodo getCandidatos com o parâmetro: " + _condicao);
-
-            string condicao = "";
-
-            if (_condicao != null)
-            {
-                condicao = "where " + _condicao;
-            }
-            OracleCommand comandos = new OracleCommand("select canid, usid, aid from candidatos " + condicao, dbcon.getCon());
+            OracleCommand comandos = new OracleCommand("select canid, usid, aid from candidatos " + _condicao, dbcon.getCon());
             OracleDataReader leitor = comandos.ExecuteReader();
 
             if (leitor.HasRows)
@@ -135,6 +129,14 @@ namespace DAL
                 return new List<DBCandidatos>();
             }
 
+        }
+
+
+        public void addCandidato(int _usid, int _aid)
+        {
+            OracleCommand comandos = new OracleCommand("insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
+            Debug.WriteLine("Executado metodo addCandidato insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
+            OracleDataReader leitor = comandos.ExecuteReader();
         }
     }//End Classe
 }//End Namespace

@@ -36,7 +36,8 @@ namespace DAL
 
         public List<DBCandidatos> getCandidatos()
         {
-            return candidatos;
+            DBController dbcontroller = new DBController();
+            return dbcontroller.getCandidatos("where aid="+aid);
         }
 
         /*public bool addCandidato(DBCandidatos candidato)
