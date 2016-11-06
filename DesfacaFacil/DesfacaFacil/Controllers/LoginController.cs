@@ -65,6 +65,12 @@ namespace DesfacaFacil.Controllers
             return View(user);
 
         }
+        public ActionResult Sair()
+        {
+            Session.Clear();
+            Session["IdUsuario"] = -1;
+            return RedirectToAction("Index", "Home");
+        }
     }
 
 }
