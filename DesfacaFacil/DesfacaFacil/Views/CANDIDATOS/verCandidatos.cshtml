@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@*@{
     ViewBag.Title = "verCandidatos";
 }
 @model IEnumerable<DesfacaFacil.Models.CANDIDATO>
@@ -8,4 +7,18 @@
 @foreach (var r in Model) {
     <li>@r.USUARIO.NOME</li>
 }
+</ul>*@
+
+
+@using DAL;
+@{
+    ViewBag.Title = "verCandidatos";
+}
+@model List<DBCandidatos>
+<h2>verCandidatos</h2>
+<ul>
+    @foreach (var c in Model)
+    {
+        <li>@c.getUsuario().nome</li>
+    }
 </ul>

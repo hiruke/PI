@@ -148,6 +148,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ANUNCIOsController.cs" />
+    <Compile Include="Controllers\CANDIDATOSController _BKP.cs" />
     <Compile Include="Controllers\CANDIDATOSController.cs" />
     <Compile Include="Controllers\CATEGORIAsController.cs" />
     <Compile Include="Controllers\ENDERECOesController.cs" />

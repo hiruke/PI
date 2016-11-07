@@ -20,7 +20,7 @@ namespace DAL
         public string descricao { get; set; }
         public string titulo { get; set; }
         public List<DBCandidatos> candidatos = new List<DBCandidatos>();
-        public List<DBImagens> imagens = new List<DBImagens>;
+        public List<DBImagens> imagens = new List<DBImagens>();
 
         public DBAnuncio(int aid, int usid, int cid, int tipo, int status, DateTime datacriacao, DateTime dataexpiracao, string descricao, string titulo)
         {
