@@ -23,7 +23,7 @@
     <Key>
       <PropertyRef Name="CANID" />
     </Key>
-    <Property Name="CANID" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CANID" Type="Decimal" Nullable="false" />
     <Property Name="USID" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="AID" Type="Decimal" Precision="38" Scale="0" />
     <NavigationProperty Name="ANUNCIO" Relationship="Self.RELACAOCANDIDATOANUNCIO" FromRole="CANDIDATOS" ToRole="ANUNCIO" />
@@ -41,7 +41,7 @@
     <Key>
       <PropertyRef Name="EID" />
     </Key>
-    <Property Name="EID" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="EID" Type="Decimal" Nullable="false" />
     <Property Name="USID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="PAIS" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <Property Name="ESTADO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />

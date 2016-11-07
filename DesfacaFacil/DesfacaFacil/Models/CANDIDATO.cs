@@ -14,7 +14,7 @@ namespace DesfacaFacil.Models
     
     public partial class CANDIDATO
     {
-        public string CANID { get; set; }
+        public decimal CANID { get; set; }
         public Nullable<decimal> USID { get; set; }
         public Nullable<decimal> AID { get; set; }
     

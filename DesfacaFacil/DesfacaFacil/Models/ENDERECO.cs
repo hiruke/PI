@@ -14,7 +14,7 @@ namespace DesfacaFacil.Models
     
     public partial class ENDERECO
     {
-        public string EID { get; set; }
+        public decimal EID { get; set; }
         public decimal USID { get; set; }
         public string PAIS { get; set; }
         public string ESTADO { get; set; }

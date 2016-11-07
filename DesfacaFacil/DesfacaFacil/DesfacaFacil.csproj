@@ -121,6 +121,7 @@
     </EntityDeploy>
     <Content Include="Models\dbcon.edmx.diagram">
       <DependentUpon>dbcon.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\dbcon.Context.tt">

@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -32,16 +32,12 @@ namespace DesfacaFacil.Controllers
         {
             if (Int32.Parse(Session["IdUsuario"].ToString()) != -1)
             {
-                IDBController dbcontroller = new DBController();
-                dbcontroller.addCandidato(int.Parse(Session["IdUsuario"].ToString()), idanuncio);
-
-                /*DesfacaFacil.Models.CANDIDATO c = new CANDIDATO();
+                DesfacaFacil.Models.CANDIDATO c = new CANDIDATO();
                 c.AID = idanuncio;
                 c.USID = Int32.Parse(Session["IdUsuario"].ToString());
                 c.CANID = 3.ToString();
                 db.CANDIDATOS.Add(c);
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");*/
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Index", "Login");
@@ -165,3 +161,4 @@ namespace DesfacaFacil.Controllers
         }
     }
 }
+*/
