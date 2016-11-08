@@ -1,50 +1,100 @@
-﻿
+﻿@*@{
+        ViewBag.Title = "Visualizar";
+    }
+
+    @model DesfacaFacil.Models.ANUNCIO
+
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div id="fullcarousel-example" data-interval="false" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png">
+                                    <div class="carousel-caption">
+                                        <h2></h2>
+                                        <p>Imagens</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#fullcarousel-example" data-slide="prev"><i class="icon-prev fa fa-angle-left"></i></a>
+                            <a class="right carousel-control" href="#fullcarousel-example" data-slide="next"><i class="icon-next fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h1>@Model.TITULO</h1>
+                        <u>@Model.USUARIO.NOME</u>
+                        <i>@Model.CATEGORIA</i>
+                        <p>
+                            @Model.DESCRICAO
+                        </p>
+                        <a class="btn btn-primary" onclick="SalvarCandidato()">Candidatar-se</a>
+                        <a href="~/MENSAGENs/Mensagens/?prodid=@Model.AID" class="btn btn-primary">Conversar com anunciante</a>
+                    </div>
+                </div>
+                <hr>
+            </div
+        </div>
+
+
+        <script type="text/javascript">
+            function SalvarCandidato() {
+                if (confirm("Deseja candidatar-se?")) {
+                    location.href = "../../candidatos/SalvarCandidato/?idanuncio=@Model.AID";
+                }
+            }
+        </script>*@
+
+
 @{
     ViewBag.Title = "Visualizar";
 }
+@using DAL;
+@model DBAnuncio
+@{ IDBController dbcontroller = new DBController();}
 
-@model DesfacaFacil.Models.ANUNCIO
- 
-    <div class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div id="fullcarousel-example" data-interval="false" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png">
-                                <div class="carousel-caption">
-                                    <h2></h2>
-                                    <p>Imagens</p>
-                                </div>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div id="fullcarousel-example" data-interval="false" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png">
+                            <div class="carousel-caption">
+                                <h2></h2>
+                                <p>Imagens</p>
                             </div>
                         </div>
-                        <a class="left carousel-control" href="#fullcarousel-example" data-slide="prev"><i class="icon-prev fa fa-angle-left"></i></a>
-                        <a class="right carousel-control" href="#fullcarousel-example" data-slide="next"><i class="icon-next fa fa-angle-right"></i></a>
                     </div>
-                </div>
-                <div class="col-md-8">
-                    <h1>@Model.TITULO</h1>
-                    <u>@Model.USUARIO.NOME</u>
-                    <i>@Model.CATEGORIA</i>
-                    <p>
-                        @Model.DESCRICAO
-                    </p>
-                    <a class="btn btn-primary" onclick="SalvarCandidato()">Candidatar-se</a>
-                    <a href="~/MENSAGENs/Mensagens/?prodid=@Model.AID" class="btn btn-primary">Conversar com anunciante</a>
+                    <a class="left carousel-control" href="#fullcarousel-example" data-slide="prev"><i class="icon-prev fa fa-angle-left"></i></a>
+                    <a class="right carousel-control" href="#fullcarousel-example" data-slide="next"><i class="icon-next fa fa-angle-right"></i></a>
                 </div>
             </div>
-            <hr>
-        </div
+            <div class="col-md-8">
+                <h1>@Model.titulo</h1>
+                <u>@dbcontroller.getUsuarios("usid="+Model.usid).Single().nome</u>
+                <i>Categoria</i>
+                <p>
+                    @Model.descricao
+                </p>
+                <a class="btn btn-primary" onclick="SalvarCandidato()">Candidatar-se</a>
+                <a href="~/MENSAGENs/Mensagens/?prodid=@Model.aid" class="btn btn-primary">Conversar com anunciante</a>
+            </div>
+        </div>
+        <hr>
     </div>
+</div>
 
-    
-    <script type="text/javascript">
-        function SalvarCandidato() {
-            if (confirm("Deseja candidatar-se?")) {
-                location.href = "../../candidatos/SalvarCandidato/?idanuncio=@Model.AID";
-            }
+
+<script type="text/javascript">
+    function SalvarCandidato() {
+        if (confirm("Deseja candidatar-se?")) {
+            location.href = "../../candidatos/SalvarCandidato/?idanuncio=@Model.aid";
         }
-    </script>
-    
+    }
+</script>
+
+
 
