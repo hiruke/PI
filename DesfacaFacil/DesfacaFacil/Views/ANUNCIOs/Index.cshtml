@@ -1,75 +1,73 @@
-﻿@model IEnumerable<DesfacaFacil.Models.ANUNCIO>
-
+﻿@using DAL
+@model List<DBAnuncio>
+@{ IDBController dbcontroller = new DBController(); }
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TIPO)
+            AID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.STATUS)
+            Status
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DATACRIACAO)
+            Data Criacao
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DATAEXPIRACAO)
+            Data Expiracao
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DESCRICAO)
+            Descricao
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TITULO)
+            Titulo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.USUARIO.NOME)
+            Usuario
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CATEGORIA.NOME)
+            Categoria
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIPO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.STATUS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DATACRIACAO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DATAEXPIRACAO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DESCRICAO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TITULO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.USUARIO.NOME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CATEGORIA.NOME)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AID })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datacriacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataexpiracao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => dbcontroller.getUsuarios("usid=" + item.usid)[0].nome)
+            </td>
+            <td>
+                Html.DisplayFor(modelItem => item.CATEGORIA.NOME)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.aid }) |
+                @Html.ActionLink("Details", "Details", new { id = item.aid }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.aid })
+            </td>
+        </tr>
+    }
 </table>

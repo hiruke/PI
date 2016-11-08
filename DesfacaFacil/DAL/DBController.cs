@@ -154,5 +154,18 @@ namespace DAL
             Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
 
         }
+
+
+        public void criaAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo)
+        {
+            IDBController dbcontroller = new DBController();
+            string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+            string dataexpiracao = DateTime.Now.AddDays(duracao).Day + "/" + DateTime.Now.AddDays(duracao).Month + "/" + DateTime.Now.AddDays(duracao).Year;
+            Debug.WriteLine("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY')" + ",'" + descricao + "','" + titulo + "')");
+            OracleCommand comando = new OracleCommand("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY')" + ",'" + descricao + "','" + titulo + "')", dbcon.getCon());
+            comando.ExecuteNonQuery();
+        }
+
+
     }//End Classe
 }//End Namespace

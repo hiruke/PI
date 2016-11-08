@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DesfacaFacil.Models;
+using DAL;
 
 namespace DesfacaFacil.Controllers
 {
@@ -17,12 +18,13 @@ namespace DesfacaFacil.Controllers
         // GET: ANUNCIOs
         public ActionResult Index()
         {
-            var aNUNCIOs = db.ANUNCIOs.Include(a => a.USUARIO).Include(a => a.CATEGORIA);
-            return View(aNUNCIOs.ToList());
+            IDBController dbcontroller = new DBController();
+            List<DBAnuncio> anuncios = dbcontroller.getAnuncios();
+            return View(anuncios.ToList());
         }
 
         // GET: ANUNCIOs/Details/5
-        public ActionResult Details(decimal id)
+        /*public ActionResult Details(decimal id)
         {
             if (id == null)
             {
@@ -34,7 +36,7 @@ namespace DesfacaFacil.Controllers
                 return HttpNotFound();
             }
             return View(aNUNCIO);
-        }
+        }*/
 
         // GET: ANUNCIOs/Create
         public ActionResult Create()
@@ -133,7 +135,8 @@ namespace DesfacaFacil.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult Visualizar() {
+        public ActionResult Visualizar()
+        {
             return View();
         }
 
