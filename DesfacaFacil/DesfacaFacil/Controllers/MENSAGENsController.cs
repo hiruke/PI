@@ -143,5 +143,10 @@ namespace DesfacaFacil.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Chat()
+        {
+            return View();
+        }
     }
 }

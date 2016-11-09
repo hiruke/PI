@@ -246,6 +246,7 @@
     <Content Include="Views\CANDIDATOS\SalvarCandidato.cshtml" />
     <Content Include="Views\CANDIDATOS\verCandidatos.cshtml" />
     <Content Include="Views\Test\Teste.cshtml" />
+    <Content Include="Views\MENSAGENs\Chat.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
