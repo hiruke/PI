@@ -68,7 +68,7 @@ namespace DAL
         /// <returns></returns>
 
 
-        public List<DBAnuncio> getAnuncios([Optional] string _condicao)
+        public List<DBAnuncios> getAnuncios([Optional] string _condicao)
         {
             Debug.WriteLine("Executado metodo getAnuncios com o parâmetro: " + _condicao);
 
@@ -84,10 +84,10 @@ namespace DAL
 
             if (leitor.HasRows)
             {
-                List<DBAnuncio> lista = new List<DBAnuncio>();
+                List<DBAnuncios> lista = new List<DBAnuncios>();
                 while (leitor.Read())
                 {
-                    lista.Add(new DBAnuncio(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2), leitor.GetInt32(3), leitor.GetInt32(4), leitor.GetDateTime(5), leitor.GetDateTime(6), leitor.GetString(7), leitor.GetString(8)));
+                    lista.Add(new DBAnuncios(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2), leitor.GetInt32(3), leitor.GetInt32(4), leitor.GetDateTime(5), leitor.GetDateTime(6), leitor.GetString(7), leitor.GetString(8)));
                 }
                 comandos.Dispose();
                 leitor.Dispose();
@@ -98,7 +98,7 @@ namespace DAL
                 comandos.Dispose();
                 leitor.Dispose();
                 Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
-                return new List<DBAnuncio>();
+                return new List<DBAnuncios>();
             }
 
         }
@@ -161,11 +161,43 @@ namespace DAL
             IDBController dbcontroller = new DBController();
             string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
             string dataexpiracao = DateTime.Now.AddDays(duracao).Day + "/" + DateTime.Now.AddDays(duracao).Month + "/" + DateTime.Now.AddDays(duracao).Year;
-            Debug.WriteLine("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY')" + ",'" + descricao + "','" + titulo + "')");
             OracleCommand comando = new OracleCommand("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY')" + ",'" + descricao + "','" + titulo + "')", dbcon.getCon());
             comando.ExecuteNonQuery();
+            commit();
         }
 
+        public List<DBCategorias> getCategorias([Optional] string _condicao)
+        {
+            Debug.WriteLine("Executado metodo getUsuarios com o parâmetro: " + _condicao);
+
+            string condicao = "";
+
+            if (_condicao != null)
+            {
+                condicao = "where " + _condicao;
+            }
+            OracleCommand comandos = new OracleCommand("select cid,nome from categorias " + condicao, dbcon.getCon());
+            OracleDataReader leitor = comandos.ExecuteReader();
+
+            if (leitor.HasRows)
+            {
+                List<DBCategorias> lista = new List<DBCategorias>();
+                while (leitor.Read())
+                {
+                    lista.Add(new DBCategorias(leitor.GetInt32(0), leitor.GetString(1)));
+                }
+                comandos.Dispose();
+                leitor.Dispose();
+                return lista;
+            }
+            else
+            {
+                comandos.Dispose();
+                leitor.Dispose();
+                Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
+                return new List<DBCategorias>();
+            }
+        }
 
     }//End Classe
 }//End Namespace

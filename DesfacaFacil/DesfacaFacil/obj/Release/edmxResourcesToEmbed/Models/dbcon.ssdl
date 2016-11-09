@@ -18,7 +18,7 @@
     <Key>
       <PropertyRef Name="CANID" />
     </Key>
-    <Property Name="CANID" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="CANID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="USID" Type="number" Precision="38" Scale="0" />
     <Property Name="AID" Type="number" Precision="38" Scale="0" />
   </EntityType>
@@ -33,7 +33,7 @@
     <Key>
       <PropertyRef Name="EID" />
     </Key>
-    <Property Name="EID" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="EID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="USID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="PAIS" Type="varchar2" MaxLength="40" />
     <Property Name="ESTADO" Type="varchar2" MaxLength="40" Nullable="false" />
@@ -43,6 +43,15 @@
     <Property Name="NUMERO" Type="number" Precision="38" Scale="0" />
     <Property Name="CEP" Type="varchar2" MaxLength="9" Nullable="false" />
   </EntityType>
+  <EntityType Name="IMAGENS">
+    <Key>
+      <PropertyRef Name="IID" />
+    </Key>
+    <Property Name="IID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="AID" Type="number" Precision="38" Scale="0" />
+    <Property Name="NOME" Type="varchar2" MaxLength="30" />
+    <Property Name="CAMINHO" Type="varchar2" MaxLength="150" />
+  </EntityType>
   <EntityType Name="MENSAGENS">
     <Key>
       <PropertyRef Name="MID" />
@@ -51,7 +60,7 @@
     <Property Name="USIDREMETENTE" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="USIDDESTINATARIO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="CONTEUDO" Type="varchar2" MaxLength="500" Nullable="false" />
-    <Property Name="AID" Type="number" Precision="38" Scale="0" />
+    <Property Name="AID" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <EntityType Name="USUARIOS">
     <Key>
@@ -65,8 +74,24 @@
     <Property Name="DATACADASTRO" Type="date" />
     <Property Name="SENHA" Type="varchar2" MaxLength="15" Nullable="false" />
   </EntityType>
+  <Association Name="RELACAOANUNCIOIMAGENS">
+    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="IMAGENS" Type="Self.IMAGENS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ANUNCIO">
+        <PropertyRef Name="AID" />
+      </Principal>
+      <Dependent Role="IMAGENS">
+        <PropertyRef Name="AID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="RELACAOANUNCIOMENSAGENS">
-    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
+    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="MENSAGENS" Type="Self.MENSAGENS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ANUNCIO">
@@ -78,7 +103,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RELACAOANUNCIOUSUARIO">
-    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USUARIOS">
@@ -90,7 +117,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RELACAOCANDIDATOANUNCIO">
-    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1" />
+    <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CANDIDATOS" Type="Self.CANDIDATOS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ANUNCIO">
@@ -102,7 +131,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RELACAOCANDIDATOUSUARIO">
-    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CANDIDATOS" Type="Self.CANDIDATOS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USUARIOS">
@@ -114,7 +145,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RELACAOCATEGORIAANUNCIO">
-    <End Role="CATEGORIAS" Type="Self.CATEGORIAS" Multiplicity="1" />
+    <End Role="CATEGORIAS" Type="Self.CATEGORIAS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ANUNCIO" Type="Self.ANUNCIO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CATEGORIAS">
@@ -126,7 +159,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RELACAOUSUARIOENDERECO">
-    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ENDERECO" Type="Self.ENDERECO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USUARIOS">
@@ -142,8 +177,13 @@
     <EntitySet Name="CANDIDATOS" EntityType="Self.CANDIDATOS" Schema="DESFACAFACIL" store:Type="Tables" />
     <EntitySet Name="CATEGORIAS" EntityType="Self.CATEGORIAS" Schema="DESFACAFACIL" store:Type="Tables" />
     <EntitySet Name="ENDERECO" EntityType="Self.ENDERECO" Schema="DESFACAFACIL" store:Type="Tables" />
+    <EntitySet Name="IMAGENS" EntityType="Self.IMAGENS" Schema="DESFACAFACIL" store:Type="Tables" />
     <EntitySet Name="MENSAGENS" EntityType="Self.MENSAGENS" Schema="DESFACAFACIL" store:Type="Tables" />
     <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="DESFACAFACIL" store:Type="Tables" />
+    <AssociationSet Name="RELACAOANUNCIOIMAGENS" Association="Self.RELACAOANUNCIOIMAGENS">
+      <End Role="ANUNCIO" EntitySet="ANUNCIO" />
+      <End Role="IMAGENS" EntitySet="IMAGENS" />
+    </AssociationSet>
     <AssociationSet Name="RELACAOANUNCIOMENSAGENS" Association="Self.RELACAOANUNCIOMENSAGENS">
       <End Role="ANUNCIO" EntitySet="ANUNCIO" />
       <End Role="MENSAGENS" EntitySet="MENSAGENS" />

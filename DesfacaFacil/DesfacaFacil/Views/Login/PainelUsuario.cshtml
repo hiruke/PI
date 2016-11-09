@@ -32,10 +32,10 @@
                 <h1>@ViewBag.Pronome anuncios</h1>
 
                 <div class="row">
-                    @{List<DBAnuncio> meusAnuncios = new List<DBAnuncio>();
+                    @{List<DBAnuncios> meusAnuncios = new List<DBAnuncios>();
                         meusAnuncios = ViewBag.Anuncios;
                     }
-                    @foreach (DBAnuncio a in meusAnuncios)
+                    @foreach (DBAnuncios a in meusAnuncios)
                     {
                         <div class="col-md-3">
                             <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"

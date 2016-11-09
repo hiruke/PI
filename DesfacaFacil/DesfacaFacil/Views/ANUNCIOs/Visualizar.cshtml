@@ -51,7 +51,7 @@
     ViewBag.Title = "Visualizar";
 }
 @using DAL;
-@model DBAnuncio
+@model DBAnuncios
 @{ IDBController dbcontroller = new DBController();}
 
 <div class="section">
@@ -74,8 +74,10 @@
             </div>
             <div class="col-md-8">
                 <h1>@Model.titulo</h1>
-                <u>@dbcontroller.getUsuarios("usid="+Model.usid).Single().nome</u>
-                <i>Categoria</i>
+                <u>@dbcontroller.getUsuarios("usid=" + Model.usid).Single().nome</u>
+                <i>
+                    @dbcontroller.getCategorias("cid=" + Model.cid).Single().nome;
+                </i>
                 <p>
                     @Model.descricao
                 </p>

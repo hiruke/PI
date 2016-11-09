@@ -19,7 +19,7 @@ namespace DAL
         public string email { get; set; }
         public DateTime dataCadastro { get; set; }
         public string senha { get; set; }
-        private List<DBAnuncio> anuncios { get; set; }
+        private List<DBAnuncios> anuncios { get; set; }
 
 
         public DBUsuarios(int _usid, int _status, string _nome, string _email, string _telefone, DateTime _dataCadastro, string _senha)
@@ -39,23 +39,23 @@ namespace DAL
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<DBAnuncio> listaAnuncios()
+        public List<DBAnuncios> listaAnuncios()
         {
-            OracleCommand comandos = new OracleCommand("select aid, usid, cid, tipo, status, datacriacao, dataexpiracao, descricao, titulo from anuncio where usid="+usid, dbcon.getCon());
+            OracleCommand comandos = new OracleCommand("select aid, usid, cid, tipo, status,z datacriacao, dataexpiracao, descricao, titulo from anuncio where usid="+usid, dbcon.getCon());
             OracleDataReader leitor = comandos.ExecuteReader();
 
             if (leitor.HasRows)
             {
-                List<DBAnuncio> lista = new List<DBAnuncio>();
+                List<DBAnuncios> lista = new List<DBAnuncios>();
                 while (leitor.Read())
                 {
-                    lista.Add(new DBAnuncio(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2), leitor.GetInt32(3), leitor.GetInt32(4), leitor.GetDateTime(5), leitor.GetDateTime(6), leitor.GetString(7), leitor.GetString(8)));
+                    lista.Add(new DBAnuncios(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2), leitor.GetInt32(3), leitor.GetInt32(4), leitor.GetDateTime(5), leitor.GetDateTime(6), leitor.GetString(7), leitor.GetString(8)));
                 }
                 comandos.Dispose();
                 leitor.Dispose();
 
             }
-            return new List<DBAnuncio>();
+            return new List<DBAnuncios>();
         }
     }
 }

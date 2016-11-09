@@ -18,7 +18,7 @@ namespace DesfacaFacil.Controllers
         public ActionResult Pesquisa(string busca)
         {
             IDBController dbcontroller = new DBController();
-            List<DBAnuncio> lista = dbcontroller.getAnuncios("titulo like '%" + busca + "%' or descricao like '%" + busca + "%'");
+            List<DBAnuncios> lista = dbcontroller.getAnuncios("titulo like '%" + busca + "%' or descricao like '%" + busca + "%'");
 
             return View(lista);
 

@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Pesquisa";
 }
-@model List<DBAnuncio>
+@model List<DBAnuncios>
 
 @using DAL;
 
@@ -11,7 +11,7 @@
 }
 else
 {
-    foreach (DBAnuncio anuncio in Model)
+    foreach (DBAnuncios anuncio in Model)
     {
 
         <div class="section">

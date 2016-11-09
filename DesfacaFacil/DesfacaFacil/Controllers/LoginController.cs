@@ -43,7 +43,7 @@ namespace DesfacaFacil.Controllers
                 ViewBag.Pronome = "Meus";
             }
             IDBController dbcontroller = new DBController();
-            List<DBAnuncio> lista = new List<DBAnuncio>();
+            List<DBAnuncios> lista = new List<DBAnuncios>();
             lista = dbcontroller.getAnuncios();
             if (lista.Count >= 4)
             {
@@ -51,8 +51,8 @@ namespace DesfacaFacil.Controllers
             }
             else
             {
-                List<DBAnuncio> anuncios = new List<DBAnuncio>();
-                foreach (DBAnuncio a in lista)
+                List<DBAnuncios> anuncios = new List<DBAnuncios>();
+                foreach (DBAnuncios a in lista)
                 {
                     if (a.usid == id)
                     {

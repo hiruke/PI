@@ -44,8 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBAnuncio.cs" />
+    <Compile Include="DBAnuncios.cs" />
     <Compile Include="DBCandidatos.cs" />
+    <Compile Include="DBCategorias.cs" />
     <Compile Include="DBController.cs" />
     <Compile Include="DBEndereco.cs" />
     <Compile Include="DBImagens.cs" />

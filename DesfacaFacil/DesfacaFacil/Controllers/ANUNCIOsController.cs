@@ -19,7 +19,7 @@ namespace DesfacaFacil.Controllers
         public ActionResult Index()
         {
             IDBController dbcontroller = new DBController();
-            List<DBAnuncio> anuncios = dbcontroller.getAnuncios();
+            List<DBAnuncios> anuncios = dbcontroller.getAnuncios();
             return View(anuncios.ToList());
         }
 
@@ -158,7 +158,7 @@ namespace DesfacaFacil.Controllers
             
            }*/
             IDBController dbcontroller = new DBController();
-            DBAnuncio anuncio = dbcontroller.getAnuncios("aid=" + id).Single();
+            DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + id).Single();
             return View(anuncio);
         }
     }

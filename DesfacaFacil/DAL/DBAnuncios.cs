@@ -8,7 +8,7 @@ using System.Diagnostics;
 namespace DAL
 {
 
-    public class DBAnuncio
+    public class DBAnuncios
     {
         public int aid { get; set; }
         public int usid { get; set; }
@@ -22,7 +22,7 @@ namespace DAL
         public List<DBCandidatos> candidatos = new List<DBCandidatos>();
         public List<DBImagens> imagens = new List<DBImagens>();
 
-        public DBAnuncio(int aid, int usid, int cid, int tipo, int status, DateTime datacriacao, DateTime dataexpiracao, string descricao, string titulo)
+        public DBAnuncios(int aid, int usid, int cid, int tipo, int status, DateTime datacriacao, DateTime dataexpiracao, string descricao, string titulo)
         {
             this.aid = aid;
             this.usid = usid;
@@ -40,7 +40,6 @@ namespace DAL
             DBController dbcontroller = new DBController();
             return dbcontroller.getCandidatos("where aid=" + aid);
         }
-
     }
 }
 
