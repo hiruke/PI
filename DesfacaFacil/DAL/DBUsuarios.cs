@@ -11,7 +11,6 @@ namespace DAL
 
     public class DBUsuarios
     {
-        DBCon dbcon = new DBCon();
         public int usid { get; set; }
         public int status { get; set; }
         public string nome { get; set; }
@@ -41,7 +40,7 @@ namespace DAL
         /// <returns></returns>
         public List<DBAnuncios> listaAnuncios()
         {
-            OracleCommand comandos = new OracleCommand("select aid, usid, cid, tipo, status,z datacriacao, dataexpiracao, descricao, titulo from anuncio where usid="+usid, dbcon.getCon());
+            OracleCommand comandos = new OracleCommand("select aid, usid, cid, tipo, status,z datacriacao, dataexpiracao, descricao, titulo from anuncio where usid=" + usid, DBCon.getCon());
             OracleDataReader leitor = comandos.ExecuteReader();
 
             if (leitor.HasRows)

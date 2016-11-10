@@ -247,6 +247,8 @@
     <Content Include="Views\CANDIDATOS\verCandidatos.cshtml" />
     <Content Include="Views\Test\Teste.cshtml" />
     <Content Include="Views\MENSAGENs\Chat.cshtml" />
+    <Content Include="Views\MENSAGENs\Mensagens_BKP.cshtml" />
+    <Content Include="Views\USUARIOs\Cadastro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

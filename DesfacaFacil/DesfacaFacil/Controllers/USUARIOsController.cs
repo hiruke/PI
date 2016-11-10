@@ -14,6 +14,11 @@ namespace DesfacaFacil.Controllers
     {
         private Entidades db = new Entidades();
 
+        public ActionResult Cadastro()
+        {
+            return View();
+        }
+
         // GET: USUARIOs
         public ActionResult Index()
         {

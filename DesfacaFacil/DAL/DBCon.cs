@@ -8,29 +8,33 @@ using System.Diagnostics;
 
 namespace DAL
 {
-    public class DBCon
+    public abstract class DBCon
     {
-        private OracleConnection conexao;
+        static private OracleConnection conexao;
 
 
         ///<summary>Cria a conexão aberta com o banco de dados ao instanciar o objeto</summary>
         public DBCon()
         {
-            conexao = new OracleConnection("Data Source=ovcentral.dyndns.org:443:xe;Persist Security Info=True;User ID=desfacafacil;Password=123*abc");
-            conexao.Open();
         }
         /// <summary>
         /// Retorna a conexão aberta com o banco
         /// </summary>
         /// <returns></returns>
-        public OracleConnection getCon()
+        static public OracleConnection getCon()
         {
+            conexao = new OracleConnection("Data Source=ovcentral.dyndns.org:443:xe;Persist Security Info=True;User ID=desfacafacil;Password=123*abc");
+
+            if (conexao.State != System.Data.ConnectionState.Open)
+            {
+                conexao.Open();
+            }
             return conexao;
         }
         /// <summary>
         /// Finaliza a conexão com o banco
         /// </summary>
-        public void closeCon()
+        static public void closeCon()
         {
             conexao.Close();
         }

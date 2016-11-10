@@ -23,9 +23,8 @@ namespace DAL
         public DBUsuarios getUsuario()
         {
             DBUsuarios usuario;
-            DBCon dbcon = new DBCon();
             IDBController dbcontroller = new DBController();
-            OracleCommand comando = new OracleCommand("select unique usid, status, nome, email, telefone, datacadastro, senha from usuarios where usid=" + usid, dbcon.getCon());
+            OracleCommand comando = new OracleCommand("select unique usid, status, nome, email, telefone, datacadastro, senha from usuarios where usid=" + usid, DBCon.getCon());
             OracleDataReader leitor = comando.ExecuteReader();
             while (leitor.Read())
             {
