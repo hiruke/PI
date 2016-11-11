@@ -249,6 +249,7 @@
     <Content Include="Views\MENSAGENs\Chat.cshtml" />
     <Content Include="Views\MENSAGENs\Mensagens_BKP.cshtml" />
     <Content Include="Views\USUARIOs\Cadastro.cshtml" />
+    <Content Include="Views\ANUNCIOs\Visualizar_old.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
