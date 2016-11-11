@@ -13,7 +13,7 @@ namespace DAL
         static private OracleConnection conexao;
 
 
-        ///<summary>Cria a conexão aberta com o banco de dados ao instanciar o objeto</summary>
+        ///<summary>Cria uma conexão aberta com o banco de dados ao instanciar o objeto</summary>
         public DBCon()
         {
         }
