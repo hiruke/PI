@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Oracle.ManagedDataAccess.Client;
+using System.Runtime.InteropServices;
 
 namespace DAL
 {
@@ -24,7 +25,7 @@ namespace DAL
         public string titulo { get; set; }
         public List<DBCandidatos> candidatos = new List<DBCandidatos>();
         public List<DBImagens> imagens = new List<DBImagens>();
-        
+
 
         public DBAnuncios(int aid, int usid, int cid, int tipo, int status, DateTime datacriacao, DateTime dataexpiracao, string descricao, string titulo)
         {
@@ -47,9 +48,17 @@ namespace DAL
         }
 
 
-        public List<DBMensagens> getMensagens(string condicao)
+        public List<DBMensagens> getMensagens([Optional] string _condicao)
 
         {
+            Debug.WriteLine("Executado metodo getAnuncios com o parâmetro: " + _condicao);
+
+            string condicao = "";
+
+            if (_condicao != null)
+            {
+                condicao = "where " + _condicao;
+            }
 
             OracleCommand comandos = new OracleCommand("select mid,usidremetente,usiddestinatario,conteudo,aid,hora from mensagens " + condicao, DBCon.getCon());
             OracleDataReader leitor = comandos.ExecuteReader();

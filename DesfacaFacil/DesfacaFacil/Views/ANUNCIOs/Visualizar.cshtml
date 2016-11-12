@@ -50,7 +50,7 @@
                             @foreach (var c in Model.getCandidatos())
                             {
                                 <li class="nav-item">
-                                    <a href="~/mensagens/chat/?canid=@c.canid" class="active nav-link">@c.getUsuario().nome</a>
+                                    <a href="~/mensagens/chat/?canid=@c.canid&aid=@Model.aid" class="active nav-link">@c.getUsuario().nome</a>
                                 </li>
                             }
                         </ul>
