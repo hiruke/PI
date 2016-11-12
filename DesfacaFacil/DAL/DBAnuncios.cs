@@ -42,7 +42,7 @@ namespace DAL
         public List<DBCandidatos> getCandidatos()
         {
             DBController dbcontroller = new DBController();
-            candidatos = dbcontroller.getCandidatos("where aid=" + aid);
+            candidatos = dbcontroller.getCandidatos("aid=" + aid);
             return candidatos;
         }
 

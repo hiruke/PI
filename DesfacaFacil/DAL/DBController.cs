@@ -113,7 +113,7 @@ namespace DAL
                 condicao = "where " + _condicao;
             }
             Debug.WriteLine("Executado metodo getCandidatos com o parâmetro: " + _condicao);
-            OracleCommand comandos = new OracleCommand("select canid, usid, aid from candidatos " + _condicao, DBCon.getCon());
+            OracleCommand comandos = new OracleCommand("select canid, usid, aid from candidatos " + condicao, DBCon.getCon());
             OracleDataReader leitor = comandos.ExecuteReader();
 
             if (leitor.HasRows)

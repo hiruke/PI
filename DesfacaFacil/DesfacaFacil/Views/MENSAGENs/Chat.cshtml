@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Chat";
 }
+@model List<DAL.DBMensagens>
 <div class="section">
     <div class="container">
         <div class="row" draggable="true">
@@ -19,7 +20,22 @@
                 </ul>
             </div>
             <div class="col-lg-9" style="height:70%">
-                <div id="chat" style="height:80%"></div>
+                <div id="chat" style="height:80%">
+                  
+                    @foreach (var m in Model) {
+                        if (m.usidremetente == ViewBag.CandidatoId)
+                        {
+                            <b>@ViewBag.Candidato:</b>
+                        }
+                        else {
+                            <b>@ViewBag.Dono:</b>
+                        }
+
+                        <p>@m.conteudo<br><i>@m.hora</i></p>
+                        <br>
+                    }
+
+                </div>
                 <div id="frm-chat" style="height:20%">
                     <form>
                         <input type="text">
