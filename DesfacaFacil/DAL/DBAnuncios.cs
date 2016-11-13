@@ -23,7 +23,6 @@ namespace DAL
         public DateTime dataexpiracao { get; set; }
         public string descricao { get; set; }
         public string titulo { get; set; }
-        public List<DBCandidatos> candidatos = new List<DBCandidatos>();
         public List<DBImagens> imagens = new List<DBImagens>();
 
 
@@ -40,11 +39,11 @@ namespace DAL
             this.titulo = titulo;
         }
 
-        public List<DBCandidatos> getCandidatos()
+        public List<DBCandidatos> getCandidatos([Optional] string _condicao)
         {
+
             DBController dbcontroller = new DBController();
-            candidatos = dbcontroller.getCandidatos("aid=" + aid);
-            return candidatos;
+            return dbcontroller.getCandidatos("aid=" + aid);
         }
 
 

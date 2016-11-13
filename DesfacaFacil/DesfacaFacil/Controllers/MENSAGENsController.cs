@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DesfacaFacil.Models;
 using DAL;
+using System.Diagnostics;
 
 namespace DesfacaFacil.Controllers
 {
@@ -32,14 +33,16 @@ namespace DesfacaFacil.Controllers
                 return RedirectToAction("Index", "Login");
             }
         }
-
+        [HttpGet]
         public ActionResult Chat(int canid, int aid)
         {
+
             DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
-            ViewBag.Candidatos = anuncio.getCandidatos();
-            ViewBag.CandidatoId = canid;
-            ViewBag.Dono = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single().nome;
-            return View(anuncio.getMensagens());
+            List<DBCandidatos> candidatos = anuncio.getCandidatos();
+            DBCandidatos candidato = candidatos.Where(x => x.canid == canid).Single();
+            ViewBag.Candidato = candidato;
+            ViewBag.Dono = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
+            return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid));
         }
 
 

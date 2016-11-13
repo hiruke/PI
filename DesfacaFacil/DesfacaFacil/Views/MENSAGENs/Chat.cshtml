@@ -20,26 +20,37 @@
                 </ul>
             </div>
             <div class="col-lg-9" style="height:70%">
-                <div id="chat" style="height:80%">
-                  
-                    @foreach (var m in Model) {
-                        if (m.usidremetente == ViewBag.CandidatoId)
-                        {
-                            <b>@ViewBag.Candidato:</b>
-                        }
-                        else {
-                            <b>@ViewBag.Dono:</b>
-                        }
+                <div id="chat" style="overflow:scroll;height:70%;">
 
-                        <p>@m.conteudo<br><i>@m.hora</i></p>
-                        <br>
+                    @foreach (var m in Model)
+                    {
+                        if (m.usidremetente == ViewBag.Candidato.usid)
+                        {
+                            <div style="float:right">
+                                <b>@ViewBag.Candidato.getUsuario().nome:</b>
+                                <p>
+                                    @m.conteudo<br>
+                                    <i>@m.hora</i>
+                                </p>
+                            </div><br>
+                        }
+                        else
+                        {
+                            <div style="float:left">
+                                <b style="text-align:right">@ViewBag.Dono.nome:</b>
+                                <p>
+                                    @m.conteudo<br>
+                                    <i>@m.hora</i>
+                                </p>
+                            </div><br>
+                        }
                     }
 
                 </div>
                 <div id="frm-chat" style="height:20%">
                     <form>
                         <input type="text">
-                        <input type="submit">
+                        <input type="submit" value="Enviar">
                     </form>
                 </div>
             </div>

@@ -9,6 +9,8 @@ namespace DAL
 {
     public class DBCandidatos
     {
+
+        IDBController dbcontroller = new DBController();
         public int canid { get; set; }
         public int usid { get; set; }
         public int aid { get; set; }
@@ -23,7 +25,6 @@ namespace DAL
         public DBUsuarios getUsuario()
         {
             DBUsuarios usuario;
-            IDBController dbcontroller = new DBController();
             OracleCommand comando = new OracleCommand("select unique usid, status, nome, email, telefone, datacadastro, senha from usuarios where usid=" + usid, DBCon.getCon());
             OracleDataReader leitor = comando.ExecuteReader();
             while (leitor.Read())
@@ -32,7 +33,9 @@ namespace DAL
                 return usuario;
             }
             return null;
+
         }
+
     }
 
 }
