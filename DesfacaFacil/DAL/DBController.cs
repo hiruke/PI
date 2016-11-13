@@ -156,7 +156,7 @@ namespace DAL
         }
 
 
-        public void criaAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo)
+        public void addAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo)
         {
 
             string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
@@ -201,9 +201,11 @@ namespace DAL
         }
 
 
-        public string criarUsuario(string nome, string email, string sobrenome)
+        public string addUsuario(string nome, string email, string telefone, string senha)
         {
-            OracleCommand comando = new OracleCommand("insert into usuarios");
+            string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+            Debug.WriteLine("Executado SQL:" + "insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(1,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha);
+            OracleCommand comando = new OracleCommand("insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(1,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha);
             comando.ExecuteNonQuery();
             comando.Dispose();
             return "";
