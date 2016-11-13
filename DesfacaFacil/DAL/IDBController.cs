@@ -16,6 +16,7 @@ namespace DAL
         void addCandidato(int _usid, int _aid);
         void addAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo);
         List<DBCategorias> getCategorias([Optional] string _condicao);
+        string addUsuario(string nome, string email, string telefone, string senha, string estado, string cidade);
 
     }
 }

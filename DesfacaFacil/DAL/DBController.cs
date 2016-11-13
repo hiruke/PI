@@ -201,16 +201,24 @@ namespace DAL
         }
 
 
-        public string addUsuario(string nome, string email, string telefone, string senha)
+        public string addUsuario(string nome, string email, string telefone, string senha, string estado, string cidade)
         {
             string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-            Debug.WriteLine("Executado SQL:" + "insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(1,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha);
-            OracleCommand comando = new OracleCommand("insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(1,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha);
-            comando.ExecuteNonQuery();
+            Debug.WriteLine("Executado SQL:" + "insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(1,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha + "')");
+            OracleCommand comando = new OracleCommand("insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(1,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha + "')", DBCon.getCon());
+            string resultado = "0x00";
+            try
+            {
+                comando.ExecuteNonQuery();
+            }
+            catch (OracleException ex)
+            {
+                resultado = ex.Number.ToString();
+            }
+
             comando.Dispose();
-            return "";
+            Debug.WriteLine(resultado);
+            return resultado;
         }
-
-
     }//End Classe
 }//End Namespace

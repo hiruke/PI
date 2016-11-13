@@ -22,10 +22,10 @@ namespace DesfacaFacil.Controllers
         }
 
         [HttpPost]
-        public ActionResult Cadastro(string nome, string email, string senha, string estado, string cidade)
+        public ActionResult Cadastro(string nome, string email, string senha, string estado, string cidade, string telefone)
         {
             Debug.WriteLine(nome + "-" + email + "-" + senha + "-" + estado + "-" + cidade);
-            
+            TempData["resultado"] = dbcontroller.addUsuario(nome, email, senha, telefone, estado, cidade);
             return View("Cadastro");
         }
     }
