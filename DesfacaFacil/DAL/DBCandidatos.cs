@@ -30,8 +30,12 @@ namespace DAL
             while (leitor.Read())
             {
                 usuario = new DBUsuarios(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetString(2), leitor.GetString(3), leitor.GetString(4), leitor.GetDateTime(5), leitor.GetString(6));
+                comando.Dispose();
+                leitor.Dispose();
                 return usuario;
             }
+            comando.Dispose();
+            leitor.Dispose();
             return null;
 
         }

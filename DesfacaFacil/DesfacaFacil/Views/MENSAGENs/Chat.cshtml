@@ -20,29 +20,31 @@
                 </ul>
             </div>
             <div class="col-lg-9" style="height:70%">
-                <div id="chat" style="overflow:scroll;height:70%;">
-
+                <div id="chat" style="overflow:scroll;overflow-x:hidden;height:70%;width:60%;background-color:darkgray;position:relative;align-content:center;border:medium">
+                    @{
+                        string nomeCandidato = ViewBag.Candidato.getUsuario().nome;
+                    }
                     @foreach (var m in Model)
                     {
                         if (m.usidremetente == ViewBag.Candidato.usid)
                         {
-                            <div style="float:right">
-                                <b>@ViewBag.Candidato.getUsuario().nome:</b>
+                            <div style="text-align:left;background-color:white">
+                                <b>@nomeCandidato</b>
                                 <p>
                                     @m.conteudo<br>
-                                    <i>@m.hora</i>
+                                    <i style="font-size:0.7em">@m.hora</i>
                                 </p>
-                            </div><br>
+                            </div>
                         }
                         else
                         {
-                            <div style="float:left">
-                                <b style="text-align:right">@ViewBag.Dono.nome:</b>
+                            <div style="text-align:right;background-color:white">
+                                <b>@ViewBag.Dono.nome</b>
                                 <p>
                                     @m.conteudo<br>
-                                    <i>@m.hora</i>
+                                    <i style="font-size:0.7em">@m.hora</i>
                                 </p>
-                            </div><br>
+                            </div>
                         }
                     }
 

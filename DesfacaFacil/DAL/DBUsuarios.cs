@@ -54,6 +54,8 @@ namespace DAL
                 leitor.Dispose();
 
             }
+            comandos.Dispose();
+            leitor.Dispose();
             return new List<DBAnuncios>();
         }
     }

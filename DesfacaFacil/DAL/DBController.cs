@@ -149,6 +149,7 @@ namespace DAL
         {
             OracleCommand comandos = new OracleCommand("insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")", DBCon.getCon());
             comandos.ExecuteNonQuery();
+            comandos.Dispose();
             commit();
             Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
 
@@ -162,6 +163,7 @@ namespace DAL
             string dataexpiracao = DateTime.Now.AddDays(duracao).Day + "/" + DateTime.Now.AddDays(duracao).Month + "/" + DateTime.Now.AddDays(duracao).Year;
             OracleCommand comando = new OracleCommand("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY')" + ",'" + descricao + "','" + titulo + "')", DBCon.getCon());
             comando.ExecuteNonQuery();
+            comando.Dispose();
             commit();
         }
 
@@ -203,6 +205,7 @@ namespace DAL
         {
             OracleCommand comando = new OracleCommand("insert into usuarios");
             comando.ExecuteNonQuery();
+            comando.Dispose();
             return "";
         }
 
