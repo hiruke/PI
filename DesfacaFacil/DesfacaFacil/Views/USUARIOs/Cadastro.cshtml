@@ -3,29 +3,28 @@
     ViewBag.Title = "Cadastro";
 }
 
-<div id="conteudo" style="width:70%">
-
-    @if (TempData["resultado"] != null)
+@if (TempData["resultado"] != null)
+{
+    switch (TempData["resultado"].ToString())
     {
-        switch (TempData["resultado"].ToString())
-        {
-            case "0x00":
-                <div class="alert alert-success">
-                    <b style="text-align:center"><strong>Usuário criado</strong></b>
-                </div>
-                break;
-            case "1400":
-                <div class="alert alert-warning">
-                    <b style="text-align:center"><strong>Atenção! Todos os campos devem ser preenchidos.</strong></b>
-                </div>
-                break;
-            case "1":
-                <div class="alert alert-danger">
-                    <b style="text-align:center"><strong>O email informado já encontra-se em uso.</strong></b>
-                </div>
-                break;
-        }
+        case "0x00":
+            <div class="alert alert-success">
+                <strong>Usuário criado com sucesso!</strong>
+            </div><br>
+            break;
+        case "1400":
+            <div class="alert alert-warning">
+                <strong>Atenção! Todos os campos devem ser preenchidos.</strong>
+            </div><br>
+            break;
+        case "1":
+            <div class="alert alert-danger">
+                <strong>O email informado já encontra-se em uso.</strong>
+            </div><br>
+            break;
     }
+}
+<div id="conteudo">
     <form method="post" action="~/USUARIOs/Cadastro" role="form" title="Cadastro de usuário" data-pg-name="Cadastro de usuário">
         <div class="form-group">
             <b>Nome</b>
@@ -68,8 +67,21 @@
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 
 <style type="text/css">
-    .form-group {
+    #conteudo {
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    .alert {
+        margin-left: 30%;
+        left: 50%;
+        text-align: center;
         width: 40%;
+    }
+
+    .form-group {
+        width: 49%;
         display: inline-block;
     }
 </style>
