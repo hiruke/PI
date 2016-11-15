@@ -24,14 +24,17 @@ namespace DesfacaFacil.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Criar(string titulo, string descricao, int duracao, int categoria, string tipo)
+        [HttpPost]
+        public ActionResult Criar(string titulo, string descricao, int duracao, int categoria, int tipo, HttpPostedFile imagem)
         {
-            Debug.WriteLine(tipo);
-            Debug.WriteLine(titulo);
-            Debug.WriteLine(descricao);
-            Debug.WriteLine(duracao);
-            Debug.WriteLine(categoria);
+            //if (imagem.ContentLength > 0)
+            //{
+
+            //    imagem.SaveAs("C:\\Users\ronne\\Desktop\\test.png");
+            //}
+            List<DBCategorias> categorias = dbcontroller.getCategorias();
+            ViewBag.categorias = categorias;
+            TempData["resultado"] = dbcontroller.addAnuncio(int.Parse(Session["IdUsuario"].ToString().ToString()), categoria, tipo, 1, duracao, descricao, titulo);
             return View("Criar");
         }
 

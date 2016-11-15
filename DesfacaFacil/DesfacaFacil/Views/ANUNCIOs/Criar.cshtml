@@ -3,9 +3,35 @@
     ViewBag.Title = "Novo Anuncio";
 }
 @using DAL;
+@if (TempData["resultado"] != null)
+{
+    <p>@TempData["resultado"]</p>
+    switch (TempData["resultado"].ToString())
+    {
+        case "0x00":
+            <div class="alert alert-success">
+                <strong>
+                    Usuário criado com sucesso!<br>
+                    Por favor cheque seu email para confirmar seu acesso.
+                </strong>
+            </div><br>
+            break;
+        case "1400":
+            <div class="alert alert-warning">
+                <strong>Atenção! Todos os campos devem ser preenchidos.</strong>
+            </div><br>
+            break;
+        case "2291":
+            <div class="alert alert-danger">
+                <strong>Você deve estar logado para poder criar um anúncio</strong>
+            </div><br>
+            break;
+    }
+}
 
-<h1>Criar Novo Anúncio</h1>
+
 <div class="container-fluid" style="margin:auto;width:40%">
+    <h2>Criar Novo Anúncio</h2>
     <div class="row">
         <div class="col-md-12">
             <hr>
@@ -13,15 +39,15 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form method="get" action="~/Anuncios/Criar" class="form-horizontal" role="form">
+            <form method="post" action="~/Anuncios/Criar" class="form-horizontal" role="form">
                 <div class="form-group">
                     <div class="col-sm-2">
                         <label for="tipo" class="control-label">Tipo</label>
                     </div>
                     <div class="col-sm-10">
-                        <input type="radio" name="tipo" value="doacao" id="tipo" checked> Doação
+                        <input type="radio" name="tipo" value="1" id="tipo" checked> Doação
                         <span style="display:inline-block; width: 5%;"></span>
-                        <input type="radio" name="tipo" value="solicitacao" id="tipo"> Solicitacao
+                        <input type="radio" name="tipo" value="2" id="tipo"> Solicitacao
                     </div>
                 </div>
                 <div class="form-group">

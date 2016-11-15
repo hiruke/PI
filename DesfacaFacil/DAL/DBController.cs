@@ -156,20 +156,31 @@ namespace DAL
         }
 
 
-        public void addAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo)
+        public string addAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo)
         {
 
             string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
             string dataexpiracao = DateTime.Now.AddDays(duracao).Day + "/" + DateTime.Now.AddDays(duracao).Month + "/" + DateTime.Now.AddDays(duracao).Year;
+            Debug.WriteLine("Executado insert into anuncio(usid, cid, tipo, status, datacriacao, dataexpiracao, descricao, titulo) values(" + usid + ", " + cid + ", " + tipo + ", " + status + ", to_date('" + datacriacao + "', 'DD/MM/YYYY'), " + "to_date('" + dataexpiracao + "', 'DD/MM/YYYY')" + ", '" + descricao + "', '" + titulo + "')");
             OracleCommand comando = new OracleCommand("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY')" + ",'" + descricao + "','" + titulo + "')", DBCon.getCon());
-            comando.ExecuteNonQuery();
+
+            string resultado = "0x00";
+            try
+            {
+                comando.ExecuteNonQuery();
+            }
+            catch (OracleException ex)
+            {
+                resultado = ex.Number.ToString();
+            }
             comando.Dispose();
             commit();
+            return resultado;
         }
 
         public List<DBCategorias> getCategorias([Optional] string _condicao)
         {
-            Debug.WriteLine("Executado metodo getUsuarios com o parâmetro: " + _condicao);
+            Debug.WriteLine("Executado metodo getCategorias com o parâmetro: " + _condicao);
 
             string condicao = "";
 
