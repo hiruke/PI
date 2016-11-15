@@ -148,9 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ANUNCIOsController_BKP.cs" />
     <Compile Include="Controllers\ANUNCIOsController.cs" />
-    <Compile Include="Controllers\CANDIDATOSController _BKP.cs" />
     <Compile Include="Controllers\CANDIDATOSController.cs" />
     <Compile Include="Controllers\CATEGORIAsController.cs" />
     <Compile Include="Controllers\ENDERECOesController.cs" />
@@ -247,9 +245,8 @@
     <Content Include="Views\CANDIDATOS\verCandidatos.cshtml" />
     <Content Include="Views\Test\Teste.cshtml" />
     <Content Include="Views\MENSAGENs\Chat.cshtml" />
-    <Content Include="Views\MENSAGENs\Mensagens_BKP.cshtml" />
     <Content Include="Views\USUARIOs\Cadastro.cshtml" />
-    <Content Include="Views\ANUNCIOs\Visualizar_old.cshtml" />
+    <Content Include="Views\ANUNCIOs\Criar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
