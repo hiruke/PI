@@ -159,10 +159,10 @@ namespace DAL
         public string addAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo)
         {
 
-            string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-            string dataexpiracao = DateTime.Now.AddDays(duracao).Day + "/" + DateTime.Now.AddDays(duracao).Month + "/" + DateTime.Now.AddDays(duracao).Year;
-            Debug.WriteLine("Executado insert into anuncio(usid, cid, tipo, status, datacriacao, dataexpiracao, descricao, titulo) values(" + usid + ", " + cid + ", " + tipo + ", " + status + ", to_date('" + datacriacao + "', 'DD/MM/YYYY'), " + "to_date('" + dataexpiracao + "', 'DD/MM/YYYY')" + ", '" + descricao + "', '" + titulo + "')");
-            OracleCommand comando = new OracleCommand("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY')" + ",'" + descricao + "','" + titulo + "')", DBCon.getCon());
+            string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            string dataexpiracao = DateTime.Now.AddDays(duracao).Day + "/" + DateTime.Now.AddDays(duracao).Month + "/" + DateTime.Now.AddDays(duracao).Year + " " + DateTime.Now.AddDays(duracao).Hour + ":" + DateTime.Now.AddDays(duracao).Minute + ":" + DateTime.Now.AddDays(duracao).Second;
+            Debug.WriteLine("Executado insert into anuncio(usid, cid, tipo, status, datacriacao, dataexpiracao, descricao, titulo) values(" + usid + ", " + cid + ", " + tipo + ", " + status + ", to_date('" + datacriacao + "', 'DD/MM/YYYY hh24:mi:ss'), " + "to_date('" + dataexpiracao + "', 'DD/MM/YYYY hh24:mi:ss')" + ", '" + descricao + "', '" + titulo + "')");
+            OracleCommand comando = new OracleCommand("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY hh24:mi:ss')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY hh24:mi:ss')" + ",'" + descricao + "','" + titulo + "')", DBCon.getCon());
 
             string resultado = "0x00";
             try
