@@ -50,10 +50,10 @@
                 </div>
                 <div id="frm-chat" style="height:20%">
                     <form method="post" onsubmit="Validar()" action="/MENSAGENs/Enviar">
-                        <input type="text" id="mensagem">
-                        <input type="hidden" id="remetente">
-                        <input type="hidden" id="destinatario">
-                        <input type="hidden" id="_aid" value="@ViewBag.AID">
+                        <input type="text" name="mensagem" id="mensagem">
+                        <input type="hidden" name="remetente" id="remetente">
+                        <input type="hidden" name="destinatario" id="destinatario">
+                        <input type="hidden" name="_aid" id="_aid" value="@ViewBag.AID">
                         <input type="submit" value="Enviar">
                     </form>
                 </div>
@@ -64,15 +64,16 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 <script type="text/javascript">
-
+    var idlogado = @Session["IdUsuario"].ToString();
+    var idDono =  @ViewBag.Dono.ToString();
+    var idCandidato = @ViewBag.Candidato.ToString();
     function Validar() {
-        var
-        if(@Session["IdUsuario"].ToString() == @ViewBag.Dono.ToString()){
-           document.getElementById("remetente").value = @ViewBag.Dono;
-            document.getElementById("destinatario").value = @ViewBag.Candidato;
+        if(idlogado == idDono){
+            document.getElementById("remetente").value = idDono;
+            document.getElementById("destinatario").value = idCandidato;
         }else{
-            document.getElementById("destinatario").value = @ViewBag.Dono;
-            document.getElementById("remetente").value = @ViewBag.Candidato;
-            }
-            }
-            </script>
+            document.getElementById("destinatario").value = idDono;
+            document.getElementById("remetente").value = idCandidato;
+        }
+    }
+</script>

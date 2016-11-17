@@ -160,3 +160,5 @@ C:\Users\ucl\Source\Repos\PI2\DesfacaFacil\DesfacaFacil\bin\System.Web.Mvc.xml
 C:\Users\ucl\Source\Repos\PI2\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.csprojResolveAssemblyReference.cache
 C:\Users\ucl\Source\Repos\PI2\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.dll
 C:\Users\ucl\Source\Repos\PI2\DesfacaFacil\DesfacaFacil\obj\Debug\DesfacaFacil.pdb
+C:\Users\ucl\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\DAL.dll
+C:\Users\ucl\Source\Repos\PI\DesfacaFacil\DesfacaFacil\bin\DAL.pdb
