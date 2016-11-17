@@ -1,28 +1,34 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Login";
 }
+@if (int.Parse(Session["IdUsuario"].ToString()) > 0)
 
-<h2>Login</h2>
+{
+    <meta HTTP-EQUIV="REFRESH" content="0; url=./PainelUsuario">
+}
 
 @using (Html.BeginForm("Index", "Login", FormMethod.Post))
 {
-    <fieldset style="align-self:center">
-        @Html.Label("Login: ")
-        @Html.TextBox("Login")
-        <br>
-        @Html.Label("Senha: ")
-
-        @Html.Password("Senha")
-        <br>
+    <fieldset style="width:25%;margin:auto;padding:1em">
+        <h2>Login</h2>
+        <div style="display:inline-block">
+            <div>
+                @Html.Label("Login: ")
+                @Html.TextBox("Login")
+            </div>
+            <div>
+                @Html.Label("Senha: ")
+                @Html.Password("Senha")
+            </div>
+        </div>
         <br><input type="submit" value="Entrar">
     </fieldset>
 }
 
 <script type="text/javascript">
-        $('document').ready(function(){
-            $('li').removeClass("active");
-            $("#Login").addClass("active");
-        });
+    $('document').ready(function () {
+        $('li').removeClass("active");
+        $("#Login").addClass("active");
+    });
 </script>
 

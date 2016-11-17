@@ -155,7 +155,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MENSAGENsController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\USUARIOsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -243,7 +242,6 @@
     <Content Include="Views\MENSAGENs\Mensagens.cshtml" />
     <Content Include="Views\CANDIDATOS\SalvarCandidato.cshtml" />
     <Content Include="Views\CANDIDATOS\verCandidatos.cshtml" />
-    <Content Include="Views\Test\Teste.cshtml" />
     <Content Include="Views\MENSAGENs\Chat.cshtml" />
     <Content Include="Views\USUARIOs\Cadastro.cshtml" />
     <Content Include="Views\ANUNCIOs\Criar.cshtml" />

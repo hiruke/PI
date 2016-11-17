@@ -23,41 +23,41 @@
             <div class="col-sm-6">
                 <form class="navbar-form" role="search" action="/Home/Pesquisa/" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control .col-xs-4" placeholder="Pesquisar" name="busca" id="busca" style="">
+                        <input type="text" class="form-control .col-xs-4" placeholder="Pesquisar" name="busca" id="busca">
                         <div class="input-group-btn" style="width:2%">
-                            <button class="btn btn-default" type="submit">
-                                <i class="glyphicon glyphicon-search"></i>
+                            <button class="btn btn-default" type="submit">Buscar</button>
+                            <i class="glyphicon glyphicon-search"></i>
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-                
+
                 @if (Int32.Parse(Session["IdUsuario"].ToString()) == -1)
                 {
                     <ul class="nav navbar-nav navbar-right">
-                            <li id="Home" class="active">
-                                @Html.ActionLink("Home", "Index", "Home")
-                            </li>
-                            <li id="Cadastro">
-                                @Html.ActionLink("Cadastro", "Cadastro", "Usuarios")
-                            </li>
-                            <li id="Login">
-                                @Html.ActionLink("Login", "Index", "Login")
-                            </li>
-                        </ul>
-                        }
+                        <li id="Home" class="active">
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        <li id="Cadastro">
+                            @Html.ActionLink("Cadastro", "Cadastro", "Usuarios")
+                        </li>
+                        <li id="Login">
+                            @Html.ActionLink("Login", "Index", "Login")
+                        </li>
+                    </ul>
+                }
                 else
                 {
-                <b>Bem vindo(a), @Session["Nome"] (@Html.ActionLink("Sair","Sair","Login"))</b>
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="Painel" class="active">
-                        @Html.ActionLink("Painel do Usuario", "PainelUsuario", "Login")
-                    </li>
-                </ul>
+                    <b>Bem vindo(a), @Session["Nome"] (@Html.ActionLink("Sair", "Sair", "Login"))</b>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="Painel" class="active">
+                            @Html.ActionLink("Painel do Usuario", "PainelUsuario", "Login")
+                        </li>
+                    </ul>
                 }
-                
+
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1>Defaça Facil</h1>
+                    <b>Defaça Facil</b>
                     <p>Copyright 2016<br>Endereço: ES-010 Km 06 - Manguinhos, Serra - ES<br>CEP:29.173-087<br>(27)99850-0908</p>
                 </div>
                 <div class="col-sm-6">
@@ -74,27 +74,27 @@
                         <br>
                         <br>
                     </p>
-                    <div class="row">
+                    @*<div class="row" ">
                         <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
                             <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
                             <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
                             <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
                             <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="row">
-                        <div class="col-md-12 hidden-xs text-right">
-                            <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                            <div class="col-md-12 hidden-xs text-right">
+                                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
-
 </body>
+
 </html>
