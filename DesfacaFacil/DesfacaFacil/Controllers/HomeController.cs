@@ -12,7 +12,10 @@ namespace DesfacaFacil.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            Session["IdUsuario"] = -1;
+            if (Session["IdUsuario"] == null)
+            {
+                Session["IdUsuario"] = -1;
+            }
             return View();
         }
         public ActionResult Pesquisa(string busca)

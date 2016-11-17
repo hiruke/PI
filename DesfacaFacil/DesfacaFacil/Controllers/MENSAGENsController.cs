@@ -40,13 +40,30 @@ namespace DesfacaFacil.Controllers
             DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
             List<DBCandidatos> candidatos = anuncio.getCandidatos();
             DBCandidatos candidato = candidatos.Where(x => x.canid == canid).Single();
-            ViewBag.Candidato = candidato;
-            ViewBag.Dono = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
+            ViewBag.Candidato2 = candidato;
+            ViewBag.Candidato = candidato.usid;
+            ViewBag.AID = aid;
+            ViewBag.Dono = anuncio.usid;
+            ViewBag.Dono2 = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
             return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid));
         }
 
+        [HttpPost]
+        public ActionResult Enviar(string mensagem, int remetente, int destinatario,int _aid) {
+            dbcontroller.enviaMensagem(remetente, destinatario, mensagem, _aid);
+            DBAnuncios a = dbcontroller.getAnuncios("aid= " + _aid).Single();
+            int can = 0;
+            if (a.usid.ToString() == remetente.ToString())
+            {
+                can = destinatario;
+            }
+            else {
+                can = remetente;
+            }
+            return RedirectToAction("Chat", "Mensagem", new { canid = can, aid = _aid });
 
-
+        }
+        
 
     }
 }

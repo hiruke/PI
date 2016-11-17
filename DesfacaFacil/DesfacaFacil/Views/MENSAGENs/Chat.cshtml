@@ -22,11 +22,11 @@
             <div class="col-lg-9" style="height:70%">
                 <div id="chat" style="overflow:scroll;overflow-x:hidden;height:70%;width:60%;background-color:darkgray;position:relative;align-content:center;border:medium">
                     @{
-                        string nomeCandidato = ViewBag.Candidato.getUsuario().nome;
+                        string nomeCandidato = ViewBag.Candidato2.getUsuario().nome;
                     }
                     @foreach (var m in Model)
                     {
-                        if (m.usidremetente == ViewBag.Candidato.usid)
+                        if (m.usidremetente == ViewBag.Candidato2.usid)
                         {
                             <div style="text-align:left;background-color:white">
                                 <b>@nomeCandidato</b>
@@ -39,7 +39,7 @@
                         else
                         {
                             <div style="text-align:right;background-color:white">
-                                <b>@ViewBag.Dono.nome</b>
+                                <b>@ViewBag.Dono2.nome</b>
                                 <p>
                                     @m.conteudo<br>
                                     <i style="font-size:0.7em">@m.hora</i>
@@ -47,11 +47,13 @@
                             </div>
                         }
                     }
-
                 </div>
                 <div id="frm-chat" style="height:20%">
-                    <form>
-                        <input type="text">
+                    <form method="post" onsubmit="Validar()" action="/MENSAGENs/Enviar">
+                        <input type="text" id="mensagem">
+                        <input type="hidden" id="remetente">
+                        <input type="hidden" id="destinatario">
+                        <input type="hidden" id="_aid" value="@ViewBag.AID">
                         <input type="submit" value="Enviar">
                     </form>
                 </div>
@@ -61,3 +63,16 @@
 </div>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+<script type="text/javascript">
+
+    function Validar() {
+        var
+        if(@Session["IdUsuario"].ToString() == @ViewBag.Dono.ToString()){
+           document.getElementById("remetente").value = @ViewBag.Dono;
+            document.getElementById("destinatario").value = @ViewBag.Candidato;
+        }else{
+            document.getElementById("destinatario").value = @ViewBag.Dono;
+            document.getElementById("remetente").value = @ViewBag.Candidato;
+            }
+            }
+            </script>

@@ -231,5 +231,25 @@ namespace DAL
             Debug.WriteLine(resultado);
             return resultado;
         }
+
+        public string enviaMensagem(int usidremetente, int usiddestinatario, string conteudo, int aid)
+        {
+            Debug.WriteLine("Executado SQL:" + "insert into MENSAGENS (usidremetente,usiddestinatario,conteudo,aid,hora) values("+usidremetente+","+usiddestinatario + ",'" + conteudo + "'," + aid + ", (select sysdate from dual))");
+            OracleCommand comando = new OracleCommand("insert into MENSAGENS (usidremetente,usiddestinatario,conteudo,aid,hora) values(" + usidremetente + "," + usiddestinatario + ",'" + conteudo + "'," + aid + ", (select sysdate from dual))", DBCon.getCon());
+            string resultado = "0x00";
+            try
+            {
+                comando.ExecuteNonQuery();
+            }
+            catch (OracleException ex)
+            {
+                resultado = ex.Number.ToString();
+            }
+
+            comando.Dispose();
+            Debug.WriteLine(resultado);
+            return resultado;
+        }
+
     }//End Classe
 }//End Namespace

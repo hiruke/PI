@@ -17,6 +17,8 @@ namespace DAL
         string addAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo);
         List<DBCategorias> getCategorias([Optional] string _condicao);
         string addUsuario(string nome, string email, string telefone, string senha, string estado, string cidade);
+        string enviaMensagem(int usidremetente, int usiddestinatario, string conteudo, int aid);
+
 
     }
 }
