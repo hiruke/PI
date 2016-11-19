@@ -22,12 +22,13 @@ namespace DesfacaFacil.Controllers
         public ActionResult Index(string Login, string Senha)
         {
 
-            List<DBUsuarios> lista = dbcontroller.getUsuarios("email='" + Login + "' and senha='" + Senha + "'");
-            if (lista.Count > 0)
+            List<DBUsuarios> usuario = dbcontroller.getUsuarios("email='" + Login + "' and senha='" + Senha + "'");
+            if (usuario.Count > 0)
             {
-                Session["IdUsuario"] = lista[0].usid;
-                Session["Email"] = lista[0].email;
-                return RedirectToAction("PainelUsuario", new { id = lista[0].usid });
+                Session["IdUsuario"] = usuario[0].usid;
+                Session["Email"] = usuario[0].email;
+                Session["Nome"] = usuario[0].nome;
+                return RedirectToAction("PainelUsuario", new { id = usuario[0].usid });
             }
             else
             {

@@ -9,20 +9,24 @@
 
 @using (Html.BeginForm("Index", "Login", FormMethod.Post))
 {
-    <fieldset style="width:25%;margin:auto;padding:1em">
-        <h2>Login</h2>
-        <div style="display:inline-block">
-            <div>
-                @Html.Label("Login: ")
-                @Html.TextBox("Login")
+
+    <div id="corpo" style="height:90%">
+        <fieldset style="width:25%;margin:auto;">
+            <h2>Login</h2>
+            <div style="display:inline-block">
+                <div>
+                    @Html.Label("Login: ")
+                    @Html.TextBox("Login")
+                </div>
+                <div>
+                    @Html.Label("Senha: ")
+                    @Html.Password("Senha")
+                </div>
             </div>
-            <div>
-                @Html.Label("Senha: ")
-                @Html.Password("Senha")
-            </div>
-        </div>
-        <br><input type="submit" value="Entrar">
-    </fieldset>
+            <br>
+            <input type="submit" value="Entrar">
+        </fieldset>
+    </div>
 }
 
 <script type="text/javascript">

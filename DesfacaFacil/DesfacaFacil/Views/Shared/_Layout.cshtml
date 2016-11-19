@@ -26,8 +26,6 @@
                         <input type="text" class="form-control .col-xs-4" placeholder="Pesquisar" name="busca" id="busca">
                         <div class="input-group-btn" style="width:2%">
                             <button class="btn btn-default" type="submit">Buscar</button>
-                            <i class="glyphicon glyphicon-search"></i>
-                            </button>
                         </div>
                     </div>
                 </form>
@@ -50,10 +48,11 @@
                 }
                 else
                 {
-                    <b>Bem vindo(a), @Session["Nome"] (@Html.ActionLink("Sair", "Sair", "Login"))</b>
+                    <b>Bem vindo(a), @Session["Nome"] (@Html.ActionLink("Desconectar", "Sair", "Login"))</b>
                     <ul class="nav navbar-nav navbar-right">
                         <li id="Painel" class="active">
-                            @Html.ActionLink("Painel do Usuario", "PainelUsuario", "Login")
+                            @*@Html.ActionLink("Painel do Usuario", "PainelUsuario", "Login")@*@
+                            <a href='~/Login/PainelUsuario/@Session["IdUsuario"].ToString()'>Painel do Usuário</a>
                         </li>
                     </ul>
                 }
@@ -75,21 +74,21 @@
                         <br>
                     </p>
                     @*<div class="row" ">
-                        <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                            <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                            <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
-                        </div>
-                    </div>*@
-                    <div class="row">
-                            <div class="col-md-12 hidden-xs text-right">
+                            <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
                                 <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
                                 <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                             </div>
+                        </div>*@
+                    <div class="row">
+                        <div class="col-md-12 hidden-xs text-right">
+                            <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
+                            <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
+                            <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                            <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

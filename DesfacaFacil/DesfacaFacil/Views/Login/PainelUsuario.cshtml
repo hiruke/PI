@@ -35,20 +35,19 @@
                     @{List<DBAnuncios> meusAnuncios = new List<DBAnuncios>();
                         meusAnuncios = ViewBag.Anuncios;
                     }
-                    @foreach (DBAnuncios a in meusAnuncios)
+                    @foreach (DBAnuncios anuncio in meusAnuncios)
                     {
-                        <div class="col-md-3">
-                            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                                 class="img-responsive">
+                        <div class="col-md-3" onclick="verAnuncio(@anuncio.aid)">
+                            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
 
                             <h1>
                                 @{
-                                    string s = a.titulo;
+                                    string s = anuncio.titulo;
                                     Html.ActionLink(s, "Visualizar", "ANUNCIOsController");
                                 }
                             </h1>
                             <p>
-                                @a.descricao
+                                @anuncio.descricao
                             </p>
                         </div>
                                     }
@@ -61,6 +60,9 @@
 </div>
 <script type="text/javascript">
     function gotoAnuncios() {
-        location.href = '../../anuncios/criar';
+        location.href = '/Anuncios/Criar';
+    }
+    function verAnuncio(id) {
+        location.href = '/Anuncios/Visualizar/?id='+id
     }
 </script>

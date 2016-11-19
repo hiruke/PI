@@ -45,7 +45,7 @@ namespace DesfacaFacil.Controllers
             ViewBag.AID = aid;
             ViewBag.Dono = anuncio.usid;
             ViewBag.Dono2 = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
-            return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid));
+            return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid+"order by hora"));
         }
 
         [HttpPost]
@@ -60,7 +60,9 @@ namespace DesfacaFacil.Controllers
             else {
                 can = remetente;
             }
-            return RedirectToAction("Chat", "Mensagem", new { canid = can, aid = _aid });
+            Debug.WriteLine(can);
+            Debug.WriteLine(_aid);
+            return RedirectToAction("Chat", "Mensagens", new { canid = can, aid = _aid });
 
         }
         
