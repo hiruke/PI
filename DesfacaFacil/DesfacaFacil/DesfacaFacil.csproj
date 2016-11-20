@@ -247,6 +247,8 @@
     <Content Include="Views\USUARIOs\Cadastro.cshtml" />
     <Content Include="Views\ANUNCIOs\Criar.cshtml" />
     <Content Include="Views\USUARIOs\Validar.cshtml" />
+    <Content Include="Views\ANUNCIOs\Alterar.cshtml" />
+    <Content Include="Views\USUARIOs\Alterar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -35,5 +35,14 @@ namespace DesfacaFacil.Controllers
             }
             return View("Cadastro");
         }
+
+        public ActionResult Alterar(int usid) {
+            return View(dbcontroller.getUsuarios("usid=" + usid));
+        }
+
+        [HttpPost]
+        public ActionResult Alterar(int usid, string nome, string email, string telefone) {
+            dbcontroller
+        }
     }
 }
