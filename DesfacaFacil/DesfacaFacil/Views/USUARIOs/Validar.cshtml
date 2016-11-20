@@ -2,26 +2,28 @@
 @{
     ViewBag.Title = "Validar";
 }
-
-<h2>Validar</h2>
-@if (TempData["resultado"] != null)
-{
-    switch (TempData["resultado"].ToString())
+<div corpo style="height:80%;">
+    @if (TempData["resultado"] != null)
     {
-        case "0x00":
-            <div class="alert alert-success">
-                <strong>
-                    Conta validada com sucesso!<br>
-                    Agora você já pode doar e receber doações.
-                </strong>
-            </div><br>
-            break;
-        case "0x01":
-            <div class="alert alert-warning">
-                <strong>Não foi possível validar a conta, por favor verifique se o link foi informado corretamente.</strong>
-            </div><br>
-            break;
-
+        <div id="mensagem" style="padding:50px 0; text-align:center;width:30%;margin:auto">
+            @switch (TempData["resultado"].ToString())
+            {
+                case "0x00":
+                    <div class="alert alert-success">
+                        <strong>
+                            Conta validada com sucesso!<br>
+                            Agora você já pode doar e receber doações.<br>
+                            Utilize os links acima para navegar.
+                        </strong>
+                    </div><br>
+                    break;
+                case "0x01":
+                    <div class="alert alert-warning">
+                        <strong>Não foi possível validar a conta, por favor verifique se o link foi informado corretamente.</strong>
+                    </div><br>
+                    break;
+            }
+        </div>
     }
-}
+</div>
 

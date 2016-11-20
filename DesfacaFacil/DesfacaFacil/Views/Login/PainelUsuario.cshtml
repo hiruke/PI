@@ -32,9 +32,8 @@
                 <h1>@ViewBag.Pronome anuncios</h1>
 
                 <div class="row">
-                    @{List<DBAnuncios> meusAnuncios = new List<DBAnuncios>();
-                        meusAnuncios = ViewBag.Anuncios;
-                    }
+                    @{List<DBAnuncios> meusAnuncios = ViewBag.Anuncios; }
+
                     @foreach (DBAnuncios anuncio in meusAnuncios)
                     {
                         <div class="col-md-3" onclick="verAnuncio(@anuncio.aid)">
@@ -42,8 +41,8 @@
 
                             <h1>
                                 @{
-                                    string s = anuncio.titulo;
-                                    Html.ActionLink(s, "Visualizar", "ANUNCIOsController");
+                                    string titulo = anuncio.titulo;
+                                    Html.ActionLink(titulo, "Visualizar", "ANUNCIOsController");
                                 }
                             </h1>
                             <p>

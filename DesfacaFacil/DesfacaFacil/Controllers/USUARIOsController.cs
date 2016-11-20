@@ -20,7 +20,7 @@ namespace DesfacaFacil.Controllers
         }
 
         [HttpGet]
-        public ActionResult Validar(int id)
+        public ActionResult Validar(string id)
         {
             string email = Encoding.UTF8.GetString(Convert.FromBase64String(id.ToString()));
             TempData["resultado"] = dbcontroller.validaEmail(email);

@@ -7,6 +7,23 @@
     <meta HTTP-EQUIV="REFRESH" content="0; url=./PainelUsuario">
 }
 
+
+
+@if (TempData["resultado"] != null)
+{
+    <div id="mensagem" style="text-align:center;width:30%;margin:auto">
+
+        <div class="alert alert-warning">
+            <strong>
+                @TempData["resultado"];
+            </strong>
+        </div><br>
+    </div>
+}
+
+
+
+
 @using (Html.BeginForm("Index", "Login", FormMethod.Post))
 {
 

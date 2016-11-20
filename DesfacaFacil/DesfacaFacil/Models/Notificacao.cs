@@ -29,7 +29,7 @@ namespace DesfacaFacil.Models
         {
             byte[] entrada = Encoding.UTF8.GetBytes(usuario.email);
             string hash = Convert.ToBase64String(entrada);
-            string texto = "Para confirmar seu cadastro, clique no link a seguir: <a href=\"http://" + endereco + "/Usuarios/Validar/?id=" + hash + "\">Validar</a>";
+            string texto = "Olá " + usuario.nome + "!<br> Para confirmar seu cadastro, clique no link a seguir: <a href=\"http://" + endereco + "/Usuarios/Validar/?id=" + hash + "\">Validar</a>";
             enviarNotificacao(usuario, "Confirmação de Cadastro", texto);
         }
 
