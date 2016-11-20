@@ -18,6 +18,7 @@ namespace DAL
         List<DBCategorias> getCategorias([Optional] string _condicao);
         string addUsuario(string nome, string email, string telefone, string senha, string estado, string cidade);
         string enviaMensagem(int usidremetente, int usiddestinatario, string conteudo, int aid);
+        string validaEmail(string email);
 
 
     }

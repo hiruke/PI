@@ -183,7 +183,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbcon.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmailCon.cs" />
+    <Compile Include="Models\MailServer.cs" />
     <Compile Include="Models\ENDERECO.cs">
       <DependentUpon>dbcon.tt</DependentUpon>
     </Compile>
@@ -193,6 +193,7 @@
     <Compile Include="Models\MENSAGEN.cs">
       <DependentUpon>dbcon.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Notificacao.cs" />
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>dbcon.tt</DependentUpon>
     </Compile>
@@ -245,6 +246,7 @@
     <Content Include="Views\MENSAGENs\Chat.cshtml" />
     <Content Include="Views\USUARIOs\Cadastro.cshtml" />
     <Content Include="Views\ANUNCIOs\Criar.cshtml" />
+    <Content Include="Views\USUARIOs\Validar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -215,8 +215,8 @@ namespace DAL
         public string addUsuario(string nome, string email, string telefone, string senha, string estado, string cidade)
         {
             string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-            Debug.WriteLine("Executado SQL:" + "insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(1,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha + "')");
-            OracleCommand comando = new OracleCommand("insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(1,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha + "')", DBCon.getCon());
+            Debug.WriteLine("Executado SQL:" + "insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(0,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha + "')");
+            OracleCommand comando = new OracleCommand("insert into USUARIOS (status,nome,email,telefone,datacadastro,senha) values(0,'" + nome + "','" + email + "','" + telefone + "',to_date('" + datacriacao + "', 'DD/MM/YYYY'),'" + senha + "')", DBCon.getCon());
             string resultado = "0x00";
             try
             {
@@ -232,9 +232,27 @@ namespace DAL
             return resultado;
         }
 
+        public string validaEmail(string email)
+        {
+            List<DBUsuarios> lista = getUsuarios("email='" + email + "'");
+            if (lista.Count == 1)
+            {
+                OracleCommand comando = new OracleCommand("update usuarios set status=1 where email='" + email + "'", DBCon.getCon());
+                comando.ExecuteNonQuery();
+                Debug.WriteLine("Validado usuario com email:" + email);
+                return "0x00";
+            }
+            else
+            {
+                Debug.WriteLine("Nenhum usuário validado");
+                return "0x01";
+            }
+
+        }
+
         public string enviaMensagem(int usidremetente, int usiddestinatario, string conteudo, int aid)
         {
-            Debug.WriteLine("Executado SQL:" + "insert into MENSAGENS (usidremetente,usiddestinatario,conteudo,aid,hora) values("+usidremetente+","+usiddestinatario + ",'" + conteudo + "'," + aid + ", (select sysdate from dual))");
+            Debug.WriteLine("Executado SQL:" + "insert into MENSAGENS (usidremetente,usiddestinatario,conteudo,aid,hora) values(" + usidremetente + "," + usiddestinatario + ",'" + conteudo + "'," + aid + ", (select sysdate from dual))");
             OracleCommand comando = new OracleCommand("insert into MENSAGENS (usidremetente,usiddestinatario,conteudo,aid,hora) values(" + usidremetente + "," + usiddestinatario + ",'" + conteudo + "'," + aid + ", (select sysdate from dual))", DBCon.getCon());
             string resultado = "0x00";
             try

@@ -1,23 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Web;
+using System.Linq;
 using System.Web.Mvc;
 using DesfacaFacil.Models;
 using DAL;
+using System.Text;
 using System.Diagnostics;
 
 namespace DesfacaFacil.Controllers
 {
     public class USUARIOsController : Controller
     {
-        //private Entidades db = new Entidades();
         IDBController dbcontroller = new DBController();
         public ActionResult Cadastro()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Validar(int id)
+        {
+            string email = Encoding.UTF8.GetString(Convert.FromBase64String(id.ToString()));
+            TempData["resultado"] = dbcontroller.validaEmail(email);
             return View();
         }
 
@@ -26,6 +32,10 @@ namespace DesfacaFacil.Controllers
         {
             Debug.WriteLine(nome + "-" + email + "-" + senha + "-" + estado + "-" + cidade);
             TempData["resultado"] = dbcontroller.addUsuario(nome, email, telefone, senha, estado, cidade);
+            if (TempData["resultado"] == "0x00")
+            {
+                Notificacao.confirmaCadastro(dbcontroller.getUsuarios("email='" + email + "'").Single());
+            }
             return View("Cadastro");
         }
     }
