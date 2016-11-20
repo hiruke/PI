@@ -42,7 +42,7 @@ namespace DesfacaFacil.Controllers
 
         [HttpPost]
         public ActionResult Alterar(int usid, string nome, string email, string telefone) {
-            dbcontroller
+            return View();
         }
     }
 }

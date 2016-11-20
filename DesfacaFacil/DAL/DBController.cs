@@ -118,7 +118,7 @@ namespace DAL
             {
                 condicao = "where " + _condicao;
             }
-            OracleCommand comandos = new OracleCommand("select iid,aid,caminho,nome from imagens " + condicao, DBCon.getCon());
+            OracleCommand comandos = new OracleCommand("select iid,aid,nome,caminho from imagens " + condicao, DBCon.getCon());
             OracleDataReader leitor = comandos.ExecuteReader();
 
             if (leitor.HasRows)

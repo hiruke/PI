@@ -22,20 +22,13 @@ namespace DesfacaFacil.Controllers
         [HttpPost]
         public ActionResult Criar(string titulo, string descricao, int duracao, int categoria, int tipo, HttpPostedFileBase arquivo)
         {
-            string caminho = "C:\\TesteImagens\\";
+            string caminho = Server.MapPath("~/Repositorio/Imagens/Anuncios/");
             string nome = "";
-            string destino = "";
             if (arquivo != null)
             {
-                nome = arquivo.FileName;
-                for (int i = 0; System.IO.File.Exists(caminho + i + "_" + nome) || destino == ""; i++)
-                {
-                    Debug.WriteLine("Checando caminho");
-                    destino = caminho + i + "_" + nome;
-                }
-
-                Debug.WriteLine("Salvando arquivo: " + destino);
-                arquivo.SaveAs(destino);
+                nome = geraNome(0, arquivo.FileName, caminho);
+                Debug.WriteLine("Salvando arquivo: " + caminho+nome);
+                arquivo.SaveAs(caminho+nome);
             }
 
             List<DBCategorias> categorias = dbcontroller.getCategorias();
@@ -44,8 +37,27 @@ namespace DesfacaFacil.Controllers
             return View("Criar");
         }
 
-        public ActionResult Alterar(int aid) {
-            
+        private string geraNome(int _i, string _nome, string caminho)
+        {
+
+            string nome = _nome;
+            int i = _i + 1;
+            if (System.IO.File.Exists(caminho + i + "_" + nome))
+            {
+                Debug.WriteLine(i);
+                return geraNome(i, nome, caminho);
+            }
+            else
+            {
+                nome =i + "_" + nome;
+                return nome;
+            }
+
+        }
+
+        public ActionResult Alterar(int aid)
+        {
+
             return View(dbcontroller.getAnuncios("aid=" + aid).Single());
         }
 
