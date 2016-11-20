@@ -11,15 +11,30 @@ namespace DAL
 {
     public class DBController : IDBController
     {
+        public void commit()
+        {
+            OracleCommand comandos = new OracleCommand("commit", DBCon.getCon());
+            comandos.ExecuteNonQuery();
+        }
 
-        /// <summary>
-        /// Retorna 1 atributo a partir dos seguintes dados:
-        /// Tabela, Atributo, ChavePrimaria e Identificador
-        /// </summary>
-        /// <param name="_id"></param>
-        /// <param name="atributo"></param>
-        /// <returns></returns>
+        public string validaEmail(string email)
+        {
+            List<DBUsuarios> lista = getUsuarios("email='" + email + "'");
+            if (lista.Count == 1)
+            {
+                OracleCommand comando = new OracleCommand("update usuarios set status=1 where email='" + email + "'", DBCon.getCon());
+                comando.ExecuteNonQuery();
+                Debug.WriteLine("Validado usuario com email:" + email);
+                comando.Dispose();
+                return "0x00";
+            }
+            else
+            {
+                Debug.WriteLine("Nenhum usuário validado");
+                return "0x01";
+            }
 
+        }
 
         public List<DBUsuarios> getUsuarios([Optional] string _condicao)
 
@@ -58,15 +73,6 @@ namespace DAL
             }
         }
 
-
-        /// <summary>
-        /// Retorna uma lista de anuncios
-        /// Use o parametro condição para espeficiar a clausula where
-        /// Exemplo: getAnuncios("usid=1") para retornar anuncios cujo usid é igual a 1
-        /// </summary>
-        /// <returns></returns>
-
-
         public List<DBAnuncios> getAnuncios([Optional] string _condicao)
         {
             Debug.WriteLine("Executado metodo getAnuncios com o parâmetro: " + _condicao);
@@ -102,6 +108,39 @@ namespace DAL
 
         }
 
+        public List<DBImagens> getImagens([Optional] string _condicao)
+        {
+            Debug.WriteLine("Executado metodo getImagem com o parâmetro: " + _condicao);
+
+            string condicao = "";
+
+            if (_condicao != null)
+            {
+                condicao = "where " + _condicao;
+            }
+            OracleCommand comandos = new OracleCommand("select iid,aid,caminho,nome from imagens " + condicao, DBCon.getCon());
+            OracleDataReader leitor = comandos.ExecuteReader();
+
+            if (leitor.HasRows)
+            {
+                List<DBImagens> lista = new List<DBImagens>();
+                while (leitor.Read())
+                {
+                    lista.Add(new DBImagens(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetString(2), leitor.GetString(3)));
+                }
+                comandos.Dispose();
+                leitor.Dispose();
+                return lista;
+            }
+            else
+            {
+                comandos.Dispose();
+                leitor.Dispose();
+                Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
+                return new List<DBImagens>();
+            }
+
+        }
 
         public List<DBCandidatos> getCandidatos([Optional] string _condicao)
         {
@@ -135,47 +174,6 @@ namespace DAL
                 return new List<DBCandidatos>();
             }
 
-        }
-
-
-        public void commit()
-        {
-            OracleCommand comandos = new OracleCommand("commit", DBCon.getCon());
-            comandos.ExecuteNonQuery();
-        }
-
-
-        public void addCandidato(int _usid, int _aid)
-        {
-            OracleCommand comandos = new OracleCommand("insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")", DBCon.getCon());
-            comandos.ExecuteNonQuery();
-            comandos.Dispose();
-            commit();
-            Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
-
-        }
-
-
-        public string addAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo)
-        {
-
-            string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
-            string dataexpiracao = DateTime.Now.AddDays(duracao).Day + "/" + DateTime.Now.AddDays(duracao).Month + "/" + DateTime.Now.AddDays(duracao).Year + " " + DateTime.Now.AddDays(duracao).Hour + ":" + DateTime.Now.AddDays(duracao).Minute + ":" + DateTime.Now.AddDays(duracao).Second;
-            Debug.WriteLine("Executado insert into anuncio(usid, cid, tipo, status, datacriacao, dataexpiracao, descricao, titulo) values(" + usid + ", " + cid + ", " + tipo + ", " + status + ", to_date('" + datacriacao + "', 'DD/MM/YYYY hh24:mi:ss'), " + "to_date('" + dataexpiracao + "', 'DD/MM/YYYY hh24:mi:ss')" + ", '" + descricao + "', '" + titulo + "')");
-            OracleCommand comando = new OracleCommand("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY hh24:mi:ss')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY hh24:mi:ss')" + ",'" + descricao + "','" + titulo + "')", DBCon.getCon());
-
-            string resultado = "0x00";
-            try
-            {
-                comando.ExecuteNonQuery();
-            }
-            catch (OracleException ex)
-            {
-                resultado = ex.Number.ToString();
-            }
-            comando.Dispose();
-            commit();
-            return resultado;
         }
 
         public List<DBCategorias> getCategorias([Optional] string _condicao)
@@ -212,6 +210,38 @@ namespace DAL
         }
 
 
+        public void addCandidato(int _usid, int _aid)
+        {
+            OracleCommand comandos = new OracleCommand("insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")", DBCon.getCon());
+            comandos.ExecuteNonQuery();
+            comandos.Dispose();
+            commit();
+            Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
+
+        }
+
+        public string addAnuncio(int usid, int cid, int tipo, int status, int duracao, string descricao, string titulo, string caminhoImg, string nomeImg)
+        {
+
+            string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            string dataexpiracao = DateTime.Now.AddDays(duracao).Day + "/" + DateTime.Now.AddDays(duracao).Month + "/" + DateTime.Now.AddDays(duracao).Year + " " + DateTime.Now.AddDays(duracao).Hour + ":" + DateTime.Now.AddDays(duracao).Minute + ":" + DateTime.Now.AddDays(duracao).Second;
+            Debug.WriteLine("Executado: insert into anuncio(usid, cid, tipo, status, datacriacao, dataexpiracao, descricao, titulo) values(" + usid + ", " + cid + ", " + tipo + ", " + status + ", to_date('" + datacriacao + "', 'DD/MM/YYYY hh24:mi:ss'), " + "to_date('" + dataexpiracao + "', 'DD/MM/YYYY hh24:mi:ss')" + ", '" + descricao + "', '" + titulo + "')");
+            OracleCommand comando = new OracleCommand("insert into anuncio (usid,cid,tipo,status,datacriacao,dataexpiracao,descricao,titulo) values (" + usid + "," + cid + "," + tipo + "," + status + ",to_date('" + datacriacao + "','DD/MM/YYYY hh24:mi:ss')," + "to_date('" + dataexpiracao + "','DD/MM/YYYY hh24:mi:ss')" + ",'" + descricao + "','" + titulo + "')", DBCon.getCon());
+            string resultado = "0x00";
+            try
+            {
+                comando.ExecuteNonQuery();
+            }
+            catch (OracleException ex)
+            {
+                resultado = ex.Number.ToString();
+            }
+            addImagem(caminhoImg, nomeImg);
+            comando.Dispose();
+            commit();
+            return resultado;
+        }
+        
         public string addUsuario(string nome, string email, string telefone, string senha, string estado, string cidade)
         {
             string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
@@ -231,26 +261,7 @@ namespace DAL
             Debug.WriteLine(resultado);
             return resultado;
         }
-
-        public string validaEmail(string email)
-        {
-            List<DBUsuarios> lista = getUsuarios("email='" + email + "'");
-            if (lista.Count == 1)
-            {
-                OracleCommand comando = new OracleCommand("update usuarios set status=1 where email='" + email + "'", DBCon.getCon());
-                comando.ExecuteNonQuery();
-                Debug.WriteLine("Validado usuario com email:" + email);
-                comando.Dispose();
-                return "0x00";
-            }
-            else
-            {
-                Debug.WriteLine("Nenhum usuário validado");
-                return "0x01";
-            }
-
-        }
-
+        
         public string enviaMensagem(int usidremetente, int usiddestinatario, string conteudo, int aid)
         {
             Debug.WriteLine("Executado SQL:" + "insert into MENSAGENS (usidremetente,usiddestinatario,conteudo,aid,hora) values(" + usidremetente + "," + usiddestinatario + ",'" + conteudo + "'," + aid + ", (select sysdate from dual))");
@@ -272,14 +283,17 @@ namespace DAL
 
         private void addImagem(string caminho, string nome)
         {
-            OracleCommand comando = new OracleCommand("select MAX(aid) from anuncio", DBCon.getCon());
+            OracleCommand comando = new OracleCommand("SELECT last_number FROM user_sequences WHERE SEQUENCE_NAME = 'SEQUENCE_AID'", DBCon.getCon());
             OracleDataReader leitor = comando.ExecuteReader();
             int ultimoAnuncio = 0;
             while (leitor.Read())
             {
-                ultimoAnuncio = leitor.GetInt32(0);
+                ultimoAnuncio = leitor.GetInt32(0) - 1;
             }
-            comando = new OracleCommand("insert into mensagens (aid, caminho, nome) values (" + ultimoAnuncio + ",'" + caminho + "','" + nome + "')", DBCon.getCon());
+            Debug.WriteLine("insert into imagens (aid, caminho, nome) values (" + ultimoAnuncio + ",'" + caminho + "','" + nome + "')");
+            comando = new OracleCommand("insert into imagens (aid, caminho, nome) values (" + ultimoAnuncio + ",'" + caminho + "','" + nome + "')", DBCon.getCon());
+            comando.ExecuteNonQuery();
+            comando.Dispose();
         }
 
     }//End Classe

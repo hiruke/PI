@@ -22,35 +22,25 @@ namespace DesfacaFacil.Controllers
         [HttpPost]
         public ActionResult Criar(string titulo, string descricao, int duracao, int categoria, int tipo, HttpPostedFileBase arquivo)
         {
-
+            string caminho = "C:\\TesteImagens\\";
+            string nome = "";
+            string destino = "";
             if (arquivo != null)
             {
-                string caminho = "C:\\TesteImagens\\";
-                string nome = arquivo.FileName;
-                string destino = "";
+                nome = arquivo.FileName;
                 for (int i = 0; System.IO.File.Exists(caminho + i + "_" + nome) || destino == ""; i++)
                 {
                     Debug.WriteLine("Checando caminho");
                     destino = caminho + i + "_" + nome;
                 }
 
-                //string path = System.IO.Path.Combine(Server.MapPath("~"),nomeimagem);
-                // file is uploaded
                 Debug.WriteLine("Salvando arquivo: " + destino);
                 arquivo.SaveAs(destino);
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    arquivo.InputStream.CopyTo(ms);
-                    byte[] array = ms.GetBuffer();
-                }
             }
-            else
-            {
-                Debug.WriteLine("Imagem nula");
-            }
+
             List<DBCategorias> categorias = dbcontroller.getCategorias();
             ViewBag.categorias = categorias;
-            TempData["resultado"] = dbcontroller.addAnuncio(int.Parse(Session["IdUsuario"].ToString().ToString()), categoria, tipo, 1, duracao, descricao, titulo);
+            TempData["resultado"] = dbcontroller.addAnuncio(int.Parse(Session["IdUsuario"].ToString().ToString()), categoria, tipo, 1, duracao, descricao, titulo, caminho, nome);
             return View("Criar");
         }
 
@@ -60,6 +50,7 @@ namespace DesfacaFacil.Controllers
 
             IDBController dbcontroller = new DBController();
             DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + id).Single();
+            ViewBag.Imagens = dbcontroller.getImagens("aid=" + id);
             return View(anuncio);
         }
     }
