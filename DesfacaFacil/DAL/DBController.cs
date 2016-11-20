@@ -240,6 +240,7 @@ namespace DAL
                 OracleCommand comando = new OracleCommand("update usuarios set status=1 where email='" + email + "'", DBCon.getCon());
                 comando.ExecuteNonQuery();
                 Debug.WriteLine("Validado usuario com email:" + email);
+                comando.Dispose();
                 return "0x00";
             }
             else
@@ -267,6 +268,18 @@ namespace DAL
             comando.Dispose();
             Debug.WriteLine(resultado);
             return resultado;
+        }
+
+        private void addImagem(string caminho, string nome)
+        {
+            OracleCommand comando = new OracleCommand("select MAX(aid) from anuncio", DBCon.getCon());
+            OracleDataReader leitor = comando.ExecuteReader();
+            int ultimoAnuncio = 0;
+            while (leitor.Read())
+            {
+                ultimoAnuncio = leitor.GetInt32(0);
+            }
+            comando = new OracleCommand("insert into mensagens (aid, caminho, nome) values (" + ultimoAnuncio + ",'" + caminho + "','" + nome + "')", DBCon.getCon());
         }
 
     }//End Classe

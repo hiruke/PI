@@ -28,7 +28,6 @@
     }
 }
 
-
 <div class="container-fluid" style="margin:auto;width:40%">
     <h2>Criar Novo Anúncio</h2>
     <div class="row">
@@ -38,7 +37,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form method="post" action="~/Anuncios/Criar" class="form-horizontal" role="form">
+            <form method="post" action="~/Anuncios/Criar" class="form-horizontal" role="form" enctype="multipart/form-data">
                 <div class="form-group">
                     <div class="col-sm-2">
                         <label for="tipo" class="control-label">Tipo</label>
@@ -67,10 +66,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <label name="imagem" for="imagem" class="control-label">Imagem</label>
+                        <label for="imagem" class="control-label">Imagem</label>
                     </div>
                     <div class="col-sm-10">
-                        <input type="file" class="btn btn-default btn-file" accept=".jpg,.png,.gif,.jpeg" value="Buscar" id="imagem" name="imagem">
+                        <input type="file" class="btn btn-default btn-file" accept=".jpg,.png,.gif,.jpeg" value="Buscar" name="arquivo">
                     </div>
                 </div>
                 <div class="form-group">
@@ -89,7 +88,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-sm-2">
                         <label for="duracao" class="control-label">Duracao</label>

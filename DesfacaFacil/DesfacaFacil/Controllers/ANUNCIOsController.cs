@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DesfacaFacil.Models;
 using System.Diagnostics;
 using DAL;
-using System.Runtime.InteropServices;
 using System.IO;
 
 namespace DesfacaFacil.Controllers
@@ -26,18 +20,33 @@ namespace DesfacaFacil.Controllers
         }
 
         [HttpPost]
-        public ActionResult Criar(string titulo, string descricao, int duracao, int categoria, int tipo, HttpPostedFile imagem)
+        public ActionResult Criar(string titulo, string descricao, int duracao, int categoria, int tipo, HttpPostedFileBase arquivo)
         {
-            if (imagem != null) {
-                string nomeimagem = titulo;
+
+            if (arquivo != null)
+            {
+                string caminho = "C:\\TesteImagens\\";
+                string nome = arquivo.FileName;
+                string destino = "";
+                for (int i = 0; System.IO.File.Exists(caminho + i + "_" + nome) || destino == ""; i++)
+                {
+                    Debug.WriteLine("Checando caminho");
+                    destino = caminho + i + "_" + nome;
+                }
+
                 //string path = System.IO.Path.Combine(Server.MapPath("~"),nomeimagem);
                 // file is uploaded
-                imagem.SaveAs(Server.MapPath("imagens/"+ nomeimagem));
+                Debug.WriteLine("Salvando arquivo: " + destino);
+                arquivo.SaveAs(destino);
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    imagem.InputStream.CopyTo(ms);
+                    arquivo.InputStream.CopyTo(ms);
                     byte[] array = ms.GetBuffer();
                 }
+            }
+            else
+            {
+                Debug.WriteLine("Imagem nula");
             }
             List<DBCategorias> categorias = dbcontroller.getCategorias();
             ViewBag.categorias = categorias;
