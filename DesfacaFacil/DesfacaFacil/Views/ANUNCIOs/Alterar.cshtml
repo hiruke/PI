@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Alterar";
+}
+@model DAL.DBAnuncios
+
+@if (Model != null)
+{
+
+    switch (TempData["resultado"].ToString())
+    {
+        case "0x00":
+            <div class="alert alert-success">
+                <strong>
+                    Anúncio criado com sucesso!<br>
+                </strong>
+            </div><br>
+            break;
+        case "1400":
+            <div class="alert alert-warning">
+                <strong>Atenção! Todos os campos devem ser preenchidos.</strong>
+            </div><br>
+            break;
+        case "2291":
+            <div class="alert alert-danger">
+                <strong>Você deve estar logado para poder criar um anúncio</strong>
+            </div><br>
+            break;
+    }
+}
+<div class="container-fluid" style="margin:auto;width:40%">
+    <h2>Alterar Anúncio</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/Anuncios/Criar" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label for="tipo" class="control-label">Tipo</label>
+                    </div>
+                    <div class="col-sm-10">
+                        @{string tipo1 = "checked", tipo2 = "";
+                            @if (Model.tipo == 2) {
+                                tipo1 = "";
+                                tipo2 = "checked";
+                            }
+                        }
+                        <input type="radio" name="tipo" value="1" id="tipo" @tipo1> Doação
+                        <span style="display:inline-block; width: 5%;"></span>
+                        <input type="radio" name="tipo" value="2" id="tipo" @tipo2> Solicitacao
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label for="titulo" class="control-label">Titulo</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input name="titulo" type="text" class="form-control" id="titulo" value="@Model.titulo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label for="descricao" class="control-label">Descrição</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <textarea name="descricao" id="descricao" value="@Model.descricao" rows="10" cols="60"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label for="imagem" class="control-label">Imagem</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input type="file" class="btn btn-default btn-file" accept=".jpg,.png,.gif,.jpeg" value="Buscar" name="arquivo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label for="categoria" class="control-label">Categoria</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="categoria">
+                            @ViewBag.categorias;
+                            @foreach (DAL.DBCategorias categoria in ViewBag.categorias)
+                            {
+                                if (categoria.cid == Model.cid)
+                                {
+                                    <option name="categoria" value="@categoria.cid" checked>@categoria.nome</option>
+                                }
+                                else
+                                {
+                                    <option name="categoria" value="@categoria.cid">@categoria.nome</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label for="duracao" class="control-label">Duracao</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="duracao" name="duracao">
+                            <option value="1">1 Dia</option>
+                            <option value="2">2 Dias</option>
+                            <option value="3">3 Dias</option>
+                            <option value="4">4 Dias</option>
+                            <option value="5">5 Dias</option>
+                            <option value="6">6 Dias</option>
+                            <option value="7">1 Semana</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Cadastrar</button>
+                </div>
+                <hr>
+                <br>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+

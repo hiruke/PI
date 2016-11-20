@@ -54,6 +54,11 @@ namespace DesfacaFacil.Controllers
             return View("Criar");
         }
 
+        public ActionResult Alterar(int aid) {
+            
+            return View(dbcontroller.getAnuncios("aid=" + aid).Single());
+        }
+
         [HttpGet]
         public ActionResult Visualizar(int id)
         {
