@@ -10,6 +10,7 @@ using DesfacaFacil.Models;
 using System.Diagnostics;
 using DAL;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace DesfacaFacil.Controllers
 {
@@ -27,11 +28,17 @@ namespace DesfacaFacil.Controllers
         [HttpPost]
         public ActionResult Criar(string titulo, string descricao, int duracao, int categoria, int tipo, HttpPostedFile imagem)
         {
-            //if (imagem.ContentLength > 0)
-            //{
-
-            //    imagem.SaveAs("C:\\Users\ronne\\Desktop\\test.png");
-            //}
+            if (imagem != null) {
+                string nomeimagem = titulo;
+                //string path = System.IO.Path.Combine(Server.MapPath("~"),nomeimagem);
+                // file is uploaded
+                imagem.SaveAs(Server.MapPath("imagens/"+ nomeimagem));
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    imagem.InputStream.CopyTo(ms);
+                    byte[] array = ms.GetBuffer();
+                }
+            }
             List<DBCategorias> categorias = dbcontroller.getCategorias();
             ViewBag.categorias = categorias;
             TempData["resultado"] = dbcontroller.addAnuncio(int.Parse(Session["IdUsuario"].ToString().ToString()), categoria, tipo, 1, duracao, descricao, titulo);

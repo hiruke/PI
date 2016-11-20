@@ -13,10 +13,9 @@ else
 {
 
     int i = 0,aux = 10;
-    if (Model.Count < 10) { aux = Model.Count - 1; }
-    while (i < aux)
+    if (Model.Count < 10 ) { aux = Model.Count - 1; }
+    while (i <= aux)
     {
-        i++;
                 <div class="section">
                     <div class="container">
                         <div class="row">
@@ -60,15 +59,15 @@ else
                         </div>
                     </div>
                 </div>
+        i++;
+    }
 
-            }
 
 
 
-                
-        int j = Model.Count / 10 + 1, k = 1;
-            while (j > 0)
-            {
+    int j = Model.Count / 10 + 1, k = 1;
+    while (j > 0)
+    {
                 <a href="~/Home/Pesquisa/pesquisa/?busca=@ViewBag.Busca&pg=@k">@k</a>
         j--;
         k++;
