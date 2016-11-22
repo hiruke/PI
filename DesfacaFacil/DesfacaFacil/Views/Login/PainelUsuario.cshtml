@@ -36,8 +36,18 @@
 
                     @foreach (DBAnuncios anuncio in meusAnuncios)
                     {
-                        <div class="col-md-3" onclick="verAnuncio(@anuncio.aid)">
-                            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+                        <div class="col-md-3" onclick="verAnuncio(@anuncio.aid)" style="overflow:hidden">
+                            @{DBController dbcontroller = new DBController();
+                                try
+                                {
+                                    string imagePath = dbcontroller.getImagens("aid=" + anuncio.aid).Single().nome;
+                                    <img src="~/Repositorio/Imagens/Anuncios/@dbcontroller.getImagens("aid="+anuncio.aid).Single().nome" class="img-responsive img-rounded img-thumbnail">
+                                }
+                                catch (InvalidOperationException ex)
+                                {
+                                    <img src="~/Repositorio/Imagens/Anuncios/sem-foto.gif" class="img-responsive img-rounded img-thumbnail">
+                                };
+                            }
 
                             <h1>
                                 @{
@@ -62,6 +72,6 @@
         location.href = '/Anuncios/Criar';
     }
     function verAnuncio(id) {
-        location.href = '/Anuncios/Visualizar/?id='+id
+        location.href = '/Anuncios/Visualizar/?id=' + id
     }
 </script>

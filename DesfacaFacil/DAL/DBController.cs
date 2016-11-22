@@ -236,12 +236,15 @@ namespace DAL
             {
                 resultado = ex.Number.ToString();
             }
-            addImagem(caminhoImg, nomeImg);
+            if (caminhoImg != "" && nomeImg != "")
+            {
+                addImagem(caminhoImg, nomeImg);
+            }
             comando.Dispose();
             commit();
             return resultado;
         }
-        
+
         public string addUsuario(string nome, string email, string telefone, string senha, string estado, string cidade)
         {
             string datacriacao = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
@@ -261,7 +264,7 @@ namespace DAL
             Debug.WriteLine(resultado);
             return resultado;
         }
-        
+
         public string enviaMensagem(int usidremetente, int usiddestinatario, string conteudo, int aid)
         {
             Debug.WriteLine("Executado SQL:" + "insert into MENSAGENS (usidremetente,usiddestinatario,conteudo,aid,hora) values(" + usidremetente + "," + usiddestinatario + ",'" + conteudo + "'," + aid + ", (select sysdate from dual))");

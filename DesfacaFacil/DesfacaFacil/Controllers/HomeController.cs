@@ -15,16 +15,6 @@ namespace DesfacaFacil.Controllers
             }
             return View();
         }
-        /*public ActionResult Pesquisa(string busca)
-        {
-            IDBController dbcontroller = new DBController();
-            List<DBAnuncios> lista = dbcontroller.getAnuncios("titulo like '%" + busca + "%' or descricao like '%" + busca + "%'");
-            if (lista.Count > 10) {
-
-            }
-            return View(lista);
-
-        }*/
 
         public ActionResult Pesquisa(string busca,int pg)
         {

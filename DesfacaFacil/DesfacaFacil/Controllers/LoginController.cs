@@ -67,17 +67,9 @@ namespace DesfacaFacil.Controllers
             {
                 ViewBag.Anuncios = lista;
             }
-            /*List<DBAnuncios> anuncios = new List<DBAnuncios>();
-            foreach (DBAnuncios a in lista)
-            {
-                if (a.usid == id)
-                {
-                    anuncios.Add(a);
-                }
-            }
-            ViewBag.Anuncios = anuncios;
-        }*/
+
             List<DBUsuarios> user = dbcontroller.getUsuarios("usid=" + id);
+            ViewBag.Imagens = dbcontroller.getImagens("aid=" + id);
             return View(user);
 
         }
