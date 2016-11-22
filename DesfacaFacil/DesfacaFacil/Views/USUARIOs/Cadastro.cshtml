@@ -8,7 +8,7 @@
     switch (TempData["resultado"].ToString())
     {
         case "0x00":
-            <div class="alert alert-success">
+            <div class="alert alert-success" style="text-align:center;width:40%;margin:auto">
                 <strong>
                     Usuário criado com sucesso!<br>
                     Por favor cheque seu email para confirmar seu acesso.
@@ -16,12 +16,12 @@
             </div><br>
             break;
         case "1400":
-            <div class="alert alert-warning">
+            <div class="alert alert-warning" style="text-align:center;width:40%;margin:auto">
                 <strong>Atenção! Todos os campos devem ser preenchidos.</strong>
             </div><br>
             break;
         case "1":
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" style="text-align:center;width:40%;margin:auto">
                 <strong>O email informado já encontra-se em uso.</strong>
             </div><br>
             break;
@@ -29,36 +29,31 @@
 }
 <div id="conteudo">
     <form method="post" action="~/Usuarios/Cadastro" role="form" title="Cadastro de usuário" data-pg-name="Cadastro de usuário">
-        <div class="form-group">
-            <b>Nome</b>
-            <input type="text" class="form-control" name="nome" placeholder="Nome">
-            <b>Telefone</b>
-            <b><br></b>
-            <input type="text" class="form-control" name="telefone" placeholder="Telefone">
-        </div>
-        <div class="form-group">
-        </div>
-        <div class="form-group">
-            <b>Email</b>
-            <b><br></b>
-            <input type="email" class="form-control" name="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <b>Senha</b>
-            <b><br></b>
-            <input type="password" class="form-control" name="senha" placeholder="Senha">
-        </div>
-        <div class="form-group">
-            <b>Estado</b>
-            <b><br></b>
-            <input type="text" class="form-control" name="estado" placeholder="Estado">
-        </div>
-        <div class="form-group">
-            <b>Cidade</b>
-            <b><br></b>
-            <input type="text" class="form-control" name="cidade" placeholder="Cidade">
-        </div><br>
-        <button type="submit" class="btn">Criar Conta</button>
+        <fieldset style="width:50%;height:90%;margin:auto;background-position-y:center">
+            <legend>Cadastro de conta:</legend>
+            <fieldset style="display:inline;padding-left:2.5%;padding-right:2.5%">
+                <legend>Informação Pessoal</legend>
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome"><br />
+                <label for="telefone">Telefone</label>
+                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone">
+            </fieldset>
+            <fieldset style="display:inline;padding-left:2.5%;padding-right:2.5%">
+                <legend>Dados de Login</legend>
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email"><br />
+                <label for="senha">Senha</label>
+                <input type="password" class="form-control " id="senha" name="senha" placeholder="Senha">
+            </fieldset>
+            <fieldset style="display:inline;padding-left:2.5%;padding-right:2.5%">
+                <legend>Localização</legend>
+                <label for="estado">Estado</label>
+                <input type="text" class="form-control " id="estado" name="estado" placeholder="Estado"><br />
+                <label for="cidade">Cidade</label>
+                <input type="text" class="form-control " id="cidade" name="cidade" placeholder="Cidade">
+            </fieldset>
+            <br><br><button type="submit" class="btn">Criar Conta</button>
+        </fieldset>
     </form>
 </div>
 <!-- Bootstrap core JavaScript
@@ -68,23 +63,3 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-
-<style type="text/css">
-    #conteudo {
-        width: 70%;
-        margin-left: 15%;
-        margin-right: 15%;
-    }
-
-    .alert {
-        margin-left: 30%;
-        left: 50%;
-        text-align: center;
-        width: 40%;
-    }
-
-    .form-group {
-        width: 49%;
-        display: inline-block;
-    }
-</style>
