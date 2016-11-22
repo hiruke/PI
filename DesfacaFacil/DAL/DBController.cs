@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using Oracle.ManagedDataAccess.Client;
 using System.Runtime.InteropServices;
@@ -11,10 +8,13 @@ namespace DAL
 {
     public class DBController : IDBController
     {
+
         public void commit()
         {
-            OracleCommand comandos = new OracleCommand("commit", DBCon.getCon());
-            comandos.ExecuteNonQuery();
+            OracleCommand comando = new OracleCommand("commit", DBCon.getCon());
+            comando.ExecuteNonQuery();
+            comando.Connection.Close();
+
         }
 
         public string validaEmail(string email)
@@ -26,6 +26,7 @@ namespace DAL
                 comando.ExecuteNonQuery();
                 Debug.WriteLine("Validado usuario com email:" + email);
                 comando.Dispose();
+                comando.Connection.Close();
                 return "0x00";
             }
             else
@@ -50,8 +51,8 @@ namespace DAL
             }
 
 
-            OracleCommand comandos = new OracleCommand("select usid,status,nome,email,telefone,datacadastro,senha from usuarios " + condicao, DBCon.getCon());
-            OracleDataReader leitor = comandos.ExecuteReader();
+            OracleCommand comando = new OracleCommand("select usid,status,nome,email,telefone,datacadastro,senha from usuarios " + condicao, DBCon.getCon());
+            OracleDataReader leitor = comando.ExecuteReader();
 
             if (leitor.HasRows)
             {
@@ -60,14 +61,16 @@ namespace DAL
                 {
                     lista.Add(new DBUsuarios(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetString(2), leitor.GetString(3), leitor.GetString(4), leitor.GetDateTime(5), leitor.GetString(6)));
                 }
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 return lista;
             }
             else
             {
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
                 return new List<DBUsuarios>();
             }
@@ -84,8 +87,8 @@ namespace DAL
                 condicao = "where " + _condicao;
             }
             Debug.WriteLine("select aid, usid, cid, tipo, status, datacriacao, dataexpiracao, descricao, titulo from anuncio " + condicao);
-            OracleCommand comandos = new OracleCommand("select aid, usid, cid, tipo, status, datacriacao, dataexpiracao, descricao, titulo from anuncio " + condicao, DBCon.getCon());
-            OracleDataReader leitor = comandos.ExecuteReader();
+            OracleCommand comando = new OracleCommand("select aid, usid, cid, tipo, status, datacriacao, dataexpiracao, descricao, titulo from anuncio " + condicao, DBCon.getCon());
+            OracleDataReader leitor = comando.ExecuteReader();
 
             if (leitor.HasRows)
             {
@@ -94,14 +97,16 @@ namespace DAL
                 {
                     lista.Add(new DBAnuncios(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2), leitor.GetInt32(3), leitor.GetInt32(4), leitor.GetDateTime(5), leitor.GetDateTime(6), leitor.GetString(7), leitor.GetString(8)));
                 }
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 return lista;
             }
             else
             {
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
                 return new List<DBAnuncios>();
             }
@@ -118,8 +123,8 @@ namespace DAL
             {
                 condicao = "where " + _condicao;
             }
-            OracleCommand comandos = new OracleCommand("select iid,aid,nome,caminho from imagens " + condicao, DBCon.getCon());
-            OracleDataReader leitor = comandos.ExecuteReader();
+            OracleCommand comando = new OracleCommand("select iid,aid,nome,caminho from imagens " + condicao, DBCon.getCon());
+            OracleDataReader leitor = comando.ExecuteReader();
 
             if (leitor.HasRows)
             {
@@ -128,14 +133,16 @@ namespace DAL
                 {
                     lista.Add(new DBImagens(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetString(2), leitor.GetString(3)));
                 }
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 return lista;
             }
             else
             {
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
                 return new List<DBImagens>();
             }
@@ -152,8 +159,8 @@ namespace DAL
                 condicao = "where " + _condicao;
             }
             Debug.WriteLine("Executado metodo getCandidatos com o parâmetro: " + _condicao);
-            OracleCommand comandos = new OracleCommand("select canid, usid, aid from candidatos " + condicao, DBCon.getCon());
-            OracleDataReader leitor = comandos.ExecuteReader();
+            OracleCommand comando = new OracleCommand("select canid, usid, aid from candidatos " + condicao, DBCon.getCon());
+            OracleDataReader leitor = comando.ExecuteReader();
 
             if (leitor.HasRows)
             {
@@ -162,14 +169,16 @@ namespace DAL
                 {
                     lista.Add(new DBCandidatos(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2)));
                 }
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 return lista;
             }
             else
             {
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
                 return new List<DBCandidatos>();
             }
@@ -186,8 +195,8 @@ namespace DAL
             {
                 condicao = "where " + _condicao;
             }
-            OracleCommand comandos = new OracleCommand("select cid,nome from categorias " + condicao, DBCon.getCon());
-            OracleDataReader leitor = comandos.ExecuteReader();
+            OracleCommand comando = new OracleCommand("select cid,nome from categorias " + condicao, DBCon.getCon());
+            OracleDataReader leitor = comando.ExecuteReader();
 
             if (leitor.HasRows)
             {
@@ -196,14 +205,16 @@ namespace DAL
                 {
                     lista.Add(new DBCategorias(leitor.GetInt32(0), leitor.GetString(1)));
                 }
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 return lista;
             }
             else
             {
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
                 return new List<DBCategorias>();
             }
@@ -212,9 +223,10 @@ namespace DAL
 
         public void addCandidato(int _usid, int _aid)
         {
-            OracleCommand comandos = new OracleCommand("insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")", DBCon.getCon());
-            comandos.ExecuteNonQuery();
-            comandos.Dispose();
+            OracleCommand comando = new OracleCommand("insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")", DBCon.getCon());
+            comando.ExecuteNonQuery();
+            comando.Dispose();
+            comando.Connection.Close();
             commit();
             Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
 
@@ -241,6 +253,7 @@ namespace DAL
                 addImagem(caminhoImg, nomeImg);
             }
             comando.Dispose();
+            comando.Connection.Close();
             commit();
             return resultado;
         }
@@ -261,6 +274,7 @@ namespace DAL
             }
 
             comando.Dispose();
+            comando.Connection.Close();
             Debug.WriteLine(resultado);
             return resultado;
         }
@@ -280,6 +294,7 @@ namespace DAL
             }
 
             comando.Dispose();
+            comando.Connection.Close();
             Debug.WriteLine(resultado);
             return resultado;
         }
@@ -297,6 +312,7 @@ namespace DAL
             comando = new OracleCommand("insert into imagens (aid, caminho, nome) values (" + ultimoAnuncio + ",'" + caminho + "','" + nome + "')", DBCon.getCon());
             comando.ExecuteNonQuery();
             comando.Dispose();
+            comando.Connection.Close();
         }
 
     }//End Classe

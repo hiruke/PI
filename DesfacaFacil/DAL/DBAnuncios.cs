@@ -59,8 +59,8 @@ namespace DAL
                 condicao = "where " + _condicao;
             }
 
-            OracleCommand comandos = new OracleCommand("select mid,usidremetente,usiddestinatario,conteudo,aid,hora from mensagens " + condicao, DBCon.getCon());
-            OracleDataReader leitor = comandos.ExecuteReader();
+            OracleCommand comando = new OracleCommand("select mid,usidremetente,usiddestinatario,conteudo,aid,hora from mensagens " + condicao, DBCon.getCon());
+            OracleDataReader leitor = comando.ExecuteReader();
 
             if (leitor.HasRows)
             {
@@ -69,14 +69,16 @@ namespace DAL
                 {
                     lista.Add(new DBMensagens(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2), leitor.GetString(3), leitor.GetInt32(4), leitor.GetDateTime(5)));
                 }
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 return lista;
             }
             else
             {
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
                 Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
                 return new List<DBMensagens>();
             }

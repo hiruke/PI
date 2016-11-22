@@ -40,8 +40,8 @@ namespace DAL
         /// <returns></returns>
         public List<DBAnuncios> listaAnuncios()
         {
-            OracleCommand comandos = new OracleCommand("select aid, usid, cid, tipo, status,z datacriacao, dataexpiracao, descricao, titulo from anuncio where usid=" + usid, DBCon.getCon());
-            OracleDataReader leitor = comandos.ExecuteReader();
+            OracleCommand comando = new OracleCommand("select aid, usid, cid, tipo, status,z datacriacao, dataexpiracao, descricao, titulo from anuncio where usid=" + usid, DBCon.getCon());
+            OracleDataReader leitor = comando.ExecuteReader();
 
             if (leitor.HasRows)
             {
@@ -50,12 +50,14 @@ namespace DAL
                 {
                     lista.Add(new DBAnuncios(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2), leitor.GetInt32(3), leitor.GetInt32(4), leitor.GetDateTime(5), leitor.GetDateTime(6), leitor.GetString(7), leitor.GetString(8)));
                 }
-                comandos.Dispose();
+                comando.Dispose();
                 leitor.Dispose();
+                comando.Connection.Close();
 
             }
-            comandos.Dispose();
+            comando.Dispose();
             leitor.Dispose();
+            comando.Connection.Close();
             return new List<DBAnuncios>();
         }
     }
