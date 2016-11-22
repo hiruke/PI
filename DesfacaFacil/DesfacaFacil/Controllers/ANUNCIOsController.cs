@@ -57,8 +57,17 @@ namespace DesfacaFacil.Controllers
 
         public ActionResult Alterar(int aid)
         {
-
+            List<DBCategorias> categorias = dbcontroller.getCategorias();
+            ViewBag.categorias = categorias;
             return View(dbcontroller.getAnuncios("aid=" + aid).Single());
+        }
+
+        [HttpPost]
+        public ActionResult Alterar(int aid,int tipo,string titulo,string descricao,int categoria,int duracao) {
+            DBAnuncios a = dbcontroller.getAnuncios("aid=" + aid).Single();
+            a.Alterar(tipo, titulo, descricao, categoria, duracao);
+            return View("Index","Home");
+        
         }
 
         [HttpGet]

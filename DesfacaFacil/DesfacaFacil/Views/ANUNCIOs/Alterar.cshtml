@@ -7,7 +7,7 @@
 @if (Model != null)
 {
 
-    switch (TempData["resultado"].ToString())
+    /*switch (TempData["resultado"].ToString())
     {
         case "0x00":
             <div class="alert alert-success">
@@ -26,7 +26,7 @@
                 <strong>Você deve estar logado para poder criar um anúncio</strong>
             </div><br>
             break;
-    }
+    }*/
 }
 <div class="container-fluid" style="margin:auto;width:40%">
     <h2>Alterar Anúncio</h2>
@@ -37,14 +37,15 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form method="post" action="~/Anuncios/Criar" class="form-horizontal" role="form" enctype="multipart/form-data">
+            <form method="post" action="~/Anuncios/Alterar" class="form-horizontal" role="form" enctype="multipart/form-data">
                 <div class="form-group">
+                    <input type="hidden" name="aid" id="aid" value="@Model.aid">
                     <div class="col-sm-2">
                         <label for="tipo" class="control-label">Tipo</label>
                     </div>
                     <div class="col-sm-10">
                         @{string tipo1 = "checked", tipo2 = "";
-                            @if (Model.tipo == 2) {
+                            if (Model.tipo == 2) {
                                 tipo1 = "";
                                 tipo2 = "checked";
                             }

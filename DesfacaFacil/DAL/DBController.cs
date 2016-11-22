@@ -300,6 +300,8 @@ namespace DAL
             return resultado;
         }
 
+       
+
         private void addImagem(string caminho, string nome)
         {
             OracleCommand comando = new OracleCommand("SELECT last_number FROM user_sequences WHERE SEQUENCE_NAME = 'SEQUENCE_AID'", DBCon.getCon());

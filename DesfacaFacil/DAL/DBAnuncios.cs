@@ -79,9 +79,25 @@ namespace DAL
                 comando.Dispose();
                 leitor.Dispose();
                 comando.Connection.Close();
-                Debug.WriteLine(DateTime.Now + " -- Retornada lista vazia");
+                Debug.WriteLine(this.dataexpiracao + " -- Retornada lista vazia");
                 return new List<DBMensagens>();
             }
+        }
+
+        public void Alterar(int tipo, string titulo, string descricao, int categoria, int duracao) {
+
+            string dataexpiracao = this.dataexpiracao.AddDays(duracao).Day + "/" + this.dataexpiracao.AddDays(duracao).Month + "/" + this.dataexpiracao.AddDays(duracao).Year + " " + this.dataexpiracao.AddDays(duracao).Hour + ":" + this.dataexpiracao.AddDays(duracao).Minute + ":" + this.dataexpiracao.AddDays(duracao).Second;
+
+            OracleCommand comando = new OracleCommand("update anuncio set titulo='" + titulo + "',descricao='" + descricao + "',cid=" + categoria +",dataexpiracao=to_date('" + dataexpiracao + "', 'DD/MM/YYYY hh24:mi:ss')where aid=" + aid, DBCon.getCon());
+            Debug.WriteLine("Executado metodo AlterarAnuncio: update anuncio set titulo='" + titulo + "',descricao='" + descricao + "',cid=" + categoria + ",dataexpiracao=to_date('" + dataexpiracao + "', 'DD/MM/YYYY hh24:mi:ss') where aid=" + aid);
+            comando.ExecuteNonQuery();
+            comando.Dispose();
+            comando.Connection.Close();
+            DBController dbcontroller = new DBController();
+            dbcontroller.commit();
+            //Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
+
+        
         }
     }
 }

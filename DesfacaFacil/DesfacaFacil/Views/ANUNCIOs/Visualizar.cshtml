@@ -21,7 +21,11 @@
                 <div>
                     <img src="~/Repositorio/Imagens/Anuncios/@ViewBag.Imagens[0].nome" class="img-responsive img-rounded">
                 </div>
+                @if (Model.usid.ToString() == Session["IdUsuario"].ToString())
+                {
+                    <a class="btn btn-primary" id="btnMensagem" href="~/anuncios/alterar/?aid=@Model.aid">Editar Anuncio</a>
 
+                }
                 @if (Model.usid.ToString() != Session["IdUsuario"].ToString())
                 {
                     if (Model.tipo == 1)

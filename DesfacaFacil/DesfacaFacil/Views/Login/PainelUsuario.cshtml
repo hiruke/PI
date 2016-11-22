@@ -49,12 +49,15 @@
                                 };
                             }
 
-                            <h1>
+                            <h4>
                                 @{
                                     string titulo = anuncio.titulo;
                                     Html.ActionLink(titulo, "Visualizar", "ANUNCIOsController");
                                 }
-                            </h1>
+
+                                @anuncio.titulo
+
+                            </h4>
                             <p>
                                 @anuncio.descricao
                             </p>
