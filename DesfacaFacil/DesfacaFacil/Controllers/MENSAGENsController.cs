@@ -34,7 +34,7 @@ namespace DesfacaFacil.Controllers
         public ActionResult Chat(int canid, int aid)
         {
 
-            DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
+            /*DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
             List<DBCandidatos> candidatos = anuncio.getCandidatos();
             DBCandidatos candidato = candidatos.Where(x => x.canid == canid).Single();
             Debug.WriteLine("caind"+candidato.canid);
@@ -46,10 +46,18 @@ namespace DesfacaFacil.Controllers
             ViewBag.Dono = anuncio.usid;
             ViewBag.Dono2 = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
             return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid+"order by hora"));
+        */
+            DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
+            List<DBCandidatos> todosCandidatos = anuncio.getCandidatos();
+            DBCandidatos candidato = todosCandidatos.Where(x => x.canid == canid).Single();
+            ViewBag.candidato = candidato;
+            ViewBag.anuncio = anuncio;
+            return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid + " order by hora"));
         }
 
         [HttpPost]
-        public ActionResult Enviar(string mensagem, int remetente, int destinatario,int _aid) {
+        public ActionResult Enviar(string mensagem, int remetente, int destinatario, int _aid)
+        {
             dbcontroller.enviaMensagem(remetente, destinatario, mensagem, _aid);
             DBAnuncios a = dbcontroller.getAnuncios("aid= " + _aid).Single();
             int can = 0;
@@ -57,7 +65,8 @@ namespace DesfacaFacil.Controllers
             {
                 can = destinatario;
             }
-            else {
+            else
+            {
                 can = remetente;
             }
             Debug.WriteLine(can);
@@ -65,7 +74,7 @@ namespace DesfacaFacil.Controllers
             return RedirectToAction("Chat", "Mensagens", new { canid = can, aid = _aid });
 
         }
-        
+
 
     }
 }
