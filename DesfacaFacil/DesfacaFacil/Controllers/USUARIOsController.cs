@@ -37,12 +37,14 @@ namespace DesfacaFacil.Controllers
         }
 
         public ActionResult Alterar(int usid) {
-            return View(dbcontroller.getUsuarios("usid=" + usid));
+            return View(dbcontroller.getUsuarios("usid=" + usid).Single());
         }
 
         [HttpPost]
         public ActionResult Alterar(int usid, string nome, string email, string telefone) {
-            return View();
+            DBUsuarios us = dbcontroller.getUsuarios("usid=" + usid).Single();
+            us.Alterar(nome, email, telefone);
+            return View("Index","Home");
         }
     }
 }

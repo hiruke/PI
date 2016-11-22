@@ -36,6 +36,7 @@
     <form method="post" action="~/Usuarios/Alterar" role="form" title="Alterar de usuário" data-pg-name="Alterar de usuário">
         <div class="form-group">
             <b>Nome</b>
+            <input type="hidden" name="usid" value="@Model.usid">
             <input type="text" class="form-control" name="nome" value="@Model.nome">
             <b>Telefone</b>
             <b><br></b>

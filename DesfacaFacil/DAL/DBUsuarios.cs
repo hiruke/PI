@@ -60,5 +60,21 @@ namespace DAL
             comando.Connection.Close();
             return new List<DBAnuncios>();
         }
+        public void Alterar(string nome, string email, string telefone)
+        {
+
+            //string dataexpiracao = this.dataexpiracao.AddDays(duracao).Day + "/" + this.dataexpiracao.AddDays(duracao).Month + "/" + this.dataexpiracao.AddDays(duracao).Year + " " + this.dataexpiracao.AddDays(duracao).Hour + ":" + this.dataexpiracao.AddDays(duracao).Minute + ":" + this.dataexpiracao.AddDays(duracao).Second;
+
+            OracleCommand comando = new OracleCommand("update usuarios set nome='" + nome + "',email='" + email + "',telefone=" + telefone + "where usid=" + this.usid, DBCon.getCon());
+            //Debug.WriteLine("Executado metodo AlterarAnuncio: update anuncio set titulo='" + titulo + "',descricao='" + descricao + "',cid=" + categoria + ",dataexpiracao=to_date('" + dataexpiracao + "', 'DD/MM/YYYY hh24:mi:ss') where aid=" + aid);
+            comando.ExecuteNonQuery();
+            comando.Dispose();
+            comando.Connection.Close();
+            DBController dbcontroller = new DBController();
+            dbcontroller.commit();
+            //Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
+
+
+        }
     }
 }

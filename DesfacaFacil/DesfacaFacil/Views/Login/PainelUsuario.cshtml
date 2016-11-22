@@ -20,12 +20,8 @@
                          class="center-block img-circle img-responsive">
                     <h3 class="text-center">@Model.Single().nome </h3>
                     <p class="text-center">@Model.Single().email</p>
-                    <ol>
-                        <li>One</li>
-                        <li>Two</li>
-                        <li>Three</li>
-                    </ol>
-
+                    
+                    <p class="text-center"><a class="btn btn-primary" id="btnMensagem" href="~/usuarios/alterar/?usid=@Session["IdUsuario"]">Editar Perfil</a></p>
                 </div>
             </div>
             <div class="col-md-8">
