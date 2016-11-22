@@ -8,7 +8,6 @@ namespace DesfacaFacil.Controllers
 {
     public class CANDIDATOSController : Controller
     {
-        private Entidades db = new Entidades();
 
         // GET: CANDIDATOS
         public ActionResult Index()
