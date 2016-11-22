@@ -56,10 +56,10 @@
                 @if (Session["IdUsuario"].ToString() == Model.usid.ToString())
                 {
                     <ul class="nav nav-pills  nav-stacked" draggable="true">
-                        @foreach (var c in Model.getCandidatos())
+                        @foreach (var candidato in Model.getCandidatos())
                         {
                             <li class="nav-item">
-                                <a href="~/mensagens/chat/?canid=@c.canid&aid=@Model.aid" class="active nav-link">@c.getUsuario().nome</a>
+                                <a href="~/mensagens/chat/?canid=@candidato.canid&aid=@Model.aid" class="active nav-link">@candidato.getUsuario().nome</a>
                             </li>
                         }
                     </ul>

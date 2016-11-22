@@ -37,6 +37,9 @@ namespace DesfacaFacil.Controllers
             DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
             List<DBCandidatos> candidatos = anuncio.getCandidatos();
             DBCandidatos candidato = candidatos.Where(x => x.canid == canid).Single();
+            Debug.WriteLine("caind"+candidato.canid);
+            Debug.WriteLine("usid"+candidato.usid);
+            Debug.WriteLine("aid"+candidato.aid);
             ViewBag.Candidato2 = candidato;
             ViewBag.Candidato = candidato.usid;
             ViewBag.AID = aid;

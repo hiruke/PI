@@ -39,7 +39,7 @@ namespace DAL
             this.titulo = titulo;
         }
 
-        public List<DBCandidatos> getCandidatos([Optional] string _condicao)
+        public List<DBCandidatos> getCandidatos()
         {
 
             DBController dbcontroller = new DBController();
