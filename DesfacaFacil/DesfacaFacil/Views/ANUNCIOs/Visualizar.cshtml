@@ -10,8 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-          rel="stylesheet" type="text/css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="estilo.css" rel="stylesheet" type="text/css">
 </head>
 <div class="section" id="conteudo">
@@ -28,21 +27,45 @@
                 }
                 @if (Model.usid.ToString() != Session["IdUsuario"].ToString())
                 {
+                    string status;
+                    if (Model.getCandidatos().Where(x => x.usid.ToString() == Session["IdUsuario"].ToString()).Count() >= 1)
+                    {
+                        status = "disabled";
+                    }
+                    else
+                    {
+                        status = "enabled";
+                    }
                     if (Model.tipo == 1)
                     {
                         string texto = "Desejo Receber";
-                        <a class="btn btn-primary" id="btnCandidatar" onclick="SalvarCandidato()">@texto</a>
+                        <a class="btn btn-primary" id="btnCandidatar" onclick="SalvarCandidato()" @status>@texto</a>
                     }
                     else if (Model.tipo == 2)
                     {
                         string texto = "Quero Doar";
-                        <a class="btn btn-primary" id="btnCandidatar" onclick="SalvarCandidato()">@texto</a>
+                        <a class="btn btn-primary" id="btnCandidatar" onclick="SalvarCandidato()" @status>@texto</a>
                     }
                 }
 
+
                 @if (Session["IdUsuario"].ToString() != "-1" && Session["IdUsuario"].ToString() != Model.usid.ToString())
                 {
-                    <a class="btn btn-primary" id="btnMensagem" href="~/mensagens/chat/?canid=@Session["IdUsuario"].ToString()&aid=@Model.aid">Conversar</a>
+                    string status;
+                    string url;
+                    try
+                    {
+                        url = "../../Mensagens/Chat/?canid=" + @Model.getCandidatos().Where(x => x.usid.ToString() == Session["IdUsuario"].ToString()).Single().canid + "&aid=" + @Model.aid;
+                        status = "enabled";
+
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        status = "disabled";
+                        url = "";
+
+                    }
+                    <a @status class="btn btn-primary" id="btnMensagem" href=@url>Conversar</a>
                 }
 
             </div>

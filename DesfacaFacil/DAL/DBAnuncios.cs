@@ -46,6 +46,13 @@ namespace DAL
             return dbcontroller.getCandidatos("aid=" + aid);
         }
 
+        public DBUsuarios getUsuario()
+        {
+
+            DBController dbcontroller = new DBController();
+            return dbcontroller.getUsuarios("usid=" + usid).Single();
+        }
+
 
         public List<DBMensagens> getMensagens([Optional] string _condicao)
 
@@ -84,11 +91,12 @@ namespace DAL
             }
         }
 
-        public void Alterar(int tipo, string titulo, string descricao, int categoria, int duracao) {
+        public void Alterar(int tipo, string titulo, string descricao, int categoria, int duracao)
+        {
 
             string dataexpiracao = this.dataexpiracao.AddDays(duracao).Day + "/" + this.dataexpiracao.AddDays(duracao).Month + "/" + this.dataexpiracao.AddDays(duracao).Year + " " + this.dataexpiracao.AddDays(duracao).Hour + ":" + this.dataexpiracao.AddDays(duracao).Minute + ":" + this.dataexpiracao.AddDays(duracao).Second;
 
-            OracleCommand comando = new OracleCommand("update anuncio set titulo='" + titulo + "',descricao='" + descricao + "',cid=" + categoria +",dataexpiracao=to_date('" + dataexpiracao + "', 'DD/MM/YYYY hh24:mi:ss')where aid=" + aid, DBCon.getCon());
+            OracleCommand comando = new OracleCommand("update anuncio set titulo='" + titulo + "',descricao='" + descricao + "',cid=" + categoria + ",dataexpiracao=to_date('" + dataexpiracao + "', 'DD/MM/YYYY hh24:mi:ss')where aid=" + aid, DBCon.getCon());
             Debug.WriteLine("Executado metodo AlterarAnuncio: update anuncio set titulo='" + titulo + "',descricao='" + descricao + "',cid=" + categoria + ",dataexpiracao=to_date('" + dataexpiracao + "', 'DD/MM/YYYY hh24:mi:ss') where aid=" + aid);
             comando.ExecuteNonQuery();
             comando.Dispose();
@@ -97,7 +105,7 @@ namespace DAL
             dbcontroller.commit();
             //Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
 
-        
+
         }
     }
 }

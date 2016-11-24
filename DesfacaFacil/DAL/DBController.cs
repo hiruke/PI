@@ -167,7 +167,6 @@ namespace DAL
                 List<DBCandidatos> lista = new List<DBCandidatos>();
                 while (leitor.Read())
                 {
-                    Debug.WriteLine("CANID:" + leitor.GetInt32(0) + ",USID:" + leitor.GetInt32(1) + ", AID" + leitor.GetInt32(2));
                     lista.Add(new DBCandidatos(leitor.GetInt32(0), leitor.GetInt32(1), leitor.GetInt32(2)));
                 }
                 comando.Dispose();
@@ -300,7 +299,7 @@ namespace DAL
             return resultado;
         }
 
-       
+
 
         private void addImagem(string caminho, string nome)
         {

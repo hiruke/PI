@@ -37,21 +37,22 @@ namespace DesfacaFacil.Controllers
             /*DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
             List<DBCandidatos> candidatos = anuncio.getCandidatos();
             DBCandidatos candidato = candidatos.Where(x => x.canid == canid).Single();
-            Debug.WriteLine("caind"+candidato.canid);
-            Debug.WriteLine("usid"+candidato.usid);
-            Debug.WriteLine("aid"+candidato.aid);
             ViewBag.Candidato2 = candidato;
             ViewBag.Candidato = candidato.usid;
             ViewBag.AID = aid;
             ViewBag.Dono = anuncio.usid;
             ViewBag.Dono2 = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
             return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid+"order by hora"));
-        */
+            */
+            // Debug.WriteLine("Dados de entrada: canid=" + canid + ", aid=" + aid);
+
             DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
             List<DBCandidatos> todosCandidatos = anuncio.getCandidatos();
             DBCandidatos candidato = todosCandidatos.Where(x => x.canid == canid).Single();
-            ViewBag.candidato = candidato;
-            ViewBag.anuncio = anuncio;
+            ViewBag.Candidato = candidato;
+            ViewBag.Anuncio = anuncio;
+            ViewBag.Proprietario = anuncio.getUsuario();
+           // ViewBag.Dono = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
             return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid + " order by hora"));
         }
 
@@ -59,18 +60,16 @@ namespace DesfacaFacil.Controllers
         public ActionResult Enviar(string mensagem, int remetente, int destinatario, int _aid)
         {
             dbcontroller.enviaMensagem(remetente, destinatario, mensagem, _aid);
-            DBAnuncios a = dbcontroller.getAnuncios("aid= " + _aid).Single();
+            DBAnuncios anuncio = dbcontroller.getAnuncios("aid= " + _aid).Single();
             int can = 0;
-            if (a.usid.ToString() == remetente.ToString())
+            if (anuncio.usid.ToString() == remetente.ToString())
             {
-                can = destinatario;
+                can = dbcontroller.getCandidatos("usid=" + destinatario + " and aid=" + _aid).Single().canid;
             }
             else
             {
-                can = remetente;
+                can = dbcontroller.getCandidatos("usid=" + remetente + " and aid=" + _aid).Single().canid;
             }
-            Debug.WriteLine(can);
-            Debug.WriteLine(_aid);
             return RedirectToAction("Chat", "Mensagens", new { canid = can, aid = _aid });
 
         }

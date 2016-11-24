@@ -29,22 +29,24 @@ namespace DesfacaFacil.Controllers
         {
             Debug.WriteLine(nome + "-" + email + "-" + senha + "-" + estado + "-" + cidade);
             TempData["resultado"] = dbcontroller.addUsuario(nome, email, telefone, senha, estado, cidade);
-            if (TempData["resultado"] == "0x00")
+            if (TempData["resultado"].ToString() == "0x00")
             {
                 Notificacao.confirmaCadastro(dbcontroller.getUsuarios("email='" + email + "'").Single());
             }
             return View("Cadastro");
         }
 
-        public ActionResult Alterar(int usid) {
+        public ActionResult Alterar(int usid)
+        {
             return View(dbcontroller.getUsuarios("usid=" + usid).Single());
         }
 
         [HttpPost]
-        public ActionResult Alterar(int usid, string nome, string email, string telefone) {
+        public ActionResult Alterar(int usid, string nome, string email, string telefone)
+        {
             DBUsuarios us = dbcontroller.getUsuarios("usid=" + usid).Single();
             us.Alterar(nome, email, telefone);
-            return View("Index","Home");
+            return View("Index", "Home");
         }
     }
 }
