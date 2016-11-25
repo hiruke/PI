@@ -32,26 +32,12 @@ namespace DesfacaFacil.Controllers
         [HttpGet]
         public ActionResult Chat(int canid, int aid)
         {
-
-            /*DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
-            List<DBCandidatos> candidatos = anuncio.getCandidatos();
-            DBCandidatos candidato = candidatos.Where(x => x.canid == canid).Single();
-            ViewBag.Candidato2 = candidato;
-            ViewBag.Candidato = candidato.usid;
-            ViewBag.AID = aid;
-            ViewBag.Dono = anuncio.usid;
-            ViewBag.Dono2 = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
-            return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid+"order by hora"));
-            */
-            // Debug.WriteLine("Dados de entrada: canid=" + canid + ", aid=" + aid);
-
             DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
             List<DBCandidatos> todosCandidatos = anuncio.getCandidatos();
             DBCandidatos candidato = todosCandidatos.Where(x => x.canid == canid).Single();
             ViewBag.Candidato = candidato;
             ViewBag.Anuncio = anuncio;
             ViewBag.Proprietario = anuncio.getUsuario();
-            // ViewBag.Dono = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
             return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid + " order by hora"));
         }
 

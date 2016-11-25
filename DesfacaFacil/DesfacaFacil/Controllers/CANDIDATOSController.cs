@@ -9,8 +9,6 @@ namespace DesfacaFacil.Controllers
 {
     public class CANDIDATOSController : Controller
     {
-
-        // GET: CANDIDATOS
         public ActionResult Index()
         {
             IDBController dbcontroller = new DBController();
@@ -28,22 +26,6 @@ namespace DesfacaFacil.Controllers
             }
             return RedirectToAction("Index", "Login");
         }
-
-        /*public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CANDIDATO cANDIDATO = db.CANDIDATOS.Find(id);
-            if (cANDIDATO == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cANDIDATO);
-        }*/
-
-
 
         public ActionResult verCandidatos(int idanuncio)
         {

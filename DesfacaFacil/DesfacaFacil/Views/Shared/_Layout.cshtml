@@ -2,10 +2,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/pingendoBootstrap.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -52,7 +52,6 @@
                     <b>Bem vindo(a), @Session["Nome"] (@Html.ActionLink("Desconectar", "Sair", "Login"))</b>
                     <ul class="nav navbar-nav navbar-right">
                         <li id="Painel" class="active">
-                            @*@Html.ActionLink("Painel do Usuario", "PainelUsuario", "Login")@*@
                             <a href='~/Login/PainelUsuario/@Session["IdUsuario"].ToString()'>Painel do Usuário</a>
                         </li>
                     </ul>
@@ -69,19 +68,15 @@
                     <b>Defaça Facil</b>
                     <p>Copyright 2016<br>Endereço: ES-010 Km 06 - Manguinhos, Serra - ES<br>CEP:29.173-087<br>(27)3434-0100</p>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6" style="text-align:right">
+                    <b>FIR<span style="color:red">M</span></b>
+                    <p>Fale Conosco<br>Sobre nós<br>Sobre o projeto<br>
+                </div>
+                @*<div class="col-sm-6">
                     <p class="text-info text-right">
                         <br>
                         <br>
                     </p>
-                    @*<div class="row" ">
-                            <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
-                            </div>
-                        </div>*@
                     <div class="row">
                         <div class="col-md-12 hidden-xs text-right">
                             <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
@@ -89,9 +84,9 @@
                             <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
                             <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
                         </div>
-                    </div>
-                </div>
+                    </div>*@
             </div>
+        </div>
         </div>
     </footer>
 
