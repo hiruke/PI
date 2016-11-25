@@ -8,8 +8,11 @@
     <title>@Model.titulo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    @*<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="estilo.css" rel="stylesheet" type="text/css">
 </head>
@@ -70,11 +73,12 @@
 
             </div>
             <div class="col-md-4">
-                <h1 class="text-primary" id="titulo">@Model.titulo</h1>
-                <h3 id="proprietario">@dbcontroller.getUsuarios("usid=" + Model.usid).Single().nome</h3>
-                <h4 class="text-primary">Data de Criação:</h4>
-                <p id="descricao" class="text-justify">
-                    Descrição:
+                <h3 class="text-primary" id="titulo">@Model.titulo</h3>
+                @{string expiracao = " " + Model.dataexpiracao.Day + "/" + Model.dataexpiracao.Month + " as " + Model.dataexpiracao.Hour + ":" + Model.dataexpiracao.Minute + "h"; }
+                <b>Anunciante:</b> @dbcontroller.getUsuarios("usid=" + Model.usid).Single().nome<br />
+                <b>Expira em:@expiracao</b>
+                <p id="descricao" style="border:1px solid black;width:80%;max-height:25%;overflow-y:scroll">
+                    <b>Descrição:</b>
                     <br>@Model.descricao
                 </p>
             </div>
@@ -98,8 +102,12 @@
 
 <script type="text/javascript">
     function SalvarCandidato() {
-        if (confirm("Deseja candidatar-se?")) {
-            location.href = "../../candidatos/SalvarCandidato/?idanuncio=@Model.aid";
-        }
+        bootbox.confirm("Deseja candidatar-se?", function (result) {
+            confirma = result;
+            if (confirma) {
+                location.href = "../../Candidatos/SalvarCandidato/?idanuncio=@Model.aid";
+            };
+        })
+
     }
 </script>

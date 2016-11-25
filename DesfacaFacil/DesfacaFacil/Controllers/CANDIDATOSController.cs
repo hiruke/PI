@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using DesfacaFacil.Models;
 using DAL;
+using System.Web.Routing;
 
 namespace DesfacaFacil.Controllers
 {
@@ -23,7 +24,7 @@ namespace DesfacaFacil.Controllers
             {
                 IDBController dbcontroller = new DBController();
                 dbcontroller.addCandidato(int.Parse(Session["IdUsuario"].ToString()), idanuncio);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Visualizar", "Anuncios", new RouteValueDictionary(new { id = idanuncio }));
             }
             return RedirectToAction("Index", "Login");
         }
@@ -47,7 +48,7 @@ namespace DesfacaFacil.Controllers
         public ActionResult verCandidatos(int idanuncio)
         {
             IDBController dbcontroller = new DBController();
-            List<DBCandidatos> candidatos = dbcontroller.getCandidatos("where aid="+idanuncio);
+            List<DBCandidatos> candidatos = dbcontroller.getCandidatos("where aid=" + idanuncio);
             return View(candidatos);
         }
     }

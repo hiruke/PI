@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using DAL;
@@ -52,7 +51,7 @@ namespace DesfacaFacil.Controllers
             ViewBag.Candidato = candidato;
             ViewBag.Anuncio = anuncio;
             ViewBag.Proprietario = anuncio.getUsuario();
-           // ViewBag.Dono = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
+            // ViewBag.Dono = dbcontroller.getUsuarios("usid=" + Session["IdUsuario"].ToString()).Single();
             return View(anuncio.getMensagens("usidremetente=" + candidato.usid + " or usiddestinatario=" + candidato.usid + " order by hora"));
         }
 
