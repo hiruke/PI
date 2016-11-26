@@ -63,10 +63,10 @@ namespace DAL
 
             if (_condicao != null)
             {
-                condicao = "where " + _condicao;
+                condicao = " and " + _condicao;
             }
 
-            OracleCommand comando = new OracleCommand("select mid,usidremetente,usiddestinatario,conteudo,aid,hora from mensagens " + condicao, DBCon.getCon());
+            OracleCommand comando = new OracleCommand("select mid,usidremetente,usiddestinatario,conteudo,aid,hora from mensagens where aid='" + aid + "'" + condicao, DBCon.getCon());
             OracleDataReader leitor = comando.ExecuteReader();
 
             if (leitor.HasRows)
@@ -103,9 +103,19 @@ namespace DAL
             comando.Connection.Close();
             DBController dbcontroller = new DBController();
             dbcontroller.commit();
-            //Debug.WriteLine("Executado: insert into candidatos (usid, aid) values(" + _usid + "," + _aid + ")");
 
+        }
 
+        public string Fechar()
+        {
+            OracleCommand comando = new OracleCommand("update anuncio set status=" + 2 + " where aid=" + aid, DBCon.getCon());
+            Debug.WriteLine("update anuncio set status=" + 2 + " where aid=" + aid);
+            comando.ExecuteNonQuery();
+            comando.Dispose();
+            comando.Connection.Close();
+            DBController dbcontroller = new DBController();
+            dbcontroller.commit();
+            return "";
         }
     }
 }

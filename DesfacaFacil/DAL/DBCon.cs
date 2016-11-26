@@ -14,7 +14,8 @@ namespace DAL
 
         static public OracleConnection getCon()
         {
-            conexao = new OracleConnection("Data Source=ovcentral.dyndns.org:443:xe;Persist Security Info=True;User ID=desfacafacil;Password=123*abc");
+            //conexao = new OracleConnection("Data Source=ovcentral.dyndns.org:443:xe;Persist Security Info=True;User ID=desfacafacil;Password=123*abc");
+            conexao = new OracleConnection("Data Source=localhost:1521:xe;Persist Security Info=True;User ID=desfacafacil;Password=123*abc");
 
             if (conexao.State != System.Data.ConnectionState.Open)
             {

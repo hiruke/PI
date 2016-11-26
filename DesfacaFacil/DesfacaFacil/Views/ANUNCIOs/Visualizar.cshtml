@@ -8,8 +8,6 @@
     <title>@Model.titulo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @*<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>*@
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
@@ -21,11 +19,22 @@
         <div class="row">
             <div class="col-md-4">
                 <div>
-                    <img src="~/Repositorio/Imagens/Anuncios/@ViewBag.Imagens[0].nome" class="img-responsive img-rounded">
+                    @{string imgNome;}
+                    @try
+                    {
+                        imgNome = ViewBag.Imagens[0].nome;
+                    }
+                    catch (ArgumentOutOfRangeException ex)
+                    {
+                        imgNome = "sem-foto.gif";
+                    }
+
+                    <img src="~/Repositorio/Imagens/Anuncios/@imgNome" class="img-responsive img-rounded">
                 </div>
                 @if (Model.usid.ToString() == Session["IdUsuario"].ToString())
                 {
-                    <a class="btn btn-primary" id="btnMensagem" href="~/anuncios/alterar/?aid=@Model.aid">Editar Anuncio</a>
+                    <a class="btn btn-primary" id="btnMensagem" href="~/Anuncios/Alterar/?aid=@Model.aid">Editar Anuncio</a>
+                    <a class="btn btn-primary" id="btnMensagem" onclick="fechar()">Fechar Anuncio</a>
 
                 }
                 @if (Model.usid.ToString() != Session["IdUsuario"].ToString())
@@ -77,7 +86,7 @@
                 @{string expiracao = " " + Model.dataexpiracao.Day + "/" + Model.dataexpiracao.Month + " as " + Model.dataexpiracao.Hour + ":" + Model.dataexpiracao.Minute + "h"; }
                 <b>Anunciante:</b> @dbcontroller.getUsuarios("usid=" + Model.usid).Single().nome<br />
                 <b>Expira em:@expiracao</b>
-                <p id="descricao" style="border:1px solid black;width:80%;max-height:25%;overflow-y:scroll">
+                <p id="descricao" style="width:80%;max-height:25%;overflow-y:scroll">
                     <b>Descrição:</b>
                     <br>@Model.descricao
                 </p>
@@ -101,6 +110,17 @@
 </div>
 
 <script type="text/javascript">
+
+    function fechar() {
+        bootbox.confirm("Deseja fechar o anuncio?", function (result) {
+            confirma = result;
+            if (confirma) {
+                @Model.Fechar();
+                location.href = "../../Candidatos/SalvarCandidato/?idanuncio=@Model.aid";
+            };
+        })
+    }
+
     function SalvarCandidato() {
         bootbox.confirm("Deseja candidatar-se?", function (result) {
             confirma = result;

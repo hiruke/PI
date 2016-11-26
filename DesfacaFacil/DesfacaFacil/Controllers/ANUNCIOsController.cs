@@ -15,7 +15,7 @@ namespace DesfacaFacil.Controllers
         {
             List<DBCategorias> categorias = dbcontroller.getCategorias();
             ViewBag.categorias = categorias;
-            Debug.WriteLine(dbcontroller.getCategorias()[0].nome);
+            //Debug.WriteLine(dbcontroller.getCategorias()[0].nome);
             return View();
         }
 
