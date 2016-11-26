@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using DAL;
+using System.Diagnostics;
 
 namespace DesfacaFacil.Controllers
 {
@@ -16,17 +17,36 @@ namespace DesfacaFacil.Controllers
             return View();
         }
 
-        public ActionResult Pesquisa(string busca,int pg)
+        public ActionResult Pesquisa(string busca, int pg, string categoria)
         {
             IDBController dbcontroller = new DBController();
             ViewBag.Busca = busca;
-            List<DBAnuncios> lista = dbcontroller.getAnuncios("titulo like '%" + busca + "%' or descricao like '%" + busca + "%'");
-            if (pg>1)
+            string filtro;
+            if (categoria != "*")
             {
-                lista.RemoveRange(0,(pg-1)*10);
+                filtro = "and cid=" + categoria;
+            }
+            else
+            {
+                filtro = "";
+            }
+            List<DBAnuncios> lista = dbcontroller.getAnuncios("status=1 " + filtro + " and (titulo like '%" + busca + "%' or descricao like '%" + busca + "%')");
+            if (pg > 1)
+            {
+                lista.RemoveRange(0, (pg - 1) * 10);
             }
             return View(lista);
 
+        }
+
+        public ActionResult Missao()
+        {
+            return View();
+        }
+
+        public ActionResult SobreNos()
+        {
+            return View();
         }
     }
 }

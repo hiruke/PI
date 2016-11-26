@@ -159,6 +159,8 @@
     <Content Include="Views\USUARIOs\Validar.cshtml" />
     <Content Include="Views\Anuncios\Alterar.cshtml" />
     <Content Include="Views\USUARIOs\Alterar.cshtml" />
+    <Content Include="Views\Home\Missao.cshtml" />
+    <Content Include="Views\Home\SobreNos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

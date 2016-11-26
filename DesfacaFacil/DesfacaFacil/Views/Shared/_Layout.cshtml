@@ -1,4 +1,5 @@
-﻿<html>
+﻿@using DAL;
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,42 +21,65 @@
                 </button>
                 <a class="navbar-brand" href="/Home/Index"><span>DesfaçaFacil</span></a>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <form class="navbar-form" role="search" action="/Home/Pesquisa/" method="get">
                     <div class="input-group">
+
                         <input type="text" class="form-control .col-xs-4" placeholder="Pesquisar" name="busca" id="busca">
                         <input type="hidden" name="pg" id="pg" value="1">
                         <div class="input-group-btn" style="width:2%">
                             <button class="btn btn-default" type="submit">Buscar</button>
                         </div>
+                        <select class="form-control" id="categorias" name="categoria" style="width:45%">
+                            @{ IDBController dbcontroller = new DBController();
+                                List<DBCategorias> categorias = dbcontroller.getCategorias();
+                                <option value="*">Tudo</option>
+                                foreach (DBCategorias catergoria in categorias)
+                                {
+                                    <option value="@catergoria.cid">@catergoria.nome</option>
+                                }
+                            }
+                        </select>
                     </div>
                 </form>
             </div>
             <div class="collapse navbar-collapse" id="navbar-ex-collapse">
 
-                @if (Int32.Parse(Session["IdUsuario"].ToString()) == -1)
+                @try
                 {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li id="Home" class="active">
-                            @Html.ActionLink("Home", "Index", "Home")
-                        </li>
-                        <li id="Cadastro">
-                            @Html.ActionLink("Cadastro", "Cadastro", "Usuarios")
-                        </li>
-                        <li id="Login">
-                            @Html.ActionLink("Login", "Index", "Login")
-                        </li>
-                    </ul>
+                    Int32.Parse(Session["IdUsuario"].ToString());
+                    if (Int32.Parse(Session["IdUsuario"].ToString()) == -1)
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li id="Home" class="active">
+                                @Html.ActionLink("Home", "Index", "Home")
+                            </li>
+                            <li id="Cadastro">
+                                @Html.ActionLink("Cadastro", "Cadastro", "Usuarios")
+                            </li>
+                            <li id="Login">
+                                @Html.ActionLink("Login", "Index", "Login")
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <b>Bem vindo(a), @Session["Nome"] (@Html.ActionLink("Desconectar", "Sair", "Login"))</b>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li id="Painel" class="active">
+                                <a href='~/Login/PainelUsuario/@Session["IdUsuario"].ToString()'>Painel do Usuário</a>
+                            </li>
+                        </ul>
+                    }
                 }
-                else
+                catch (NullReferenceException ex)
                 {
-                    <b>Bem vindo(a), @Session["Nome"] (@Html.ActionLink("Desconectar", "Sair", "Login"))</b>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li id="Painel" class="active">
-                            <a href='~/Login/PainelUsuario/@Session["IdUsuario"].ToString()'>Painel do Usuário</a>
-                        </li>
-                    </ul>
+                    <script>
+                        location.href = "/Home";
+                    </script>
                 }
+
+
 
             </div>
         </div>
@@ -66,11 +90,21 @@
             <div class="row">
                 <div class="col-sm-6">
                     <b>Defaça Facil</b>
-                    <p>Copyright 2016<br>Endereço: ES-010 Km 06 - Manguinhos, Serra - ES<br>CEP:29.173-087<br>(27)3434-0100</p>
+                    <p>
+                        Copyright 2016<br>
+                        Endereço: ES-010 Km 06 - Manguinhos, Serra - ES<br>
+                        CEP:29.173-087<br>
+                        (27)3434-0100
+                    </p>
                 </div>
-                <div class="col-sm-6" style="text-align:right">
-                    <b>FIR<span style="color:red">M</span></b>
-                    <p>Fale Conosco<br>Sobre nós<br>Sobre o projeto<br>
+                <div class="col-sm-6">
+                    <p style="text-align:right">
+                        <a href="/Home/SobreNos"><b><span style="color:white">FIR</span><span style="color:red">M</span></b></a><br />
+                        <a href="mailto:desfacafacil@gmail.com"><span style="color:white">Fale Conosco</span><br></a>
+                        <a href="/Home/Missao"><span style="color:white">Missão</span><br></a>
+                        <a href="/Home/SobreNos"><span style="color:white">Sobre nós</span><br></a>
+                        <a href="/Home/SobreNos"><span style="color:white">Sobre o projeto</span><br></a>
+                    </p>
                 </div>
                 @*<div class="col-sm-6">
                     <p class="text-info text-right">

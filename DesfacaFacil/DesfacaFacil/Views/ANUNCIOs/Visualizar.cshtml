@@ -96,11 +96,19 @@
                 @if (Session["IdUsuario"].ToString() == Model.usid.ToString())
                 {
                     <ul class="nav nav-pills  nav-stacked" draggable="true">
-                        @foreach (var candidato in Model.getCandidatos())
+                        <h4>Lista de Candidatos</h4>
+                        @if (Model.getCandidatos().Count == 0)
                         {
-                            <li class="nav-item">
-                                <a href="~/mensagens/chat/?canid=@candidato.canid&aid=@Model.aid" class="active nav-link">@candidato.getUsuario().nome</a>
-                            </li>
+                            <p>Nenhum candidato encontrado</p>
+                        }
+                        else
+                        {
+                            foreach (var candidato in Model.getCandidatos())
+                            {
+                                <li class="nav-item">
+                                    <a href="~/mensagens/chat/?canid=@candidato.canid&aid=@Model.aid" class="active nav-link">Conversar com @candidato.getUsuario().nome</a>
+                                </li>
+                            }
                         }
                     </ul>
                 }
