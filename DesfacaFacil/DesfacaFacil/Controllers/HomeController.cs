@@ -35,6 +35,7 @@ namespace DesfacaFacil.Controllers
             {
                 lista.RemoveRange(0, (pg - 1) * 10);
             }
+            ViewBag.categoria = categoria;
             return View(lista);
 
         }

@@ -4,7 +4,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
 using DAL;
-using System.IO;
+using System.Web.Routing;
+
 
 namespace DesfacaFacil.Controllers
 {
@@ -27,8 +28,8 @@ namespace DesfacaFacil.Controllers
             if (arquivo != null)
             {
                 nome = geraNome(0, arquivo.FileName, caminho);
-                Debug.WriteLine("Salvando arquivo: " + caminho+nome);
-                arquivo.SaveAs(caminho+nome);
+                Debug.WriteLine("Salvando arquivo: " + caminho + nome);
+                arquivo.SaveAs(caminho + nome);
             }
 
             List<DBCategorias> categorias = dbcontroller.getCategorias();
@@ -49,7 +50,7 @@ namespace DesfacaFacil.Controllers
             }
             else
             {
-                nome =i + "_" + nome;
+                nome = i + "_" + nome;
                 return nome;
             }
 
@@ -63,12 +64,23 @@ namespace DesfacaFacil.Controllers
         }
 
         [HttpPost]
-        public ActionResult Alterar(int aid,int tipo,string titulo,string descricao,int categoria,int duracao) {
-            DBAnuncios a = dbcontroller.getAnuncios("aid=" + aid).Single();
-            a.Alterar(tipo, titulo, descricao, categoria, duracao);
-            return View("Index","Home");
-        
+        public ActionResult Alterar(int aid, int tipo, string titulo, string descricao, int categoria, int duracao)
+        {
+            DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + aid).Single();
+            anuncio.Alterar(tipo, titulo, descricao, categoria, duracao);
+            return View("Index", "Home");
+
         }
+
+
+        [HttpGet]
+        public ActionResult Fechar(int id)
+        {
+            DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + id).Single();
+            anuncio.Fechar();
+            return RedirectToAction("PainelUsuario", "Login", new RouteValueDictionary(new { id = id }));
+        }
+
 
         [HttpGet]
         public ActionResult Visualizar(int id)

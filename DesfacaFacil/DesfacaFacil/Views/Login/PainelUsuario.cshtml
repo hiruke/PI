@@ -20,7 +20,7 @@
                          class="center-block img-circle img-responsive">
                     <h3 class="text-center">@Model.Single().nome </h3>
                     <p class="text-center">@Model.Single().email</p>
-                    
+
                     <p class="text-center"><a class="btn btn-primary" id="btnMensagem" href="~/usuarios/alterar/?usid=@Session["IdUsuario"]">Editar Perfil</a></p>
                 </div>
             </div>
@@ -37,7 +37,9 @@
                                 try
                                 {
                                     string imagePath = dbcontroller.getImagens("aid=" + anuncio.aid).Single().nome;
-                                    <img src="~/Repositorio/Imagens/Anuncios/@dbcontroller.getImagens("aid="+anuncio.aid).Single().nome" class="img-responsive img-rounded img-thumbnail">
+                                    <div style="border:2px solid #337cbb;height:25%;width:100%;background-size:cover;background-repeat:no-repeat;background-image:url(/Repositorio/Imagens/Anuncios/@imagePath)">
+                                    </div>
+                                    //<img src="~/Repositorio/Imagens/Anuncios/@dbcontroller.getImagens("aid="+anuncio.aid).Single().nome" class="img-responsive img-rounded img-thumbnail">
                                 }
                                 catch (InvalidOperationException ex)
                                 {
@@ -55,9 +57,16 @@
 
                             </h4>
                             <p>
-                                @anuncio.descricao
-                            </p>
-                        </div>
+                                @if (anuncio.descricao.Length <= 120)
+                                {
+                                <p>@anuncio.descricao</p>
+                                }
+                                else
+                                {
+                                    <p>@anuncio.descricao.Substring(0, 120) ...</p>
+                                }
+                                </p>
+                            </div>
                                     }
                 </div>
                 <a href="#">Ver mais</a>

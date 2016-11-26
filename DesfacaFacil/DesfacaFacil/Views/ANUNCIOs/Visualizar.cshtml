@@ -33,8 +33,8 @@
                 </div>
                 @if (Model.usid.ToString() == Session["IdUsuario"].ToString())
                 {
-                    <a class="btn btn-primary" id="btnMensagem" href="~/Anuncios/Alterar/?aid=@Model.aid">Editar Anuncio</a>
-                    <a class="btn btn-primary" id="btnMensagem" onclick="fechar()">Fechar Anuncio</a>
+                    <a class="btn btn-primary" id="btnEditar" href="~/Anuncios/Alterar/?aid=@Model.aid">Editar Anuncio</a>
+                    <a class="btn btn-primary" id="btnFechar" onclick="FecharAnuncio()">Fechar Anuncio</a>
 
                 }
                 @if (Model.usid.ToString() != Session["IdUsuario"].ToString())
@@ -118,24 +118,21 @@
 </div>
 
 <script type="text/javascript">
-
-    function fechar() {
-        bootbox.confirm("Deseja fechar o anuncio?", function (result) {
-            confirma = result;
+    function SalvarCandidato() {
+        bootbox.confirm("Deseja candidatar-se?", function (salvar) {
+            confirma = salvar;
             if (confirma) {
-                @Model.Fechar();
                 location.href = "../../Candidatos/SalvarCandidato/?idanuncio=@Model.aid";
             };
         })
     }
 
-    function SalvarCandidato() {
-        bootbox.confirm("Deseja candidatar-se?", function (result) {
-            confirma = result;
+    function FecharAnuncio() {
+        bootbox.confirm("Deseja candidatar-se?", function (fechar) {
+            confirma = fechar;
             if (confirma) {
-                location.href = "../../Candidatos/SalvarCandidato/?idanuncio=@Model.aid";
+                location.href = "/Anuncios/Fechar/"+@Model.aid;
             };
         })
-
     }
 </script>

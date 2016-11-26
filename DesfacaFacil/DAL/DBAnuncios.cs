@@ -4,7 +4,6 @@ using System.Linq;
 using System.Diagnostics;
 using Oracle.ManagedDataAccess.Client;
 using System.Runtime.InteropServices;
-
 namespace DAL
 {
 

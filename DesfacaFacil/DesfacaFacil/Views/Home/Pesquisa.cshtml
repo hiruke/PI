@@ -7,135 +7,95 @@
 
 @if (Model.Count == 0)
 {
-    <h1>Nenhum item correspondente encontrado</h1>
+
+    <div style="height:90%;text-align:center">
+        <h1>Nenhum item correspondente encontrado</h1>
+    </div>
 }
 else
 {
 
     int i = 0, aux = 10;
-    if (Model.Count < 10) { aux = Model.Count - 1; }
-    while (i <= aux)
+    if (Model.Count <= 10) { aux = Model.Count - 1; }
+    while (i < aux)
     {
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="row">
-                            <div class="col-md-12">
-                                @{DBController dbcontroller = new DBController();}
-                                @*@<img src="~/Repositorio/Imagens/Anuncios/@dbcontroller.getImagens("aid="+Model[i].aid).Single().nome" class="img-responsive" style="object-fit:contain">*@
-
-                                @try
-                                {
-                                    string imagePath = dbcontroller.getImagens("aid=" + Model[i].aid).Single().nome;
-                                    <img src="~/Repositorio/Imagens/Anuncios/@dbcontroller.getImagens("aid="+Model[i].aid).Single().nome" class="img-responsive img-rounded img-thumbnail">
-                                }
-                                catch (InvalidOperationException ex)
-                                {
-
-                                    <img src="~/Repositorio/Imagens/Anuncios/sem-foto.gif" class="img-responsive img-rounded img-thumbnail">
-                                }
-
-                                <hr>
+                    <div class="col-sm-6">
+                        @{DBController dbcontroller = new DBController();}
+                        @try
+                        {
+                            string imagePath = dbcontroller.getImagens("aid=" + Model[i].aid).Single().nome;
+                            <div style="margin:auto;border:2px solid #337cbb;height:40%;width:50%;background-size:cover;background-repeat:no-repeat;background-image:url(/Repositorio/Imagens/Anuncios/@imagePath)"></div>
+                            //<img src="~/Repositorio/Imagens/Anuncios/@dbcontroller.getImagens("aid=" + Model[i].aid).Single().nome" class="img-responsive img-rounded img-thumbnail">
+                        }
+                        catch (Exception ex)
+                        {
+                            <div style="margin:auto;border:2px solid #337cbb;height:40%;width:50%;background-size:cover;background-repeat:no-repeat;background-image:url(/Repositorio/Imagens/Anuncios/sem-foto.gif)">
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <div class="container">
-                                        <div class="row">
-                                            <a href="../../Anuncios/Visualizar/?id=@Model[i].aid">
-                                                <div class="col-md-12">
-                                                    <h1>@Model[i].titulo</h1>
-                                                    <br>
-                                                    <a href="../../Login/PainelUsuario/?id=@Model[i].usid">
-                                                        <u>@Model[i].datacriacao</u>
-                                                    </a>
-                                                    <p>
-                                                        @Model[i].descricao
-                                                    </p>
-                                                </div>
-                                            </a>
 
-                                        </div>
-                                        <div class="row">
+                            //<img src="~/Repositorio/Imagens/Anuncios/sem-foto.gif" class="img-responsive img-rounded img-thumbnail">
+                        }
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <hr>
+
                     </div>
-                </div>
-            </div>
-        </div>
-                                        i++;
+
+                    <div class="section">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h3 style="color:#337cbb">@Model[i].titulo</h3>
+                                    <br>
+                                    <b>Anunciante: </b><a href="/Login/PainelUsuario/?id=@Model[i].usid">@Model[i].getUsuario().nome</a><br />
+
+                                    @if (Model[i].tipo == 1)
+                                    {
+                                        <p><b>Tipo de Anuncio:</b> Doação</p><br />
+                                    }
+                                    else
+                                    {
+                                        <p><b>Tipo de Anuncio:</b> Pedido</p><br />
+                                    }
+
+                                    @if (Model[i].descricao.Length <= 200)
+                                    {
+                                        <p>@Model[i].descricao</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@Model[i].descricao.Substring(0, 200) ...</p>
                                     }
 
 
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+                                i++;
+                            }
 
 
-                                    int j = Model.Count / 10 + 1, k = 1;
-                                    while (j > 0)
-                                    {
-                                        <a href="~/Home/Pesquisa/pesquisa/?busca=@ViewBag.Busca&pg=@k">@k</a>
-                                            j--;
-                                            k++;
-                                        }
 
+                            <div id="paginacao">
+                                @{int j = Model.Count / 10 + 1, k = 1;}
+                                <h2><p style="width:20%;margin:auto;text-align:center">Paginas</p></h2>
+                                @while (j > 0)
+                                {
+                                    <div style="width:20%;margin:auto;text-align:center;font-size:16px"><p><a href="~/Home/Pesquisa/?busca=@ViewBag.Busca&pg=@k&categoria=@ViewBag.categoria">@k</a></p></div>
+                                    j--;
+                                    k++;
+                                }
 
-
-
-                                        /* else {
-                                                foreach (DBAnuncios anuncio in Model)
-                                                {
-
-                                                    <div class="section">
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-                                                                            <hr>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-8">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="section">
-                                                                                <div class="container">
-                                                                                    <div class="row">
-                                                                                        <a href="../../Anuncios/Visualizar/?id=@anuncio.aid">
-                                                                                            <div class="col-md-12">
-                                                                                                <h1>@anuncio.titulo</h1>
-                                                                                                <br>
-                                                                                                <a href="../../Login/PainelUsuario/?id=@anuncio.usid">
-                                                                                                    <u>@anuncio.datacriacao</u>
-                                                                                                </a>
-                                                                                                <p>
-                                                                                                    @anuncio.descricao
-                                                                                                </p>
-                                                                                            </div>
-                                                                                        </a>
-
-                                                                                    </div>
-                                                                                    <div class="row">
-
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                            }*/
+                            </div>
                                     }

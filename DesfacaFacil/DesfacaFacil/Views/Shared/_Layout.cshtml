@@ -64,12 +64,13 @@
                     }
                     else
                     {
-                        <b>Bem vindo(a), @Session["Nome"] (@Html.ActionLink("Desconectar", "Sair", "Login"))</b>
+
                         <ul class="nav navbar-nav navbar-right">
                             <li id="Painel" class="active">
                                 <a href='~/Login/PainelUsuario/@Session["IdUsuario"].ToString()'>Painel do Usuário</a>
                             </li>
                         </ul>
+                        <b>@Session["Nome"] (@Html.ActionLink("Sair", "Sair", "Login"))</b>
                     }
                 }
                 catch (NullReferenceException ex)
