@@ -78,7 +78,7 @@ namespace DesfacaFacil.Controllers
         {
             DBAnuncios anuncio = dbcontroller.getAnuncios("aid=" + id).Single();
             anuncio.Fechar();
-            return RedirectToAction("PainelUsuario", "Login", new RouteValueDictionary(new { id = id }));
+            return RedirectToAction("Index", "Home");
         }
 
 

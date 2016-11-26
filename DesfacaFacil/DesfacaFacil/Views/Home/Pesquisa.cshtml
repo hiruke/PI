@@ -16,7 +16,7 @@ else
 {
 
     int i = 0, aux = 10;
-    if (Model.Count <= 10) { aux = Model.Count - 1; }
+    if (Model.Count < 10) { aux = Model.Count; }
     while (i < aux)
     {
         <div class="section">
@@ -46,7 +46,7 @@ else
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <h3 style="color:#337cbb">@Model[i].titulo</h3>
+                                    <a href="/Anuncios/Visualizar/@Model[i].aid"><h3 style="color:#337cbb">@Model[i].titulo</h3></a>
                                     <br>
                                     <b>Anunciante: </b><a href="/Login/PainelUsuario/?id=@Model[i].usid">@Model[i].getUsuario().nome</a><br />
 
